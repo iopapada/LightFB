@@ -9,7 +9,7 @@
 class IndexController extends Controller {
 
     public function index() {
-        echo file_get_contents(APP_PATH ."/views/home/index.html");
+        //echo file_get_contents(APP_PATH ."/views/home/index.html");
     }
 
 

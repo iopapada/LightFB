@@ -45,14 +45,14 @@ class AppController extends Controller{
                 $_SESSION['user_id'] = $user_email;
                 if($remember == true) {
                     setcookie('lggd_sess', hash('sha512', uniqid()), 84600);
-                    return true;
+                    echo'cookie set';
                 }
                 return true;
             } else {
-                return false;
+                echo'wrong password';
             }
-        } else {
-            return false;
+        } else if(count($rows)==0){
+            echo'this mail does not exist';
         }
     }
 
@@ -66,10 +66,6 @@ class AppController extends Controller{
             $pass = sha1($this->generatePassword());
             //$this->sendmail($emailOrPhone, $pass);
             db_query("INSERT INTO users (firstname,lastname,email,password) VALUES ('$first','$last','$emailOrPhone','$pass')");
-            return true;
-        } else {
-            echo 'no valid infos';
-            return false;
         }
     }
 
@@ -99,8 +95,13 @@ class AppController extends Controller{
     private function validateSignUpInfos($first,$last,$emailOrPhone)
     {
         $rows = db_query_select("SELECT password FROM users WHERE email = '$emailOrPhone'");
-        if($first !=null && $last != null && count($rows)==1) return true;
-        else return false;
+        if($first ==null || $last == null) {
+            echo 'no valid infos';
+        }
+        else if(count($rows)!=0) {
+            echo 'this mail is already registered';
+        }
+        else return true;
     }
 
 

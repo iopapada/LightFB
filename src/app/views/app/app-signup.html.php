@@ -1,0 +1,1 @@
+<p class="lead-msg"> Sign up was successful you will receive the password in your mailbox. <br /></p>

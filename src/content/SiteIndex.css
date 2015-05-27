@@ -56,6 +56,12 @@
     border-radius: 4px;
 }
 
+.lead-msg{
+    font-size: 14px;
+    text-align: center;
+    background-color: #ee516d;
+}
+
 .footer-main {
     background-color: #3C3D3D;
 }
