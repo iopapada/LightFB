@@ -145,7 +145,7 @@ class Map {
         $controller_path = APP_PATH . 'views/layouts/' . $controller . '.' . $format . '.php';
 
         // application.format.php
-        $application_path = APP_PATH . 'views/layouts/application.' . $format . '.php';
+        $application_path = APP_PATH . 'views/layouts/index.' . $format . '.php';
 
         $path_to_use = null;
 
