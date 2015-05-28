@@ -81,7 +81,12 @@ class Map {
 
             // run the matching action
             if( is_callable(array($tmp_class, $action)) ) {
-                $tmp_class->$action();
+                $res = $tmp_class->$action();
+                //in case of errors in the action
+                if($res !== true && $res != null)
+                {
+                    $action = $res;
+                }
             }else
                 die('The action <strong>' . $action . '</strong> could not be called from the controller <strong>' . $class_name . '</strong>');
         }else
@@ -89,8 +94,8 @@ class Map {
 
         self::get_user_vars($tmp_class);
 
-        // include the view file
-         self::load_view($controller, $action, $format);
+        // include the view file as is Or From layout
+        //self::load_view($controller, $action, $format);
 
         // load the layout
         $layout_path = self::get_layout($controller, $action, $format);

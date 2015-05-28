@@ -8,7 +8,11 @@
 
 include APP_PATH . 'models/DAO.php';
 class AppController extends Controller{
-    public $site_title = 'LikeFB';
+    //public $site_title = 'LikeFB';
+
+    public function index() {
+        //echo file_get_contents(APP_PATH ."/views/home/index.html");
+    }
 
     public static function signin()
     {
@@ -62,10 +66,14 @@ class AppController extends Controller{
         $last = $_POST['LastName'];
         $emailOrPhone = $_POST['EmailOrPhone'];
 
-        if ($this->validateSignUpInfos($first,$last,$emailOrPhone)) {
+        $isValid = $this->validateSignUpInfos($first,$last,$emailOrPhone);
+        if ($isValid === true) {
             $pass = sha1($this->generatePassword());
             //$this->sendmail($emailOrPhone, $pass);
             db_query("INSERT INTO users (firstname,lastname,email,password) VALUES ('$first','$last','$emailOrPhone','$pass')");
+        }
+        else{
+            return $isValid;
         }
     }
 
@@ -96,10 +104,12 @@ class AppController extends Controller{
     {
         $rows = db_query_select("SELECT password FROM users WHERE email = '$emailOrPhone'");
         if($first ==null || $last == null) {
-            echo 'no valid infos';
+            return 'signuperror2';
+            //echo 'No valid infos';
         }
         else if(count($rows)!=0) {
-            echo 'this mail is already registered';
+            return 'signuperror1';
+            //echo 'This mail is already registered';
         }
         else return true;
     }

@@ -1,4 +1,4 @@
-<p class="lead-msg"> Sign up was successful you will receive the password in your mailbox. <br /></p>
+<p class="lead-msg"> No valid infos. <br /></p>
 <div class="jumbotron">
     <table class="intro-index-table">
         <td width="50%">

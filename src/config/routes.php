@@ -6,10 +6,10 @@
  * Time: 2:03 μμ
  */
 
-Map::get('/', 'index#index');
-Map::resource('index');
-//Map::post('/', 'app#signin');
-//Map::resource('app');
+Map::get('/', 'app#index');
+Map::resource('app');
+Map::post('/', 'app#signin');
+Map::resource('app');
 Map::post('/', 'app#signup');
 Map::resource('app');
 
