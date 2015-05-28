@@ -6,6 +6,7 @@
  * Time: 3:14 πμ
  */
 
-class WelcomeController {
+include APP_PATH . 'models/DAO.php';
+class WelcomeController extends Controller{
 
 }
