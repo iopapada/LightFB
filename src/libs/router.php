@@ -83,7 +83,7 @@ class Map {
             if( is_callable(array($tmp_class, $action)) ) {
                 $res = $tmp_class->$action();
                 //in case of errors in the action
-                if($res !== true && $res != null)
+                if($res !== true)
                 {
                     $action = $res;
                 }

@@ -18,24 +18,24 @@ class AppController extends Controller{
     {
         $user = $_POST['Username'];
         $pass = $_POST['Password'];
-
-        if(self::validateSignInInfos($user, $pass)){
-
-            if(self::authenticate($user,$pass)){
-                self::redirect_to('welcome#welcome');
+        $res = self::validateSignInInfos($user, $pass);
+        if($res === true){
+            $res = self::authenticate($user,$pass);
+            if($res === true){
+                return true;
             }
             else{
-                self::redirect_to('Error#index');
+                return $res;
             }
         }
         else{
-            self::redirect_to('error#NoValidInfos');
+            return $res;
         }
     }
 
     private static function validateSignInInfos($user, $pass){
         if($user != null && $pass != null) return true;
-        else return false;
+        else return 'signinerror1';
     }
 
     public static function authenticate($user_email, $user_pass, $remember = false)
@@ -53,10 +53,12 @@ class AppController extends Controller{
                 }
                 return true;
             } else {
-                echo'wrong password';
+                return 'signinerror1';
+                //echo'wrong password';
             }
         } else if(count($rows)==0){
-            echo'this mail does not exist';
+            return 'signinerror1';
+            //echo'this mail does not exist';
         }
     }
 
@@ -70,6 +72,9 @@ class AppController extends Controller{
         if ($isValid === true) {
             $pass = sha1($this->generatePassword());
             //$this->sendmail($emailOrPhone, $pass);
+//            if($this->sendmail($emailOrPhone, $pass)){
+//                return 'signuperror3';
+//            }
             db_query("INSERT INTO users (firstname,lastname,email,password) VALUES ('$first','$last','$emailOrPhone','$pass')");
         }
         else{
@@ -103,7 +108,7 @@ class AppController extends Controller{
     private function validateSignUpInfos($first,$last,$emailOrPhone)
     {
         $rows = db_query_select("SELECT password FROM users WHERE email = '$emailOrPhone'");
-        if($first ==null || $last == null) {
+        if($first == null || $last == null) {
             return 'signuperror2';
             //echo 'No valid infos';
         }

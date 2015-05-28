@@ -49,26 +49,25 @@
                 <p>
                     <br/>
                 </p>
-                <p><a class="btn btn-default" href="#">Learn more &raquo;</a></p>
+                <p><a class="btn btn-default" href="http://localhost:66/index.php">Learn more &raquo;</a></p>
             </div>
         </td>
         <td width="33%">
             <div class="col-md-4">
                 <h2>Share what's new</h2>
                 <p><br/></p>
-                <p><a class="btn btn-default" href="#">Learn more &raquo;</a></p>
+                <p><a class="btn btn-default" href="http://localhost:66/index.php">Learn more &raquo;</a></p>
             </div>
         </td>
         <td width="33%">
             <div class="col-md-4">
                 <h2>Find more</h2>
                 <p><br/></p>
-                <p><a class="btn btn-default" href="#">Learn more &raquo;</a></p>
+                <p><a class="btn btn-default" href="http://localhost:66/index.php">Learn more &raquo;</a></p>
             </div>
         </td>
     </table>
 </div>
-
 <footer class="footer-main">
     <div class="footer-short">
         <p>© 2015 LikeFB s.r.o. All rights reserved</p>
