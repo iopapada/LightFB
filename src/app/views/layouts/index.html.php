@@ -3,75 +3,116 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Welcome Page</title>
-    <link rel="stylesheet" type="text/css" href="/src/content/SiteIndex.css">
+    <link rel="stylesheet" type="text/css" href="../../../../src/content/SiteIndex.css">
+    <script src="../../../../src/scripts/Validations.js"></script>
 </head>
 <body>
-{PAGE_CONTENT}
-<div class="jumbotron">
-    <table class="intro-index-table">
-        <td width="50%">
-            <h1>LikeFB</h1>
-            <form method="post" action="/index.php">
-                <div>
-                    <input name="Username" type="text" class="input-group-addon" placeholder="Username or Email">
-                </div>
-                <div>
-                    <input name="Password" type="password" class="input-group-addon" placeholder="Password">
-                </div>
-                <button type="submit" class="btn btn-primary">Sign In</button>
+<div id="header_bar">
+    <div id="header_elements_container">
+        <div class="fblight_logo">
+            <h1>LightFB</h1>
+        </div>
+        <div class="login_container">
+            <form id="login_form" method="post" action="/index.php">
+                <table cellspacing="5">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <label for="userlogin">Username or Email</label>
+                        </td>
+                        <td>
+                            <label for="passlogin">Password</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input name="username"  type="text" id="userlogin" class="inputtext" required="true" aria-required="true">
+                        </td>
+                        <td>
+                            <input name="pass" type="password" id="passlogin" class="inputtext" required="true" aria-required="true">
+                        </td>
+                        <td>
+                            <button type="submit" class="btn btn-primary">Sign In</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label><a href="/index.php">Recover your password</label>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </form>
-        </td>
-        <td width="50%">
-            <p class="lead"><br /></p>
-            <form method="post" action="/index.php">
-                <div>
-                    <input name="FirstName" type="text" class="input-group-addon" placeholder="First Name">
-                </div>
-                <div>
-                    <input name="LastName" type="text" class="input-group-addon" placeholder="Last Name">
-                </div>
-                <div>
-                    <input name="EmailOrPhone" type="text" class="input-group-addon" placeholder="Email or mobile number">
-                </div>
-                <div>
-                    <input name="Re-Email" type="text" class="input-group-addon" placeholder="Re-enter email or mobile number">
-                </div>
-                <button type="submit" class="btn btn-primary">Sign Up</button>
-            </form>
-        </td>
-    </table>
-</div>
-<div>
-    <table class="intro-info-table">
-        <td width="33%">
-            <div class="col-md-4">
-                <h2>See photos and updates</h2>
-                <p>
-                    <br/>
-                </p>
-                <p><a class="btn btn-default" href="http://localhost:66/index.php">Learn more &raquo;</a></p>
-            </div>
-        </td>
-        <td width="33%">
-            <div class="col-md-4">
-                <h2>Share what's new</h2>
-                <p><br/></p>
-                <p><a class="btn btn-default" href="http://localhost:66/index.php">Learn more &raquo;</a></p>
-            </div>
-        </td>
-        <td width="33%">
-            <div class="col-md-4">
-                <h2>Find more</h2>
-                <p><br/></p>
-                <p><a class="btn btn-default" href="http://localhost:66/index.php">Learn more &raquo;</a></p>
-            </div>
-        </td>
-    </table>
-</div>
-<footer class="footer-main">
-    <div class="footer-short">
-        <p>© 2015 LikeFB s.r.o. All rights reserved</p>
+        </div>
     </div>
-</footer>
+</div>
+<div id="main_area">
+    <div id="main_content">
+        <div id="FBlight_slogan">
+        </div>
+        <div id="signup_area">
+            <div id ="signup_text">
+                Signup on LightFB!
+            </div>
+            <div id ="signup_form">
+                <form method="post"  onsubmit="return checkForm(this);" action="/index.php">
+                    <table cellspacing="5">
+                        <tbody>
+                            <tr>
+                                <div id="firstname">
+                                    <input name="FirstName" type="text" class="input-signup" placeholder="First Name" required="true" aria-required="true" minlength ="2">
+                                </div>
+                            </tr>
+                            <tr>
+                                <div id="lastname">
+                                    <input name="LastName" type="text" class="input-signup" placeholder="Last Name" required="true" aria-required="true" minlength ="2">
+                                </div>
+                            </tr>
+                            <tr>
+                                <div id="emailInput">
+                                    <input name="Email" type="email" class="input-signup" id="email" placeholder="Email" required="true" aria-required="true">
+                                </div>
+                            </tr>
+                            <tr>
+                                <div id="emailConfirmInput">
+                                    <input name="ReEmail" type="email" class="input-signup" id="emailConfirm" placeholder="Confirm Email"   required="true" aria-required="true">
+                                </div>
+                            </tr>
+                            <tr>
+                                <div id="passwordSignup">
+                                    <input name="Password" type="password" class="input-signup" placeholder="New Password" required="true" aria-required="true" min="5">
+                                </div>
+                            </tr>
+                            <tr>
+                                <div id="birthdayInput">
+                                    <label>Birthday<input name="Birthday" type="text" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" class="input-signup" required="true" aria-required="true"></label>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div id="gender">
+                                    <label><input type="radio" name="gender" value="Male" class="radio-signup"required>Male</label>
+                                    <label><input type="radio" name="gender" value="Female" class="radio-signup">Female</label>
+                                </div>
+                            </tr>
+                            <tr>
+                                <div id="submit_form">
+                                    <button type="submit" id="submit_btn">Sign Up</button>
+                                </div>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+            </div>
+            <div id="signup_message">
+                {PAGE_CONTENT}
+            </div>
+        </div>
+    </div>
+</div>
+<div id="footer_bar">
+    <div id="copyright">
+        <p>LightFB © 2015</p>
+    </div>
+</div>
 </body>
 </html>
