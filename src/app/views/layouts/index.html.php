@@ -100,7 +100,7 @@
                             <tr>
                                 <div id="gender">
                                     <label>Gender:
-                                        <select name="gender" form="registerform">
+                                        <select name="gender" form="signupform">
                                             <option value="male">Male</option>
                                             <option value="female">Female</option>
                                         </select>
