@@ -67,9 +67,11 @@ class AppController extends Controller{
         $first = $_POST['FirstName'];
         $last = $_POST['LastName'];
         $emailOrPhone = $_POST['Email'];
-        $birthday = $_POST['Birthday'];
+
         $gender = $_POST['gender'];
         $password = $_POST['Password'];
+
+        $birthday = $_POST['daybirth']."/".$_POST['monthbirth']."/".$_POST['year'];
 
         $isValid = $this->validateSignUpInfos($first,$last,$emailOrPhone);
         if ($isValid === true) {

@@ -19,9 +19,9 @@ class WelcomeController extends Controller{
 
     }
 
-    public static function search()
+    public static function search($StartExpr)
     {
-
+        $rows = db_query_select("SELECT password FROM userprofile WHERE email = '$user_email'");
     }
 
     public static function loadFriendsPosts()
