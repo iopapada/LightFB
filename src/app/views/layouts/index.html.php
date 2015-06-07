@@ -10,7 +10,7 @@
 <div id="header_bar">
     <div id="header_elements_container">
         <div class="fblight_logo">
-            <h1>LightFB</h1>
+            <h1><a href="index.html.php">LightFB</a></h1>
         </div>
         <div class="login_container">
             <form id="login_form" method="post" action="/index.php">
@@ -55,43 +55,56 @@
                 Signup on LightFB!
             </div>
             <div id ="signup_form">
-                <form method="post"  onsubmit="return checkForm(this);" action="/index.php">
+                <form name="signupform" method="post" action="/index.php">
                     <table cellspacing="5">
                         <tbody>
                             <tr>
                                 <div id="firstname">
-                                    <input name="FirstName" type="text" class="input-signup" placeholder="First Name" required="true" aria-required="true" minlength ="2">
+                                    <input name="FirstName" type="text" class="input-signup" placeholder="First Name" required="true" aria-required="true">
                                 </div>
                             </tr>
                             <tr>
                                 <div id="lastname">
-                                    <input name="LastName" type="text" class="input-signup" placeholder="Last Name" required="true" aria-required="true" minlength ="2">
+                                    <input name="LastName" type="text" class="input-signup" placeholder="Last Name" required="true" aria-required="true">
                                 </div>
                             </tr>
                             <tr>
                                 <div id="emailInput">
-                                    <input name="Email" type="email" class="input-signup" id="email" placeholder="Email" required="true" aria-required="true">
+                                    <input name="Email" type="text" class="input-signup" id="email" placeholder="Email" required="true" aria-required="true" pattern="\b[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}\b">
                                 </div>
                             </tr>
                             <tr>
                                 <div id="emailConfirmInput">
-                                    <input name="ReEmail" type="email" class="input-signup" id="emailConfirm" placeholder="Confirm Email"   required="true" aria-required="true">
+                                    <input name="ReEmail" type="text" class="input-signup" id="emailConfirm" placeholder="Confirm Email"  required="true" aria-required="true" pattern="\b[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}\b" onfocus="checkMailNotEmpty()" oninput="checkMail()">
                                 </div>
                             </tr>
                             <tr>
                                 <div id="passwordSignup">
-                                    <input name="Password" type="password" class="input-signup" placeholder="New Password" required="true" aria-required="true" min="5">
+                                    <input name="Password" type="password" class="input-signup" placeholder="New Password" required="true" aria-required="true" pattern="(?=[^A-Z]*[A-Z])(?=\D*\d).{5,}$">
+                                </div>
+                            </tr>
+                            <tr>
+                                <div id="passwordCorfirm">
+                                    <input name="PasswordConfirm" type="password" class="input-signup" placeholder="Confirm Password" required="true" aria-required="true" pattern="(?=[^A-Z]*[A-Z])(?=\D*\d).{5,}$" onfocus="checkPassNotEmpty()" oninput="checkPass()">
                                 </div>
                             </tr>
                             <tr>
                                 <div id="birthdayInput">
-                                    <label>Birthday<input name="Birthday" type="text" pattern="\d{1,2}/\d{1,2}/\d{4}" placeholder="dd/mm/yyyy" class="input-signup" required="true" aria-required="true"></label>
+                                    <label>Birthday
+                                            <input class="date" name="daybirth" type="text" placeholder="DD" onfocus="this.placeholder=''" onblur="this.placeholder='DD'" oninput="checkDay(this)">/
+                                            <input class="date" name="monthbirth" type="text" placeholder="MM" onfocus="this.placeholder=''" onblur="this.placeholder='MM'" oninput="checkMonth(this)">/
+                                            <input class="date" name="year" type="text" placeholder="YYYY" onfocus="this.placeholder=''" onblur="this.placeholder='YYYY'" oninput="checkYear(this)">
+                                    </label>
                                 </div>
                             </tr>
                             <tr>
                                 <div id="gender">
-                                    <label><input type="radio" name="gender" value="Male" class="radio-signup"required>Male</label>
-                                    <label><input type="radio" name="gender" value="Female" class="radio-signup">Female</label>
+                                    <label>Gender:
+                                        <select name="gender" form="registerform">
+                                            <option value="male">Male</option>
+                                            <option value="female">Female</option>
+                                        </select>
+                                    </label>
                                 </div>
                             </tr>
                             <tr>

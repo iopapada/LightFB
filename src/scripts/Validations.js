@@ -1,61 +1,79 @@
-function checkForm(form) {
+function checkDate() {
 
-    if (form.Email.value != '' && form.ReEmail.value != '') {
 
-        /*check correct e-mail RegExp for old browser compatibility*/
+}
 
-        if (form.Email.value != form.ReEmail.value) {
+function checkMailNotEmpty(){
 
-            alert("Email and Email Confirmation don't match!");
+    if(document.signupform.Email.value ==""){
 
-            return false;
-        }
-
+        document.signupform.Email.focus();
     }
+}
 
-    // regular expression to match required date format
-    var re = /^\d{1,2}\/\d{1,2}\/\d{4}$/;
-    var regs = "";
+function checkMail(){
 
-    if (form.Birthday.value != '') {
-        if (regs = form.Birthday.value.match(re)) {
+    document.signupform.ReEmail.setCustomValidity('');
 
-            var parts = form.Birthday.value.split("/");
-            var day = parseInt(parts[0], 10);
-            var month = parseInt(parts[1], 10);
-            var year = parseInt(parts[2], 10);
+    if (document.signupform.ReEmail.value != document.signupform.Email.value){
 
-            /*form.Birthday.setCustomValidity('');*/
+        document.signupform.ReEmail.setCustomValidity("E-mail and Confirm E-mail fields don't match!")
+    }
+}
 
-            // day value between 1 and 31
-            if (day < 1 || day > 31) {
-                alert("Invalid value for day: " + day);
+function checkPassNotEmpty(){
 
-                /*Seems setCustomValidity is not triggering the submit event after first time*/
+    if(document.signupform.Password.value ==""){
 
-                /*form.Birthday.setCustomValidity("Invalid value for day: " + day);*/
-                return false;
-            }
+        document.signupform.Password.focus();
+    }
+}
 
-            // month value between 1 and 12
-            if (month < 1 || month > 12) {
-                alert("Invalid value for month: " + month);
-                /*form.Birthday.setCustomValidity("Invalid value for month: " + month);*/
-                return false;
-            }
+function checkPass(){
 
-            // year value between 1900 and 2015
-            if (year < 1900 || year > (new Date()).getFullYear()) {
-                alert("Invalid value for year: " + year + " - must be between 1900 and " + (new Date()).getFullYear());
-                /*form.Birthday.setCustomValidity("Invalid value for year: " + year + " - must be between 1900 and " + (new Date()).getFullYear());*/
+    document.signupform.PasswordConfirm.setCustomValidity('');
 
-                return false;
-            }
-        } else {
-            alert("Invalid Date: " + form.Birthday.value);
-            /*form.Birthday.setCustomValidity("Invalid Date: " + form.Birthday.value);*/
-            return false;
+    if (document.signupform.PasswordConfirm.value != document.signupform.Password.value){
+
+        document.signupform.PasswordConfirm.setCustomValidity("Password and Confirm Password fields don't match!")
+    }
+}
+
+function checkDay(input){
+
+    document.signupform.daybirth.setCustomValidity('');
+
+    if(document.signupform.daybirth.value !=""){
+
+        if (input.value < 1 || input.value >31){
+
+            document.signupform.daybirth.setCustomValidity('Day Range should be between 1 and 31.');
         }
     }
-    return true;
+}
+
+function checkMonth(){
+
+    document.signupform.monthbirth.setCustomValidity('');
+
+    if(document.signupform.monthbirth.value !=""){
+
+        if(document.signupform.monthbirth.value <1 ||  document.signupform.monthbirth.value >12){
+
+            document.signupform.monthbirth.setCustomValidity('Month Range should be between 1 and 12.');
+
+        }
+    }
+}
+
+function checkYear(input){
+
+    document.signupform.year.setCustomValidity('');
+
+    if(document.signupform.year.value !=""){
+
+        if (input.value < 1900 || input.value > (new Date()).getFullYear()){
+            document.signupform.year.setCustomValidity('Year Range should be between 1900 and ' + (new Date()).getFullYear());
+        }
+    }
 }
