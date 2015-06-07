@@ -18,7 +18,7 @@
                     <tbody>
                     <tr>
                         <td>
-                            <label for="userlogin">Username or Email</label>
+                            <label for="userlogin">Email</label>
                         </td>
                         <td>
                             <label for="passlogin">Password</label>
@@ -37,7 +37,7 @@
                     </tr>
                     <tr>
                         <td>
-                            <label><a href="/index.php">Recover your password</label>
+                            <label><a href="/index.php">Reset your password</label>
                         </td>
                     </tr>
                     </tbody>
