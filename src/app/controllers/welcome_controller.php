@@ -9,4 +9,29 @@
 include APP_PATH . 'models/DAO.php';
 class WelcomeController extends Controller{
 
+    public static function sendFriendRequest()
+    {
+
+    }
+
+    public static function sendMessage()
+    {
+
+    }
+
+    public static function search()
+    {
+
+    }
+
+    public static function loadFriendsPosts()
+    {
+
+    }
+
+    public static function addPost()
+    {
+
+    }
+
 }

@@ -8,7 +8,7 @@
 
 Map::get('/', 'app#index');
 Map::resource('app');
-if(isset($_POST['Username']) && isset($_POST['Password'])){
+if(isset($_POST['username']) && isset($_POST['pass'])){
     Map::post('/', 'app#signin');
     Map::resource('app');
 }

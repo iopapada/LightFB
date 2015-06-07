@@ -16,8 +16,8 @@ class AppController extends Controller{
 
     public static function signin()
     {
-        $user = $_POST['Username'];
-        $pass = $_POST['Password'];
+        $user = $_POST['username'];
+        $pass = $_POST['pass'];
         $res = self::validateSignInInfos($user, $pass);
         if($res === true){
             $res = self::authenticate($user,$pass);
@@ -41,7 +41,7 @@ class AppController extends Controller{
     public static function authenticate($user_email, $user_pass, $remember = false)
     {
         $user_pass = sha1($user_pass);
-        $rows = db_query_select("SELECT password FROM users WHERE email = '$user_email'");
+        $rows = db_query_select("SELECT password FROM userprofile WHERE email = '$user_email'");
 
         if(count($rows)==1) {
             if($rows[0]['password'] == $user_pass) {
@@ -66,16 +66,20 @@ class AppController extends Controller{
     {
         $first = $_POST['FirstName'];
         $last = $_POST['LastName'];
-        $emailOrPhone = $_POST['EmailOrPhone'];
+        $emailOrPhone = $_POST['Email'];
+        $birthday = $_POST['Birthday'];
+        $gender = $_POST['gender'];
+        $password = $_POST['Password'];
 
         $isValid = $this->validateSignUpInfos($first,$last,$emailOrPhone);
         if ($isValid === true) {
-            $pass = sha1($this->generatePassword());
-            //$this->sendmail($emailOrPhone, $pass);
+            $pass = sha1($password);
+//            $this->generatePassword()
+//            $this->sendmail($emailOrPhone, $pass);
 //            if($this->sendmail($emailOrPhone, $pass)){
 //                return 'signuperror3';
 //            }
-            db_query("INSERT INTO users (firstname,lastname,email,password) VALUES ('$first','$last','$emailOrPhone','$pass')");
+           $res = db_query("INSERT INTO userprofile (firstname,lastname,email,password,birth,gender) VALUES ('$first','$last','$emailOrPhone','$pass','$birthday','$gender')");
         }
         else{
             return $isValid;
@@ -107,7 +111,7 @@ class AppController extends Controller{
 
     private function validateSignUpInfos($first,$last,$emailOrPhone)
     {
-        $rows = db_query_select("SELECT password FROM users WHERE email = '$emailOrPhone'");
+        $rows = db_query_select("SELECT password FROM userprofile WHERE email = '$emailOrPhone'");
         if($first == null || $last == null) {
             return 'signuperror2';
             //echo 'No valid infos';
