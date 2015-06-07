@@ -12,6 +12,16 @@
         <div class="fblight_logo">
             <h1><a href="index.html.php">LightFB</a></h1>
         </div>
+        <div class="searchFB">
+            <form action="/index.php" id="global-search">
+                <input name="search" id="search-query" type="text" placeholder="Search in LightFB" >
+                <span class="search icon">
+                    <button type="submit" class="search-icon" tabindex="-1">
+                        Search
+                    </button>
+                </span>
+            </form>
+        </div>
         <div class="login_container">
             Logged in as
         </div>
@@ -26,8 +36,8 @@
     <div id="main_content">
         <div id="postStatus">
             <div id="inputform">
-                <form name="statusForm" method="post">
-                    <input name="statusUpdate" type="text" placeholder="Post your status to LightFB" required="true" aria-required="true">
+                <form name="statusForm" method="post" action="index.php">
+                    <input name="addPost" type="text" placeholder="Post your status to LightFB" required="true" aria-required="true">
                 </form>
             </div>
             <div id="statusButtons">
