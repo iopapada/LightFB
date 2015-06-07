@@ -112,3 +112,16 @@ input:focus:invalid{
 
     border: 2px solid red;
 }
+
+/*For app-signin */
+
+#leftbar{
+
+    float:left;
+    height:100%;
+}
+
+#maincontent{
+
+    float:right;
+}

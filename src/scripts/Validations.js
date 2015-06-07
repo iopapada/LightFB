@@ -1,7 +1,3 @@
-function checkDate() {
-
-
-}
 
 function checkMailNotEmpty(){
 
