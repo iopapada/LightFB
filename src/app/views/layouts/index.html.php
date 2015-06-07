@@ -3,8 +3,8 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Welcome Page</title>
-    <link rel="stylesheet" type="text/css" href="../../../content/SiteIndex.css">
-    <script src="../../../scripts/Validations.js"></script>
+    <link rel="stylesheet" type="text/css" href="src/content/SiteIndex.css">
+    <script src="src/scripts/Validations.js"></script>
 </head>
 <body>
 <div id="header_bar">
@@ -100,7 +100,7 @@
                             <tr>
                                 <div id="gender">
                                     <label>Gender:
-                                        <select name="gender" form="signupform">
+                                        <select name="gender">
                                             <option value="male">Male</option>
                                             <option value="female">Female</option>
                                         </select>
