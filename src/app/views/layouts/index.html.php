@@ -7,10 +7,10 @@
     <script src="src/scripts/Validations.js"></script>
 </head>
 <body>
-<div id="header_bar">
+<div class="header">
     <div id="header_elements_container">
         <div class="fblight_logo">
-            <h1><a href="index.html.php">LightFB</a></h1>
+            <a href="index.php">LightFB</a>
         </div>
         <div class="login_container">
             <form id="login_form" method="post" action="/index.php">
@@ -109,7 +109,7 @@
                             </tr>
                             <tr>
                                 <div id="submit_form">
-                                    <button type="submit" id="submit_btn">Sign Up</button>
+                                    <button type="submit" id="button signupbtn">Sign Up</button>
                                 </div>
                             </tr>
                         </tbody>

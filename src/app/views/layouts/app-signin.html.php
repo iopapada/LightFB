@@ -7,10 +7,10 @@
     <script src="src/scripts/Validations.js"></script>
 </head>
 <body>
-<div id="header_bar">
+<div class="header signed">
     <div id="header_elements_container">
         <div class="fblight_logo">
-            <h1><a href="index.html.php">LightFB</a></h1>
+                <a href="index.php">LightFB</a>
         </div>
         <div class="searchFB">
             <form action="/index.php" id="global-search">
@@ -29,19 +29,27 @@
 </div>
 <div id="main_area">
     <div id="leftbar">
-        /*Profile
-        Edit Profile
-        Groups*/
+        <ul>
+            <h2>My Personal Information</h2>
+            <li>
+                <a href="">My Profile</a>
+            </li>
+            <li>
+                <a href="">Edit My Profile</a>
+            </li>
+            <h2>Groups</h2>
+            <li>
+                <a href="">My Groups</a>
+            </li>
+        </ul>
     </div>
     <div id="main_content">
         <div id="postStatus">
             <div id="inputform">
-                <form name="statusForm" method="post" action="index.php">
-                    <input name="addPost" type="text" placeholder="Post your status to LightFB" required="true" aria-required="true">
-                </form>
+                <textarea id="statusText" name="postTextarea" placeholder="Post your Status to LightFB"></textarea>
             </div>
             <div id="statusButtons">
-                <button type="submit" id="submit_btn">Post</button>
+                <button type="submit" class="button postbtn" >Post</button>
             </div>
         </div>
         <div id="statusUpdates">

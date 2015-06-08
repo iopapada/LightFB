@@ -1,18 +1,25 @@
 body {
     width:100%;
     margin:0;
-    padding:0;}
+    padding:0;
+    background-color:#e9eaed;
+}
 
-#header_bar{
+.header{
     background:#3a5795;
     height: 100px;
+    border-bottom: 1px solid #133783;
+    box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.3);
+}
+
+.signed{
+
+    height:40px;
 }
 
 #header_elements_container{
-    /*padding-left : 80px;
-    padding-right: 80px;
-    padding-top: 10px;
-    padding-bottom: 10px;*/
     width: 80%;
     margin:0 auto;
     padding: 0;
@@ -20,6 +27,19 @@ body {
 }
 
 .fblight_logo {
+    float:left;
+    width: 30%;
+}
+
+.fblight_logo a{
+    color:white;
+    font-size: 20px;
+    text-decoration: none;
+
+}
+
+.searchFB{
+    margin:10px;
     float:left;
 }
 
@@ -81,6 +101,8 @@ body {
     padding-left: 80px;
 }
 
+
+
 #signup_area{
 
     float:right;
@@ -114,14 +136,62 @@ input:focus:invalid{
 
 /*For app-signin */
 
+#main_area{
+
+    width: 80%;
+    margin: 0px auto;
+
+}
+
 #leftbar{
 
     float:left;
     height:100%;
+    width: 20%;
+
 }
 
-#maincontent{
+#main_content{
 
-    float:right;
+    margin-left:20%;
+
+}
+
+ul{
+
+    list-style:none;
+}
+
+#postStatus{
+    margin-top: 5px;
+    width: 70%;
+    background-color:white;
+    border: 1px solid whitesmoke;
+    box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.3);
+}
+
+#inputform{
+    margin:2px;
+}
+
+#statusText{
+    height: 70px;
+    resize: none;
+    width: 99%;
+    margin: 0px auto;
+
+}
+
+.button{
+    width: 20%;
+    background-color: #3a5795;
+    color:white;
+    vertical-align: center;
+    text-align: center;
+    font-size: 14px;
+    border-color: #435a8b #3c5488 #334c83;
+    border: 1px solid;
 }
 
