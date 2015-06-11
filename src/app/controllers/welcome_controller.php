@@ -9,11 +9,6 @@
 include APP_PATH . 'models/DAO.php';
 class WelcomeController extends Controller{
 
-    public static function profile()
-    {
-        echo "Myprofile";
-    }
-
     public static function sendMessage()
     {
 

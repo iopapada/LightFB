@@ -8,6 +8,11 @@
 
 class MypageController {
 
+    public static function profile()
+    {
+        return true;
+    }
+
     public static function sendFriendRequest()
     {
 

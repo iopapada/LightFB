@@ -6,14 +6,21 @@
  * Time: 2:03 μμ
  */
 
-if(empty($_GET) && empty($_POST)) {
+if(!isset($_GET['action']) && empty($_POST)) {
     Map::get('/', 'app#index');
     Map::resource('app');
 }
 else if(isset($_GET['action']) && $_GET['action'] == 'myprofile') {
-    Map::get('/', 'welcome#profile');
+    Map::get('/', 'mypage#profile');
+    Map::resource('mypage');
+}
+else if(isset($_GET['action']) && $_GET['action'] == 'search') {
+    Map::post('/', 'welcome#search');
     Map::resource('welcome');
 }
+
+//----------------------------------------------------------------------
+
 else if(isset($_POST['username']) && isset($_POST['pass'])){
     Map::post('/', 'app#signin');
     Map::resource('app');
@@ -21,10 +28,6 @@ else if(isset($_POST['username']) && isset($_POST['pass'])){
 else if(isset($_POST['FirstName']) && isset($_POST['LastName']) && isset($_POST['Email']) && isset($_POST['Password'])) {
     Map::post('/', 'app#signup');
     Map::resource('app');
-}
-else if(isset($_POST['search'])) {
-    Map::post('/', 'welcome#search');
-    Map::resource('welcome');
 }
 else if(isset($_POST['addPost'])) {
     Map::post('/', 'welcome#addPost');
