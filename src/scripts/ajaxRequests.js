@@ -13,7 +13,7 @@ function sendFriendRequest(){
             document.getElementById("friendButton").value="Friend Request Send!";
         }
     }
-    xmlhttp.open("GET","/index.php?",true);
+    xmlhttp.open("GET","/index.php?action=friendRequest",true);
     xmlhttp.send();
 }
 
