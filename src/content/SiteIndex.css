@@ -111,7 +111,7 @@ body {
 
 #footer_bar {
 
-    clear: both;
+    float:left;
     position:absolute;
     bottom:0;
     width:100%;
@@ -148,17 +148,16 @@ input:focus:invalid{
     float:left;
     height:100%;
     width: 20%;
+    overflow:hidden;
 
 }
 
 #main_content{
 
     margin-left:20%;
-
 }
 
 ul{
-
     list-style:none;
 }
 
