@@ -17,10 +17,8 @@ class WelcomeController extends Controller{
     public static function search()
     {
         $searchExpr = explode('=', $_GET['action']);
-        $rows = db_query_select("SELECT firstname,lastname,pictureURL FROM userprofile WHERE firstname LIKE '$searchExpr[1]%' or lastname LIKE '$searchExpr[1]%' ");
-
+        $rows = db_query_select("SELECT email,firstname,lastname,pictureURL FROM userprofile WHERE firstname LIKE '$searchExpr[1]%' or lastname LIKE '$searchExpr[1]%' ");
         return json_encode($rows);
-
     }
 
     public static function loadFriendsPosts()
