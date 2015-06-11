@@ -31,13 +31,22 @@ function mainSearch(){
     {
         if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
-            xmlDoc=xmlhttp.responseXML;
-            txt="";
-            x=xmlDoc.getElementsByTagName("USER");
-            for (i=0;i<x.length;i++)
-            {
-                txt=txt + x[i].childNodes[0].nodeValue + "<br>";
+
+            var arr = JSON.parse(response);
+            var i;
+            var out = "<table>";
+
+            for(i = 0; i < arr.length; i++) {
+                out += "<tr><td>" +
+                arr[i].firstname +
+                "</td><td>" +
+                arr[i].lastname +
+                "</td><td>" +
+                arr[i].pictureURL +
+                "</td></tr>";
             }
+            out += "</table>"
+
             document.getElementById("searchResults").innerHTML=txt;
         }
     }
