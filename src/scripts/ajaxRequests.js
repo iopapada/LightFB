@@ -47,7 +47,7 @@ function mainSearch(){
             }
             out += "</table>"
 
-            document.getElementById("searchResults").innerHTML=txt;
+            document.getElementById("searchResults").innerHTML=out;
         }
     }
     xmlhttp.open("GET","/index.php?action=search?searchExpr=" + searchExpr,true);
