@@ -11,7 +11,7 @@ class Map {
 
     public static function resource($controller) {
         self::get('/' . $controller, $controller . '#index');
-//        self::get('/' . $controller . '/new', $controller . '#add');
+        self::get('/' . $controller . '/myprofile', $controller . '#profile');
 //        self::get('/' . $controller . '/edit/(.*)', $controller . '#edit');
 
         self::post('/' . $controller, $controller . '#signin');

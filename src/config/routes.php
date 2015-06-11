@@ -6,9 +6,15 @@
  * Time: 2:03 μμ
  */
 
-Map::get('/', 'app#index');
-Map::resource('app');
-if(isset($_POST['username']) && isset($_POST['pass'])){
+if(empty($_GET) && empty($_POST)) {
+    Map::get('/', 'app#index');
+    Map::resource('app');
+}
+else if(isset($_GET['action']) && $_GET['action'] == 'myprofile') {
+    Map::get('/', 'welcome#profile');
+    Map::resource('welcome');
+}
+else if(isset($_POST['username']) && isset($_POST['pass'])){
     Map::post('/', 'app#signin');
     Map::resource('app');
 }

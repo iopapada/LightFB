@@ -11,7 +11,7 @@ class WelcomeController extends Controller{
 
     public static function profile()
     {
-
+        echo "Myprofile";
     }
 
     public static function sendMessage()
