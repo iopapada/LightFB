@@ -8,6 +8,11 @@
 
 class MypageController {
 
+    public static function sendFriendRequest()
+    {
+
+    }
+
     public static function updateInfo()
     {
 

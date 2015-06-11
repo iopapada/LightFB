@@ -44,6 +44,7 @@ class ControlRoom {
         if( $type == 'XMLHttpRequest' )
             $controlroom->method = isset($_SERVER['HTTP_X_REQUESTED_WITH']) ? $_SERVER['HTTP_X_REQUESTED_WITH'] : 'GET';
 
+        $sk = preg_match('@^'.$route.'(?:\.(\w+))?$@uD', $controlroom->uri, $matches);
         if( static::$route_found || (!preg_match('@^'.$route.'(?:\.(\w+))?$@uD', $controlroom->uri, $matches) || $controlroom->method != $type) ) {
             return false;
         }

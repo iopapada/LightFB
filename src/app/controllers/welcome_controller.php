@@ -9,7 +9,7 @@
 include APP_PATH . 'models/DAO.php';
 class WelcomeController extends Controller{
 
-    public static function sendFriendRequest()
+    public static function profile()
     {
 
     }
@@ -19,9 +19,9 @@ class WelcomeController extends Controller{
 
     }
 
-    public static function search($StartExpr)
+    public static function search($searchExpr)
     {
-        //$rows = db_query_select("SELECT password FROM userprofile WHERE email = '$user_email'");
+        $rows = db_query_select("SELECT firstname,lastname FROM userprofile WHERE firstname = '$searchExpr.%' or lastname = '$searchExpr.%' LIMIT 10");
     }
 
     public static function loadFriendsPosts()

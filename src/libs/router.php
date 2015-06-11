@@ -18,6 +18,7 @@ class Map {
         self::post('/' . $controller, $controller . '#signup');
 //        self::put('/' . $controller, $controller . '#update');
 //        self::delete('/' . $controller, $controller . '#destroy');
+//        self::ajax('/' . $controller, $controller . '#search');
     }
 
     public static function get($route, $path) {
