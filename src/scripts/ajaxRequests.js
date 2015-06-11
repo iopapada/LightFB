@@ -32,7 +32,7 @@ function mainSearch(){
         if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
 
-            var arr = JSON.parse(response);
+            var arr = JSON.parse(xmlhttp.responseText);
             var i;
             var out = "<table>";
 

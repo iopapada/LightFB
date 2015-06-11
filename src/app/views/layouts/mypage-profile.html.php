@@ -16,7 +16,7 @@
             <form name="searchform" action="/index.php" id="global-search">
                 <input name="search" id="search-query" type="text" placeholder="Search in LightFB" >
                 <span class="search icon">
-                    <button type="submit" onclick="mainSearch()" class="search-icon" tabindex="-1">
+                    <button type="button" onclick="mainSearch()" class="search-icon" tabindex="-1">
                         Search
                     </button>
                 </span>

@@ -14,13 +14,12 @@ else if(isset($_GET['action']) && $_GET['action'] == 'myprofile') {
     Map::get('/', 'mypage#profile');
     Map::resource('mypage');
 }
-else if(isset($_GET['action']) && $_GET['action'] == 'search') {
-    Map::post('/', 'welcome#search');
+//---------------------------------------------------------------------
+else if(isset($_GET['action']) && substr($_GET['action'],0,6) == 'search') {
+    Map::ajax('/', 'welcome#search');
     Map::resource('welcome');
 }
-
 //----------------------------------------------------------------------
-
 else if(isset($_POST['username']) && isset($_POST['pass'])){
     Map::post('/', 'app#signin');
     Map::resource('app');

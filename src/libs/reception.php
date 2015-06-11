@@ -41,11 +41,12 @@ class ControlRoom {
         $controlroom = static::instance();
 
         // Check for ajax
-        if( $type == 'XMLHttpRequest' )
+        if( $type == 'XMLHttpRequest' ) {
             $controlroom->method = isset($_SERVER['HTTP_X_REQUESTED_WITH']) ? $_SERVER['HTTP_X_REQUESTED_WITH'] : 'GET';
 
+        }
         $sk = preg_match('@^'.$route.'(?:\.(\w+))?$@uD', $controlroom->uri, $matches);
-        if( static::$route_found || (!preg_match('@^'.$route.'(?:\.(\w+))?$@uD', $controlroom->uri, $matches) || $controlroom->method != $type) ) {
+        if( static::$route_found || (!preg_match('@^'.$route.'(?:\.(\w+))?$@uD', $controlroom->uri, $matches) || ($controlroom->method != $type && $type !== 'XMLHttpRequest' ))) {
             return false;
         }
 
@@ -59,7 +60,7 @@ class ControlRoom {
             $controlroom->format = 'html';
 
         static::$route_found = true;
-        Map::dispatch($controlroom->format);
+        Map::dispatch($controlroom->format,$type);
     }
 
     public function __construct() {

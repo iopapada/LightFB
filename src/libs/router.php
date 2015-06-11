@@ -41,10 +41,10 @@ class Map {
 //        ControlRoom::process($route, 'DELETE');
 //    }
 //
-//    public static function ajax($route, $path) {
-//        self::$path = $path;
-//        ControlRoom::process($route, 'XMLHttpRequest');
-//    }
+    public static function ajax($route, $path) {
+        self::$path = $path;
+        ControlRoom::process($route, 'XMLHttpRequest');
+    }
 
     public static function pre_dispatch($uri) {
         $path = explode('/', $uri);
@@ -62,7 +62,7 @@ class Map {
 
     }
 
-    public static function dispatch($format) {
+    public static function dispatch($format, $type = null) {
 
         // runs when find a matching route
         $path = explode('#', self::$path);
@@ -83,8 +83,14 @@ class Map {
             // run the matching action
             if( is_callable(array($tmp_class, $action)) ) {
                 $res = $tmp_class->$action();
+                //in case of ajax request skip MVC and return JSON
+                if($type === 'XMLHttpRequest')
+                {
+                    header ('Content-Type: application/json');
+                    echo $res;
+                }
                 //in case of errors in the action
-                if($res !== true)
+                else if($res !== true)
                 {
                     $action = $res;
                 }
@@ -100,7 +106,7 @@ class Map {
 
         // load the layout
         $layout_path = self::get_layout($controller, $action, $format);
-        if( !empty($layout_path) ) {
+        if( !empty($layout_path) && $type !== 'XMLHttpRequest') {
             $layout = file_get_contents($layout_path);
 
             // replace {PAGE_CONTENT} view file
