@@ -25,6 +25,8 @@ function mainSearch(){
         xmlhttp=new XMLHttpRequest();
     }
 
+    var searchExpr = document.searchform.search.value;
+
     xmlhttp.onreadystatechange=function()
     {
         if (xmlhttp.readyState==4 && xmlhttp.status==200)
@@ -39,6 +41,6 @@ function mainSearch(){
             document.getElementById("searchResults").innerHTML=txt;
         }
     }
-    xmlhttp.open("GET","/index.php?action=search",true);
+    xmlhttp.open("GET","/index.php?action=search?searchExpr=" + searchExpr,true);
     xmlhttp.send();
 }
