@@ -122,9 +122,11 @@
         </div>
     </div>
 </div>
-<div id="footer_bar">
-    <div id="copyright">
-        <p>LightFB © 2015</p>
+<div id="footer">
+    <div id="footer-inner">
+        <div id="copyright">
+            LightFB © 2015
+        </div>
     </div>
 </div>
 </body>

@@ -27,7 +27,7 @@
                 Logged in as: <?php echo $_SESSION['fullname'] ?>
             </div>
             <div id="logout">
-                <a href="/index.php?logout">Logout</a>
+                <a href="/index.php?action=logout">Logout</a>
             </div>
         </div>
     </div>
@@ -73,9 +73,11 @@
         </div>
     </div>
 </div>
-<div id="footer_bar">
-    <div id="copyright">
-        <p>LightFB © 2015</p>
+<div id="footer">
+    <div id="footer-inner">
+        <div id="copyright">
+            LightFB © 2015
+        </div>
     </div>
 </div>
 </body>

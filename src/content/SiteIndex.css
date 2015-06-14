@@ -109,20 +109,16 @@ body {
     padding-right: 80px;
 }
 
-#footer_bar {
-
-    float:left;
+#footer {
     position:absolute;
     bottom:0;
+    left:0;
     width:100%;
-    height:25px;   /* Height of the footer */
     border-top: 1px solid gray;
     font-size: 70%;
-
 }
 
 #copyright {
-
     float:left;
     text-align: left;
     font-weight: bold;
@@ -187,7 +183,7 @@ ul{
     width: 20%;
     background-color: #3a5795;
     color:white;
-    vertical-align: center;
+    vertical-align: central;
     text-align: center;
     font-size: 14px;
     border-color: #435a8b #3c5488 #334c83;
