@@ -38,7 +38,7 @@ class AppController extends Controller{
         else return 'signinerror1';
     }
 
-    public static function authenticate($user_email, $user_pass, $remember = false)
+    public static function authenticate($user_email, $user_pass, $remember = true)
     {
         $user_pass = sha1($user_pass);
         $rows = db_query_select("SELECT * FROM userprofile WHERE email = '$user_email'");
@@ -48,10 +48,14 @@ class AppController extends Controller{
                 session_start();
                 $_SESSION['user_id'] = $user_email;
                 $_SESSION['fullname'] = $rows[0]['firstname']." ".$rows[0]['lastname'];
-                if($remember == true) {
-                    setcookie('lggd_sess', hash('sha512', uniqid()), 84600);
-                    echo'cookie set';
+
+                $_SESSION["gdusername"] = $user_email;
+                $_SESSION["gdpassword"] = md5($user_pass);
+                if($remember) {
+                    setcookie("gdusername", $_SESSION['gdusername'], time()+60*60*24*100, "/");
+                    setcookie("gdpassword", $_SESSION['gdpassword'], time()+60*60*24*100, "/");
                 }
+
                 return true;
             } else {
                 return 'signinerror1';

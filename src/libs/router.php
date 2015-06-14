@@ -69,6 +69,7 @@ class Map {
         $controller = $path[0];
         $action = $path[1];
 
+        $mail = '';
         $class_name = ucfirst($controller) . 'Controller';
 
         // include the app_controller
@@ -79,9 +80,12 @@ class Map {
 
         if( class_exists($class_name) ) {
             $tmp_class = new $class_name();
-
+            if(substr($action,0,12) == 'otherprofile'){
+                $action = substr($action,0,12);
+            }
             // run the matching action
             if( is_callable(array($tmp_class, $action)) ) {
+
                 $res = $tmp_class->$action();
                 //in case of ajax request skip MVC and return JSON
                 if($type === 'XMLHttpRequest')
@@ -94,6 +98,8 @@ class Map {
                 {
                     $action = $res;
                 }
+
+
             }else
                 die('The action <strong>' . $action . '</strong> could not be called from the controller <strong>' . $class_name . '</strong>');
         }else

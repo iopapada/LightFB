@@ -14,7 +14,15 @@ else if(isset($_GET['action']) && $_GET['action'] == 'myprofile') {
     Map::get('/', 'mypage#profile');
     Map::resource('mypage');
 }
+else if(isset($_GET['action']) && $_GET['action'] == 'logout') {
+    //Map::get('/', 'welcome#logout');
+    //Map::resource('welcome');
+}
 //---------------------------------------------------------------------
+else if(isset($_GET['action']) && substr($_GET['action'],0,12) == 'otherprofile') {
+    Map::ajax('/', 'mypage#'.$_GET['action']);
+    Map::resource('mypage');
+}
 else if(isset($_GET['action']) && substr($_GET['action'],0,6) == 'search') {
     Map::ajax('/', 'welcome#search');
     Map::resource('welcome');
@@ -32,5 +40,5 @@ else if(isset($_POST['addPost'])) {
     Map::post('/', 'welcome#addPost');
     Map::resource('welcome');
 }
-//Map::get('/', 'welcome#logout');
-//Map::resource('welcome');
+
+

@@ -6,11 +6,20 @@
  * Time: 12:59 μμ
  */
 
+include APP_PATH . 'models/DAO.php';
 class MypageController {
 
     public static function profile()
     {
         return true;
+    }
+
+    public static function otherprofile()
+    {
+        $path = explode('?', $_GET['action']);
+        $mail = explode('=',$path[1]);
+        $rows = db_query_select("SELECT firstname,lastname,pictureURL FROM userprofile WHERE email = '$mail[1]' ");
+        return json_encode($rows);
     }
 
     public static function sendFriendRequest()
