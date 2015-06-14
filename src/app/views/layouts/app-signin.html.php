@@ -44,10 +44,10 @@
         </ul>
     </div>
     <div id="main_content">
-        <div id="searchResults">
+        <div id="searchResults" class="inOutWindow">
 
         </div>
-        <div id="postStatus">
+        <div id="postStatus" class="inOutWindow">
             <div id="inputform">
                 <textarea id="statusText" name="postTextarea" placeholder="Post your Status to LightFB"></textarea>
             </div>
@@ -55,7 +55,7 @@
                 <button type="button" class="button postbtn" >Post</button>
             </div>
         </div>
-        <div id="statusUpdates">
+        <div id="statusUpdates" class="inOutWindow">
 
         </div>
     </div>

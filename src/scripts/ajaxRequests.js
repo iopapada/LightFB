@@ -34,22 +34,23 @@ function mainSearch(){
 
             var arr = JSON.parse(xmlhttp.responseText);
             var i;
-            var out = "<table>";
 
-            for(i = 0; i < arr.length; i++) {
-                out += "<tr><td>" +
-                arr[i].firstname +
-                "</td><td>" +
-                arr[i].lastname +
-                "</td><td>" +
-                arr[i].pictureURL +
-                "</td></tr>";
+            var searchDiv = document.getElementById("searchResults");
+            var listSearch = document.createElement("ul");
+
+            for(i=0; i < arr.length; i++){
+                var searchItems = document.createElement("li");
+                var itemAnchor = document.createElement("a");
+                itemAnchor.setAttribute('href',"/index.php?email=" +arr[i].email);
+                itemAnchor.innerHTML = arr[i].firstname + " " + arr[i].lastname;
+                searchItems.appendChild(itemAnchor);
+                listSearch.appendChild(searchItems);
             }
-            out += "</table>"
 
-            document.getElementById("searchResults").innerHTML=out;
+            searchDiv.appendChild(listSearch);
         }
     }
+
     xmlhttp.open("GET","/index.php?action=search?searchExpr=" + searchExpr,true);
     xmlhttp.send();
 }
