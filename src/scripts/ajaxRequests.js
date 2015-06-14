@@ -41,7 +41,7 @@ function mainSearch(){
             for(i=0; i < arr.length; i++){
                 var searchItems = document.createElement("li");
                 var itemAnchor = document.createElement("a");
-                itemAnchor.setAttribute('href',"/index.php?email=" +arr[i].email);
+                itemAnchor.setAttribute('href',"/index.php?action=otherprofile?email=" +arr[i].email);
                 itemAnchor.innerHTML = arr[i].firstname + " " + arr[i].lastname;
                 searchItems.appendChild(itemAnchor);
                 listSearch.appendChild(searchItems);

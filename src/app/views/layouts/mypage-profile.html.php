@@ -53,6 +53,9 @@
             <div id="profilePic">
 
             </div>
+            <div id="profileName">
+
+            </div>
             <div id="profileButtons">
                 <button type="button" onclick="sendFriendRequest()" id="friendButton" class="button friendBtn">Add Friend</button>
             </div>
