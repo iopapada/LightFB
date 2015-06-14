@@ -41,12 +41,13 @@ class AppController extends Controller{
     public static function authenticate($user_email, $user_pass, $remember = false)
     {
         $user_pass = sha1($user_pass);
-        $rows = db_query_select("SELECT password FROM userprofile WHERE email = '$user_email'");
+        $rows = db_query_select("SELECT * FROM userprofile WHERE email = '$user_email'");
 
         if(count($rows)==1) {
             if($rows[0]['password'] == $user_pass) {
                 session_start();
                 $_SESSION['user_id'] = $user_email;
+                $_SESSION['fullname'] = $rows[0]['firstname']." ".$rows[0]['lastname'];
                 if($remember == true) {
                     setcookie('lggd_sess', hash('sha512', uniqid()), 84600);
                     echo'cookie set';
