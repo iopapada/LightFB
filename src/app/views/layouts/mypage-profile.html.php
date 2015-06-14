@@ -23,7 +23,12 @@
             </form>
         </div>
         <div class="login_container">
-            Logged in as
+            <div id="loginUser">
+                Logged in as: <?php echo $_SESSION['fullname'] ?>
+            </div>
+            <div id="logout">
+                <a href="/index.php?logout">Logout</a>
+            </div>
         </div>
     </div>
 </div>
