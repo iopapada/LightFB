@@ -24,7 +24,7 @@
         </div>
         <div class="login_container">
             <div id="loginUser">
-                Logged in as: <?php session_start(); echo $_SESSION['fullname'] ?>
+                Logged in as: <?php  echo $_SESSION['fullname'] ?>
             </div>
             <div id="logout">
                 <a href="/index.php?action=logout">Logout</a>
