@@ -6,14 +6,20 @@ function sendFriendRequest(){
         xmlhttp=new XMLHttpRequest();
     }
 
+    var email = document.getElementById("emailHidden").value;
+
     xmlhttp.onreadystatechange=function()
     {
         if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
-            document.getElementById("friendButton").value="Friend Request Send!";
+            var addFriendButton = document.getElementById("friendButton");
+            addFriendButton.innerHTML = "Request Sent!";
+            addFriendButton.style.backgroundColor = "grey";
+
+
         }
     }
-    xmlhttp.open("GET","/index.php?action=friendRequest",true);
+    xmlhttp.open("GET","/index.php?action=sendFriendRequest?email="+ email,true);
     xmlhttp.send();
 }
 
@@ -127,14 +133,20 @@ function loadProfile(href){
             addFriendBtn.setAttribute('class',"button friendBtn");
             addFriendBtn.innerHTML = "Add Friend";
 
+            var emailHidden = document.createElement("input");
+            emailHidden.setAttribute('id', "emailHidden");
+            emailHidden.setAttribute('hidden',"true");
+            emailHidden.setAttribute('value', arr[0].email);
+
             divProfileButtons.appendChild(addFriendBtn);
             divProfilePic.appendChild(divProfileButtons);
 
+            divProfileHeader.appendChild(emailHidden);
             mainContentDiv.appendChild(divProfileHeader);
 
             var addFriendButton = document.getElementById("friendButton");
 
-            addFriendButton.addEventListener("click", function(e){e.stopPropagation();e.preventDefault();addFriendReq();},false);
+            addFriendButton.addEventListener("click", sendFriendRequest, false);
 
         }
     }
@@ -142,11 +154,18 @@ function loadProfile(href){
     xmlhttp.send();
 }
 
+/*
 function addFriendReq(){
     var addFriendButton = document.getElementById("friendButton");
+
+
+
     addFriendButton.innerHTML = "Request Sent!";
     addFriendButton.style.backgroundColor = "grey";
+
+
 }
+*/
 
 document.addEventListener('DOMContentLoaded', function() {
 
