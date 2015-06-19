@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php
+$auth = $_COOKIE['authorization'];
+header ("Cache-Control:no-cache");
+if(!$auth == "ok") {
+    exit();
+}
+?>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -10,7 +17,7 @@
 <div class="header signed">
     <div id="header_elements_container">
         <div class="fblight_logo">
-                <a href="index.php">LightFB</a>
+            <a href="index.php">LightFB</a>
         </div>
         <div class="searchFB">
             <form name="searchform" action="/index.php" id="global-search">
@@ -24,7 +31,7 @@
         </div>
         <div class="login_container">
             <div id="loginUser">
-                Logged in as: <?php  echo $_SESSION['fullname'] ?>
+                Logged in as: <?php  echo $_SESSION['fullname']; session_write_close();?>
             </div>
             <div id="logout">
                 <a href="/index.php?action=logout">Logout</a>
@@ -40,7 +47,7 @@
                 <a href="index.php?action=myprofile">My Profile</a>
             </li>
             <li>
-                <a href="index.php?action=myprofile">Edit My Profile</a>
+                <a href="" name=<?php echo $_SESSION['user_id']?> id="editProfile" >Edit My Profile</a>
             </li>
             <h2>Groups</h2>
             <li>
@@ -65,12 +72,6 @@
         </div>
     </div>
 </div>
-<div id="footer">
-    <div id="footer-inner">
-        <div id="copyright">
-            LightFB © 2015
-        </div>
-    </div>
-</div>
+<?php include_once('src/app/views/layouts/footer_master.html.php'); ?>
 </body>
 </html>

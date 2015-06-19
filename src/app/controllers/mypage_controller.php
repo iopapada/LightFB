@@ -18,7 +18,7 @@ class MypageController {
     {
         $path = explode('?', $_GET['action']);
         $mail = explode('=',$path[1]);
-        $rows = db_query_select("SELECT firstname,lastname,pictureURL FROM userprofile WHERE email = '$mail[1]' ");
+        $rows = db_query_select("SELECT firstname,lastname,email,pictureURL,birth,gender, homelocation, currentlocation FROM userprofile WHERE email = '$mail[1]' ");
         return json_encode($rows);
     }
 

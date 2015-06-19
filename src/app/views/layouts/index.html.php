@@ -122,12 +122,6 @@
         </div>
     </div>
 </div>
-<div id="footer">
-    <div id="footer-inner">
-        <div id="copyright">
-            LightFB © 2015
-        </div>
-    </div>
-</div>
+<?php include_once('src/app/views/layouts/footer_master.html.php'); ?>
 </body>
 </html>
