@@ -12,6 +12,7 @@ if(!$auth == "ok") {
     <title>LightFB</title>
     <link rel="stylesheet" type="text/css" href="src/content/SiteIndex.css">
     <script src="src/scripts/ajaxRequests.js"></script>
+    <scrip src="src/scripts/pollingAjax.js"></scrip>
 </head>
 <body>
 <div class="header signed">
@@ -28,6 +29,14 @@ if(!$auth == "ok") {
                     </button>
                 </span>
             </form>
+        </div>
+        <div class="fb-updates">
+            <div id="friend-Requests">
+                Friend Requests:
+                    <a href="#">
+                        <span id="count"></span>
+                    </a>
+            </div>
         </div>
         <div class="login_container">
             <div id="loginUser">
