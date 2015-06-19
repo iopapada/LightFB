@@ -50,13 +50,9 @@ class AppController extends Controller{
                 session_start();
                 $_SESSION['user_id'] = $user_email;
                 $_SESSION['fullname'] = $rows[0]['firstname']." ".$rows[0]['lastname'];
-
-                $_SESSION["gdusername"] = $user_email;
-                $_SESSION["gdpassword"] = md5($user_pass);
-
+                $_SESSION["pass"] = md5($user_pass);
                 setcookie("authorization","ok" );
-                setcookie("gdusername", $_SESSION['gdusername'], time()+60*60*24*100, "/");
-                setcookie("gdpassword", $_SESSION['gdpassword'], time()+60*60*24*100, "/");
+                setcookie($user_email, $_SESSION['user_id'], time()+60*60*24*100, "/");
                 session_write_close();
                 return true;
             } else {

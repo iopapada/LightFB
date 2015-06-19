@@ -9,18 +9,6 @@
 class Map {
     public static $path = null;
 
-    public static function resource($controller) {
-        self::get('/' . $controller, $controller . '#index');
-        self::get('/' . $controller . '/myprofile', $controller . '#profile');
-//        self::get('/' . $controller . '/edit/(.*)', $controller . '#edit');
-
-        self::post('/' . $controller, $controller . '#signin');
-        self::post('/' . $controller, $controller . '#signup');
-//        self::put('/' . $controller, $controller . '#update');
-//        self::delete('/' . $controller, $controller . '#destroy');
-//        self::ajax('/' . $controller, $controller . '#search');
-    }
-
     public static function get($route, $path) {
         self::$path = $path;
         ControlRoom::process($route, 'GET');
@@ -31,16 +19,6 @@ class Map {
         ControlRoom::process($route, 'POST');
     }
 
-//    public static function put($route, $path) {
-//        self::$path = $path;
-//        ControlRoom::process($route, 'PUT');
-//    }
-//
-//    public static function delete($route, $path) {
-//        self::$path = $path;
-//        ControlRoom::process($route, 'DELETE');
-//    }
-//
     public static function ajax($route, $path) {
         self::$path = $path;
         ControlRoom::process($route, 'XMLHttpRequest');
@@ -80,9 +58,12 @@ class Map {
 
         if( class_exists($class_name) ) {
             $tmp_class = new $class_name();
-            if(substr($action,0,12) == 'otherprofile'){
-                $action = substr($action,0,12);
-            }
+//            if(substr($action,0,12) == 'otherprofile'){
+//                $action = substr($action,0,12);
+//            }
+//            else if(substr($action,0,17) == 'sendFriendRequest'){
+//                $action = substr($action,0,17);
+//            }
             // run the matching action
             if( is_callable(array($tmp_class, $action)) ) {
 

@@ -24,7 +24,12 @@ class MypageController {
 
     public static function sendFriendRequest()
     {
-
+        session_start();
+        $userid = $_SESSION['user_id'];
+        $path = explode('?', $_GET['action']);
+        $friendid = explode('=',$path[1]);
+        $res = db_query("INSERT INTO friends (friendid,userid) VALUES ('$friendid[1]','$userid')");
+        session_write_close();
     }
 
     public static function updateInfo()
