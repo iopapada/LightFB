@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<?php
+$auth = $_COOKIE['authorization'];
+header ("Cache-Control:no-cache");
+if(!$auth == "ok") {
+    exit();
+}
+?>
 <html>
 <head lang="en">
     <meta charset="UTF-8">
@@ -24,7 +31,7 @@
         </div>
         <div class="login_container">
             <div id="loginUser">
-                Logged in as: <?php session_start(); echo $_SESSION['fullname'] ?>
+                Logged in as: <?php session_start(); echo $_SESSION['fullname']; session_write_close(); ?>
             </div>
             <div id="logout">
                 <a href="/index.php?action=logout">Logout</a>

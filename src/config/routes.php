@@ -15,8 +15,8 @@ else if(isset($_GET['action']) && $_GET['action'] == 'myprofile') {
     Map::resource('mypage');
 }
 else if(isset($_GET['action']) && $_GET['action'] == 'logout') {
-    //Map::get('/', 'welcome#logout');
-    //Map::resource('welcome');
+    Map::get('/', 'welcome#logout');
+    Map::resource('welcome');
 }
 //---------------------------------------------------------------------
 else if(isset($_GET['action']) && substr($_GET['action'],0,12) == 'otherprofile') {

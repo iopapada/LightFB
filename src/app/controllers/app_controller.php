@@ -38,30 +38,33 @@ class AppController extends Controller{
         else return 'signinerror1';
     }
 
-    public static function authenticate($user_email, $user_pass, $remember = true)
+    public static function authenticate($user_email, $user_pass)
     {
         $user_pass = sha1($user_pass);
         $rows = db_query_select("SELECT * FROM userprofile WHERE email = '$user_email'");
 
         if(count($rows)==1) {
             if($rows[0]['password'] == $user_pass) {
+
+                //ini_set('session.auto_start','1');
                 session_start();
                 $_SESSION['user_id'] = $user_email;
                 $_SESSION['fullname'] = $rows[0]['firstname']." ".$rows[0]['lastname'];
 
                 $_SESSION["gdusername"] = $user_email;
                 $_SESSION["gdpassword"] = md5($user_pass);
-                if($remember) {
-                    setcookie("gdusername", $_SESSION['gdusername'], time()+60*60*24*100, "/");
-                    setcookie("gdpassword", $_SESSION['gdpassword'], time()+60*60*24*100, "/");
-                }
 
+                setcookie("authorization","ok" );
+                setcookie("gdusername", $_SESSION['gdusername'], time()+60*60*24*100, "/");
+                setcookie("gdpassword", $_SESSION['gdpassword'], time()+60*60*24*100, "/");
+                session_write_close();
                 return true;
             } else {
                 return 'signinerror1';
                 //echo'wrong password';
             }
         } else if(count($rows)==0){
+            setcookie("authorization","notok" );
             return 'signinerror1';
             //echo'this mail does not exist';
         }
