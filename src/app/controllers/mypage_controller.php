@@ -52,7 +52,11 @@ class MypageController {
 
     public static function confirmFriendRequests()
     {
-
+        $temp = $_GET['param'];
+        session_start();
+        $userid = $_SESSION['user_id'];
+        db_query_select("UPDATE friends SET approved = 1 WHERE friendid = '$userid' && userid = '$temp' ");
+        session_write_close();
     }
 
     public static function updateInfo()
