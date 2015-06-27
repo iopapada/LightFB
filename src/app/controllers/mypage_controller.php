@@ -36,17 +36,11 @@ class MypageController {
     {
         session_start();
         $userid = $_SESSION['user_id'];
-        $rows = db_query_select("SELECT userid FROM friends WHERE friendid = '$userid' && approved = 0");
+        $results= db_query_select("SELECT firstname,lastname,email,pictureURL FROM userprofile
+                                       INNER JOIN friends ON userprofile.email = friends.userid
+                                       WHERE friends.friendid = '$userid' && friends.approved = 0");
+
         session_write_close();
-
-        $results = array();
-        $i = 0 ;
-        foreach($rows as $row){
-            $cur = $row['userid'];
-            $results[$i] = db_query_select_one("SELECT firstname,lastname,email,pictureURL FROM userprofile WHERE email = '$cur' ");
-            $i++;
-        }
-
         return json_encode($results);
     }
 
@@ -59,18 +53,52 @@ class MypageController {
         session_write_close();
     }
 
-    public static function updateInfo()
-    {
-
-    }
-
     public static function loadFriends()
     {
+        session_start();
+        $userid = $_SESSION['user_id'];
+        $results= db_query_select("SELECT firstname,lastname,email,pictureURL FROM userprofile
+                                       INNER JOIN friends ON userprofile.email = friends.userid
+                                       WHERE friends.friendid = '$userid' && friends.approved = 1");
 
+        session_write_close();
+        return json_encode($results);
     }
 
-    public static function loadMyPhotos()
+    public static function loadAllMyPhotos()
     {
+        session_start();
+        $userid = $_SESSION['user_id'];
+        $results= db_query_select("SELECT img,imagename FROM images
+                                       INNER JOIN albums ON albums.id = images.albumid
+                                       INNER JOIN userprofile ON userprofile.email = '$userid'");
 
+        session_write_close();
+        return json_encode($results);
+    }
+
+    public static function loadAllMyAlbums()
+    {
+        session_start();
+        $userid = $_SESSION['user_id'];
+        $results= db_query_select("SELECT albname FROM albums
+                                       WHERE userid = '$userid'");
+
+        session_write_close();
+        return json_encode($results);
+    }
+
+    public static function loadPhotosOfAlbum()
+    {
+        session_start();
+        $userid = $_SESSION['user_id'];
+        $albname = $_GET['albname'];
+        $results= db_query_select("SELECT img,imagename FROM images
+                                       INNER JOIN albums ON albums.id = images.albumid
+                                       INNER JOIN userprofile ON userprofile.email = '$userid'
+                                       WHERE albums.albname = '$albname' ");
+
+        session_write_close();
+        return json_encode($results);
     }
 }
