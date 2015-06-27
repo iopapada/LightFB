@@ -69,11 +69,12 @@ if(!$auth == "ok") {
             <div id="editContainer">
                 <div id="editTitle">Edit your Profile</div>
                 <div id="editContent">
-                    <form name="editProfileForm" method="post" action="">
+                    <form name="editProfileForm" method="post" action="/index.php?action=submiteditprofile">
                         <label>Your Registered Firstname: <input name="Firstname" type="text" required="true"></label>
                         <label>Your Registered Lastname: <input name="Lastname" type="text" required="true"></label>
                         <label>Your Registered E-mail: <input name="Email" type="text" required="true" pattern="[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+.)+[A-Za-z]{2,}"></label>
                         <label>Your Current Profile Picture: <img id="imgProfile" src="null" alt="Profile Picturevyz@gmail.com"><input type="file" id="profile-select" name="file"></label>
+                        <label>Your Current Cover Picture: <img id="imgProfile" src="null" alt="Profile Picturevyz@gmail.com"><input type="file" id="profile-select" name="file"></label>
                         <input type="submit" value="Update Profile" name="update">
                     </form>
                 </div>

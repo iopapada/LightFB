@@ -25,6 +25,9 @@ else if(isset($_POST['username']) && isset($_POST['pass'])){
 else if(isset($_POST['FirstName']) && isset($_POST['LastName']) && isset($_POST['Email']) && isset($_POST['Password'])) {
     Map::post('/', 'app#signup');
 }
+else if(isset($_POST['update']) && $_POST['update'] == 'Update Profile') {
+    Map::post('/', 'editmypage#submiteditprofile');
+}
 //-----------------------------------AJAX GET----------------------------------
 else if(isset($_GET['action']) && substr($_GET['action'],0,12) == 'otherprofile') {
     Map::ajax('/', 'mypage#otherprofile');

@@ -12,5 +12,10 @@ class EditmypageController {
     {
         return true;
     }
+    public static function submiteditprofile()
+    {
+
+        return include ('src/app/views/layouts/app-signin.html.php');
+    }
 
 }
