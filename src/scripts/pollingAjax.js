@@ -88,6 +88,17 @@ function acceptFriendRequest(target){
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
         {
             target.innerHTML ="Accepted";
+            var spanFriendsNum = document.getElementById("friendRequestsCount");
+
+
+            if (target.classList.contains("toggled")) {
+                //do nothing the button is already pushed!
+            }
+            else{
+
+                target.classList.add("toggled");
+                spanFriendsNum.innerHTML = spanFriendsNum.innerHTML - 1;
+            }
         }
     }
 
