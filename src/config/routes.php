@@ -12,6 +12,9 @@ if(!isset($_GET['action']) && empty($_POST)) {
 else if(isset($_GET['action']) && $_GET['action'] == 'myprofile') {
     Map::get('/', 'mypage#profile');
 }
+else if(isset($_GET['action']) && $_GET['action'] == 'editprofile') {
+    Map::get('/', 'editmypage#editprofile');
+}
 else if(isset($_GET['action']) && $_GET['action'] == 'logout') {
     Map::get('/', 'welcome#logout');
 }
@@ -22,7 +25,7 @@ else if(isset($_POST['username']) && isset($_POST['pass'])){
 else if(isset($_POST['FirstName']) && isset($_POST['LastName']) && isset($_POST['Email']) && isset($_POST['Password'])) {
     Map::post('/', 'app#signup');
 }
-//-----------------------------------AJAX----------------------------------
+//-----------------------------------AJAX GET----------------------------------
 else if(isset($_GET['action']) && substr($_GET['action'],0,12) == 'otherprofile') {
     Map::ajax('/', 'mypage#otherprofile');
 }
@@ -38,10 +41,13 @@ else if(isset($_GET['action']) && substr($_GET['action'],0,17) == 'getFriendRequ
 else if(isset($_GET['action']) && substr($_GET['action'],0,21) == 'confirmFriendRequests') {
     Map::ajax('/', 'mypage#confirmFriendRequests');
 }
+else if(isset($_GET['action']) && substr($_GET['action'],0,18) == 'loadFriendRequests') {
+    Map::ajax('/', 'mypage#loadFriendRequests');
+}
+//-------------------------------------AJAX POST------------------------------------
 else if(isset($_POST['addPost'])) {
     Map::ajax('/', 'welcome#addPost');
 }
-//---------------------------------------------------------------------------
 
 
 

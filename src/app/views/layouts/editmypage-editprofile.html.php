@@ -12,7 +12,7 @@ if(!$auth == "ok") {
     <title>LightFB</title>
     <link rel="stylesheet" type="text/css" href="src/content/SiteIndex.css">
     <script src="src/scripts/ajaxRequests.js"></script>
-    <script src="src/scripts/pollingAjax.js"></script>
+    <script src="/src/scripts/pollingAjax.js"></script>
 </head>
 <body>
 <div class="header signed">
@@ -33,14 +33,14 @@ if(!$auth == "ok") {
         <div class="fb-updates">
             <div id="friend-Requests">
                 Friend Requests:
-                    <a href="#">
-                        <span id="count"></span>
-                    </a>
+                <a href="#">
+                    <span id="count"></span>
+                </a>
             </div>
         </div>
         <div class="login_container">
             <div id="loginUser">
-                Logged in as: <?php  echo $_SESSION['fullname']; session_write_close();?>
+                Logged in as: <?php session_start(); echo $_SESSION['fullname']; session_write_close(); ?>
             </div>
             <div id="logout">
                 <a href="/index.php?action=logout">Logout</a>
@@ -65,22 +65,28 @@ if(!$auth == "ok") {
         </ul>
     </div>
     <div id="main_content">
-        <div id="searchResults" class="inOutWindow">
-
-        </div>
-        <div id="postStatus" class="inOutWindow">
-            <div id="inputform">
-                <textarea id="statusText" name="postTextarea" placeholder="Post your Status to LightFB"></textarea>
+        <div id="main_content">
+            <div id="editContainer">
+                <div id="editTitle">Edit your Profile</div>
+                <div id="editContent">
+                    <form name="editProfileForm" method="post" action="">
+                        <label>Your Registered Firstname: <input name="Firstname" type="text" required="true"></label>
+                        <label>Your Registered Lastname: <input name="Lastname" type="text" required="true"></label>
+                        <label>Your Registered E-mail: <input name="Email" type="text" required="true" pattern="[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+.)+[A-Za-z]{2,}"></label>
+                        <label>Your Current Profile Picture: <img id="imgProfile" src="null" alt="Profile Picturevyz@gmail.com"><input type="file" id="profile-select" name="file"></label>
+                        <input type="submit" value="Update Profile" name="update">
+                    </form>
+                </div>
             </div>
-            <div id="statusButtons">
-                <button type="button" class="button postbtn" >Post</button>
-            </div>
-        </div>
-        <div id="statusUpdates" class="inOutWindow">
-
         </div>
     </div>
 </div>
-<?php include_once('src/app/views/layouts/footer_master.html.php'); ?>
+<div id="footer">
+    <div id="footer-inner">
+        <div id="copyright">
+            LightFB © 2015
+        </div>
+    </div>
+</div>
 </body>
 </html>
