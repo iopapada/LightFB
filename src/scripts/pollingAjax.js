@@ -46,8 +46,13 @@ function loadFriendRequests(arr){
         var searchItems = document.createElement("li");
         var friendSpan = document.createElement("span");
         friendSpan.innerHTML = arr[i].firstname + " " + arr[i].lastname + " ";
-        friendSpan.innerHTML += "<button type='button' class='acceptBtn'>Accept Friend Request</button>";
+        var friendBtn = document.createElement("button");
+        friendBtn.setAttribute('type','button');
+        friendBtn.setAttribute('class','acceptBtn');
+        friendBtn.setAttribute('id',arr[i].email);
+        friendBtn.innerHTML= "Accept Friend Request";
         searchItems.appendChild(friendSpan);
+        searchItems.appendChild(friendBtn);
         listSearch.appendChild(searchItems);
     }
     searchDiv.appendChild(listSearch);
@@ -55,25 +60,16 @@ function loadFriendRequests(arr){
     var acceptsButtons = document.getElementsByClassName("acceptBtn");
     for (var x=0; x < acceptsButtons.length; x++) {
 
-        (function() {
-            var email = arr[x].email;
             acceptsButtons[x].addEventListener("click", function (e) {
                 var target = e.target;
-                acceptFriendRequest(target, email);
+                acceptFriendRequest(target);
             }, false);
-        }())
-
 
     }
 
-    for (var i=0; i<aTags.length; i++){
-
-        var href=aTags[i].href.valueOf();
-        aTags[i].addEventListener("click", function(e){e.stopPropagation();e.preventDefault();loadProfile(href);},false);
-    }
 }
 
 function acceptFriendRequest(target){
 
-    target.innerHTML ="Working ";
+    target.innerHTML ="Working " + target.id;
 }
