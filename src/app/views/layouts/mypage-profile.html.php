@@ -53,10 +53,10 @@ if(!$auth == "ok") {
         <ul>
             <h2>My Personal Information</h2>
             <li>
-                <a href="">My Profile</a>
+                <a href="index.php?action=myprofile">My Profile</a>
             </li>
             <li>
-                <a href="" id="editProfile" name="<?php echo $_SESSION['user_id']?>">Edit My Profile</a>
+                <a href="index.php?action=editprofile&name=<?php echo $_SESSION['user_id']?>"  >Edit My Profile</a>
             </li>
             <h2>Groups</h2>
             <li>
