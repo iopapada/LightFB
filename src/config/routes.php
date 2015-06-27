@@ -32,6 +32,9 @@ else if(isset($_GET['action']) && substr($_GET['action'],0,6) == 'search') {
 else if(isset($_GET['action']) && substr($_GET['action'],0,17) == 'sendFriendRequest') {
     Map::ajax('/', 'mypage#sendFriendRequest');
 }
+else if(isset($_GET['action']) && substr($_GET['action'],0,17) == 'getFriendRequests') {
+    Map::ajax('/', 'mypage#getFriendRequests');
+}
 else if(isset($_POST['addPost'])) {
     Map::ajax('/', 'welcome#addPost');
 }

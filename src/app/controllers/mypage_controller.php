@@ -32,6 +32,29 @@ class MypageController {
         session_write_close();
     }
 
+    public static function getFriendRequests()
+    {
+        session_start();
+        $userid = $_SESSION['user_id'];
+        $rows = db_query_select("SELECT userid FROM friends WHERE friendid = '$userid' && approved = 0");
+        session_write_close();
+
+        $results = array();
+        $i = 0 ;
+        foreach($rows as $row){
+            $cur = $row['userid'];
+            $results[$i] = db_query_select_one("SELECT firstname,lastname,email,pictureURL FROM userprofile WHERE email = '$cur' ");
+            $i++;
+        }
+
+        return json_encode($results);
+    }
+
+    public static function confirmFriendRequests()
+    {
+
+    }
+
     public static function updateInfo()
     {
 

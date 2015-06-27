@@ -45,3 +45,16 @@ function db_query_select($query) {
     }
     return $rows;
 }
+
+function db_query_select_one($query) {
+
+    $result = db_query($query);
+    // If query failed, return `false`
+    if($result === false) {
+        return false;
+    }
+    // If query was successful, retrieve all the rows into an array
+    $row = mysqli_fetch_assoc($result);
+
+    return $row;
+}
