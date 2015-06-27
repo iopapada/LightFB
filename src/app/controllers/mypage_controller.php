@@ -18,7 +18,12 @@ class MypageController {
     {
         $path = explode('?', $_GET['action']);
         $mail = explode('=',$path[1]);
-        $rows = db_query_select("SELECT firstname,lastname,email,pictureURL,birth,gender, homelocation, currentlocation FROM userprofile WHERE email = '$mail[1]' ");
+        $rows = db_query_select_one("SELECT firstname,lastname,email,pictureURL,pictureCoverURL,birth,gender, homelocation, currentlocation FROM userprofile WHERE email = '$mail[1]' ");
+
+        $rows['pictureURL'] = base64_encode($rows['pictureURL']);
+        $rows['pictureCoverURL'] = base64_encode($rows['pictureCoverURL']);
+
+        header("Content-type: image/jpeg; charset=UTF-8");
         return json_encode($rows);
     }
 
@@ -46,10 +51,10 @@ class MypageController {
 
     public static function confirmFriendRequests()
     {
-        $temp = $_GET['param'];
+        $temp = $_GET['id'];
         session_start();
         $userid = $_SESSION['user_id'];
-        db_query_select("UPDATE friends SET approved = 1 WHERE friendid = '$userid' && userid = '$temp' ");
+        db_query("UPDATE friends SET approved = 1 WHERE friendid = '$userid' && userid = '$temp' ");
         session_write_close();
     }
 
@@ -73,6 +78,9 @@ class MypageController {
                                        INNER JOIN albums ON albums.id = images.albumid
                                        INNER JOIN userprofile ON userprofile.email = '$userid'");
 
+        for($x = 0; $x<count($results); $x++){
+            $results[$x]['img'] = base64_encode($results[$x]['img']);
+        }
         session_write_close();
         return json_encode($results);
     }
@@ -98,6 +106,9 @@ class MypageController {
                                        INNER JOIN userprofile ON userprofile.email = '$userid'
                                        WHERE albums.albname = '$albname' ");
 
+        for($x = 0; $x<count($results); $x++){
+            $results[$x]['img'] = base64_encode($results[$x]['img']);
+        }
         session_write_close();
         return json_encode($results);
     }
