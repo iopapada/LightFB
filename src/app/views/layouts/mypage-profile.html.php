@@ -56,7 +56,7 @@ if(!$auth == "ok") {
                 <a href="">My Profile</a>
             </li>
             <li>
-                <a href="">Edit My Profile</a>
+                <a href="" id="editProfile" name="<?php echo $_SESSION['user_id']?>">Edit My Profile</a>
             </li>
             <h2>Groups</h2>
             <li>

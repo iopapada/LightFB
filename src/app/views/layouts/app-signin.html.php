@@ -33,8 +33,8 @@ if(!$auth == "ok") {
         <div class="fb-updates">
             <div id="friend-Requests">
                 Friend Requests:
-                    <a href="#">
-                        <span id="count"></span>
+                    <a href="#" id="friendRequestAnchor" >
+                        <span id="friendRequestsCount"></span>
                     </a>
             </div>
         </div>
@@ -56,7 +56,7 @@ if(!$auth == "ok") {
                 <a href="index.php?action=myprofile">My Profile</a>
             </li>
             <li>
-                <a href="" id="editProfile" name="<?php echo $_SESSION['user_id']?>"  >Edit My Profile</a>
+                <a href="" id="editProfile" name="<?php echo $_SESSION['user_id']?>">Edit My Profile</a>
             </li>
             <h2>Groups</h2>
             <li>

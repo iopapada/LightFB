@@ -154,9 +154,6 @@ function loadProfile(href){
 }
 
 
-
-
-
 function showEditProfile(evt){
 
     var xmlhttp;
@@ -209,30 +206,31 @@ function showEditProfile(evt){
                 var divEditContent = document.createElement("div");
                 divEditContent.setAttribute('id', "editContent");
 
-                /*Create a form to populate with JSON*/
+                /*Create a form to populate with JSON and submit to update the Profile*/
                 var editProfileForm = document.createElement("form");
                 editProfileForm.setAttribute('name', "editProfileForm");
                 editProfileForm.setAttribute('method', "post");
                 editProfileForm.setAttribute('action', "");
 
-                /*Create a label for input */
+                /*Create a label for Firstname input */
                 var labelFirstname = document.createElement("label");
                 labelFirstname.innerHTML = "Your Registered Firstname: ";
 
-                /*Create input*/
+                /*Create Firstname input*/
                 var inputFirstname = document.createElement("input");
                 inputFirstname.setAttribute('name', "Firstname");
                 inputFirstname.setAttribute('type', "text");
                 inputFirstname.setAttribute('required', "true");
                 inputFirstname.value = arr[0].firstname;
 
+                /*append Firstname input to label*/
                 labelFirstname.appendChild(inputFirstname);
 
-                /*Create a label for input */
+                /*Create a label for Lastname input */
                 var labelLastname = document.createElement("label");
                 labelLastname.innerHTML = "Your Registered Lastname: ";
 
-                /*Create input*/
+                /*Create Lastname input*/
                 var inputLastname = document.createElement("input");
                 inputLastname.setAttribute('name', "Lastname");
                 inputLastname.setAttribute('type', "text");
@@ -268,13 +266,22 @@ function showEditProfile(evt){
                 var imgUpload = document.createElement("input");
                 imgUpload.setAttribute('type',"file");
                 imgUpload.setAttribute('id',"profile-select");
+                imgUpload.setAttribute('name',"file");
+
+                var submitButton = document.createElement("input");
+                submitButton.setAttribute('type','submit');
+                submitButton.setAttribute('value','Update Profile');
+                submitButton.setAttribute('name','update');
 
                 labelProfilePic.appendChild(imgProfile);
+                labelProfilePic.appendChild(imgUpload);
 
                 editProfileForm.appendChild(labelFirstname);
                 editProfileForm.appendChild(labelLastname);
                 editProfileForm.appendChild(labelEmail);
                 editProfileForm.appendChild(labelProfilePic);
+                editProfileForm.appendChild(submitButton);
+
                 divEditContent.appendChild(editProfileForm);
 
                 editContainer.appendChild(divEditTitle);
