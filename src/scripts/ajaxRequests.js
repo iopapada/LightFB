@@ -110,8 +110,8 @@ function loadProfile(href){
             var divProfilePic = document.createElement("div");
             divProfilePic.setAttribute('id', "profilePic");
             var profileImg = document.createElement("img");
-            profileImg.setAttribute('src', arr[0].pictureURL);
-            profileImg.setAttribute('alt',"Profile Picture" + arr[0].email);
+            profileImg.setAttribute('src', "data:image/jpeg;base64,"+arr['pictureURL']);
+            profileImg.setAttribute('alt',"Profile Picture" + arr.email);
 
 
             divProfilePic.appendChild(profileImg);
@@ -119,7 +119,7 @@ function loadProfile(href){
 
             var divProfileName = document.createElement("div");
             divProfileName.setAttribute('id', "profileName");
-            divProfileName.innerHTML = arr[0].firstname + " " +arr[0].lastname;
+            divProfileName.innerHTML = arr.firstname + " " +arr.lastname;
 
             divProfilePic.appendChild(divProfileName);
 
@@ -135,7 +135,7 @@ function loadProfile(href){
             var emailHidden = document.createElement("input");
             emailHidden.setAttribute('id', "emailHidden");
             emailHidden.setAttribute('hidden',"true");
-            emailHidden.setAttribute('value', arr[0].email);
+            emailHidden.setAttribute('value', arr.email);
 
             divProfileButtons.appendChild(addFriendBtn);
             divProfilePic.appendChild(divProfileButtons);

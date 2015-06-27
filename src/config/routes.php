@@ -41,7 +41,7 @@ else if(isset($_GET['action']) && substr($_GET['action'],0,17) == 'sendFriendReq
 else if(isset($_GET['action']) && substr($_GET['action'],0,17) == 'getFriendRequests') {
     Map::ajax('/', 'mypage#getFriendRequests');
 }
-else if(isset($_GET['action']) && substr($_GET['action'],0,21) == 'confirmFriendRequests') {
+else if(isset($_GET['action']) && $_GET['action'] == 'confirmFriendRequests') {
     Map::ajax('/', 'mypage#confirmFriendRequests');
 }
 else if(isset($_GET['action']) && substr($_GET['action'],0,18) == 'loadFriendRequests') {

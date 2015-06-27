@@ -67,7 +67,9 @@ if(!$auth == "ok") {
     <div id="main_content">
         <div id="profileHeader">
             <div id="profilePic">
+<?php
 
+?>
             </div>
             <div id="profileName">
 
