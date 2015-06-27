@@ -31,12 +31,12 @@ if(!$auth == "ok") {
             </form>
         </div>
         <div class="fb-updates">
-            <div id="friend-Requests">
-                Friend Requests:
-                <a href="#" id="friendRequestAnchor" >
+            <a href="#" id="friendRequestAnchor" >
+                <div id="friend-Requests">
+                    Friend Requests:
                     <span id="friendRequestsCount"></span>
-                </a>
-            </div>
+                </div>
+            </a>
         </div>
         <div class="login_container">
             <div id="loginUser">
@@ -70,7 +70,7 @@ if(!$auth == "ok") {
         </div>
         <div id="postStatus" class="inOutWindow">
             <div id="inputform">
-                <textarea id="statusText" name="postTextarea" placeholder="Post your Status to LightFB"></textarea>
+                <textarea id="statusText" name="postTextarea" required placeholder="Post your Status to LightFB"></textarea>
             </div>
             <div id="statusButtons">
                 <button type="button" class="button postbtn" >Post</button>

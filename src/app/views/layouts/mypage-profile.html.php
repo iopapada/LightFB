@@ -31,12 +31,12 @@ if(!$auth == "ok") {
             </form>
         </div>
         <div class="fb-updates">
+            <a href="#" id="friendRequestAnchor" >
             <div id="friend-Requests">
                 Friend Requests:
-                <a href="#" id="friendRequestAnchor" >
                     <span id="friendRequestsCount"></span>
-                </a>
             </div>
+            </a>
         </div>
         <div class="login_container">
             <div id="loginUser">

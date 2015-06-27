@@ -38,10 +38,7 @@ body {
 
 }
 
-#friendRequestsCount a{
 
-
-}
 
 .searchFB{
     margin:10px;
@@ -231,6 +228,7 @@ ul{
     left:0;
     height: 150px;
 }
+
 #searchResults ul {
     padding-left: 0;
 }
@@ -252,9 +250,19 @@ ul{
     text-decoration: none;
     color:#3a5795;
 }
+
+
 #logout a{
 
     color: white;
+}
+
+#friend-Requests {
+    color: white;
+}
+
+#friendRequestsCount {
+    color:red;
 }
 
 #editProfile a{

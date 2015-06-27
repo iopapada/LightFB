@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    // Trigger getFriendRequests for first time to get number of friend Requests when login
+    getFriendRequests();
+
     function getFriendRequests(){
 
         var xmlhttp;
@@ -24,7 +27,8 @@ document.addEventListener('DOMContentLoaded', function() {
         xmlhttp.send();
     };
 
-    setInterval(getFriendRequests, 5000);
+    // Trigger every 5 seconds to get new updates
+    setInterval(getFriendRequests, 20000);
 
 }, false);
 
@@ -44,15 +48,19 @@ function loadFriendRequests(arr){
     for(i=0; i < arr.length; i++){
 
         var searchItems = document.createElement("li");
-        var friendSpan = document.createElement("span");
-        friendSpan.innerHTML = arr[i].firstname + " " + arr[i].lastname + " ";
+        var friendInfo = document.createElement("div");
+        friendInfo.setAttribute('class','friendRqInfo');
+        friendInfo.innerHTML = arr[i].firstname + " " + arr[i].lastname + " ";
+        var requestBtns = document.createElement("div");
+        requestBtns.setAttribute('class','rqBtns');
         var friendBtn = document.createElement("button");
         friendBtn.setAttribute('type','button');
         friendBtn.setAttribute('class','acceptBtn');
         friendBtn.setAttribute('id',arr[i].email);
-        friendBtn.innerHTML= "Accept Friend Request";
-        searchItems.appendChild(friendSpan);
-        searchItems.appendChild(friendBtn);
+        friendBtn.innerHTML= "Friend Request";
+        requestBtns.appendChild(friendBtn);
+        searchItems.appendChild(friendInfo);
+        searchItems.appendChild(requestBtns);
         listSearch.appendChild(searchItems);
     }
     searchDiv.appendChild(listSearch);
@@ -62,14 +70,28 @@ function loadFriendRequests(arr){
 
             acceptsButtons[x].addEventListener("click", function (e) {
                 var target = e.target;
+
                 acceptFriendRequest(target);
             }, false);
 
     }
-
 }
 
 function acceptFriendRequest(target){
 
-    target.innerHTML ="Working " + target.id;
+    var xmlhttp;
+    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    }
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+        {
+            target.innerHTML ="Accepted";
+        }
+    }
+
+    xmlhttp.open("GET", "/index.php?action=confirmFriendRequests&id="+ target.id, true);
+    xmlhttp.send();
+
 }
