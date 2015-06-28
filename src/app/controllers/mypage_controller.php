@@ -24,13 +24,16 @@ class MypageController {
                                      FROM userprofile WHERE email = '$mail[1]' ");
 
         $isfriends = db_query_select_one("SELECT * FROM friends
-                                          WHERE (userid = '$mail[1]' && friendsid = '$cursess') || (userid = '$cursess' && friendsid = '$mail[1]') && approved = '1'");
+                                          WHERE ((friends.userid = '$mail[1]' && friends.friendid = '$cursess') || (friends.userid = '$cursess' && friends.friendid = '$mail[1]')) && friends.approved = '1'");
 
-        if($mail == $cursess) $rows += array("isfriend" => "2");
-        else if($isfriends === false) $rows += array("isfriend" => "0");
-        else $rows += array("isfriend" => "1");
+        if($mail[1] == $cursess)
+            $rows += array("isfriend" => "2");
+        else if(count($isfriends) > 0)
+            $rows += array("isfriend" => "1");
+        else
+            $rows += array("isfriend" => "0");
 
-            $rows['pictureURL'] = base64_encode($rows['pictureURL']);
+        $rows['pictureURL'] = base64_encode($rows['pictureURL']);
         $rows['pictureCoverURL'] = base64_encode($rows['pictureCoverURL']);
 
         header("Content-type: image/jpeg; charset=UTF-8");
