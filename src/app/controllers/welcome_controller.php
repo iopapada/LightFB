@@ -24,8 +24,8 @@ class WelcomeController extends Controller{
     public static function loadFriendsPosts()
     {
         session_start();
-        $em = $_SESSION['email'];
-        $results= db_query_select("SELECT actions.* FROM(SELECT userid AS us,friendid AS fr FROM friends
+        $em = $_SESSION['user_id'];
+        $results= db_query_select("SELECT DISTINCT actions.* FROM(SELECT userid AS us,friendid AS fr FROM friends
                                                           WHERE (friends.userid = '$em' OR friends.friendid = '$em' ) AND friends.approved ='1') AS temp
                                                     INNER JOIN actions on actions.userid = temp.us OR actions.userid = temp.fr ");
 
