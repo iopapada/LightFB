@@ -70,7 +70,7 @@ if(!$auth == "ok") {
         </div>
         <div id="postStatus" class="inOutWindow">
             <div id="inputform">
-                <textarea id="statusText" name="postTextarea" required placeholder="Post your Status to LightFB"></textarea>
+                <textarea  class="postText" id="statusText" name="postTextarea" required placeholder="Post your Status to LightFB"></textarea>
             </div>
             <div id="statusButtons">
                 <button type="button" class="button postbtn" id="postBtn">Post</button>

@@ -35,19 +35,14 @@ body {
     color:white;
     font-size: 20px;
     text-decoration: none;
-
 }
-
-
 
 .searchFB{
     margin:10px;
     float:left;
-
 }
 
 .fb-updates{
-
     margin:10px;
     float:left;
 }
@@ -110,10 +105,7 @@ body {
     padding-left: 80px;
 }
 
-
-
 #signup_area{
-
     float:right;
     padding-right: 80px;
 }
@@ -180,12 +172,31 @@ ul{
     margin:2px;
 }
 
-#statusText{
+.postInfo{
+
+    color:grey;
+}
+
+.post{
+
+    margin:2px;
+}
+
+.postText{
     height: 70px;
     resize: none;
     width: 99%;
     margin: 0px auto;
+}
 
+#statusUpdates{
+    margin-top: 5px;
+    width: 70%;
+    background-color:white;
+    border: 1px solid whitesmoke;
+    box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.3);
 }
 
 .button{

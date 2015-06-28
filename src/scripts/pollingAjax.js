@@ -3,6 +3,26 @@ document.addEventListener('DOMContentLoaded', function() {
     //Add Event Listener to post button
     document.getElementById('postBtn').addEventListener('click', postStatus, false);
 
+    //Add Event Listener to load My Posts in My Profile Page
+    loadMyPosts();
+
+    function loadMyPosts(){
+
+        var xmlhttp;
+        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+            {
+                var arr = JSON.parse(xmlhttp.responseText);
+
+            }
+        }
+        xmlhttp.open("GET", "/index.php?action=loadMyPosts", true);
+        xmlhttp.send();
+    };
+
     // Trigger getFriendRequests for first time to get number of friend Requests when login
     getFriendRequests();
 
@@ -22,7 +42,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 var aTag = document.getElementById("friendRequestAnchor");
                 aTag.addEventListener("click", function(e){e.stopPropagation();e.preventDefault();loadFriendRequests(arr);},false);
-
             }
         }
 
@@ -30,8 +49,11 @@ document.addEventListener('DOMContentLoaded', function() {
         xmlhttp.send();
     };
 
-    // Trigger every 5 seconds to get new updates
-    setInterval(getFriendRequests, 20000);
+    // Trigger every 20 seconds to get new updates
+    setInterval(function(){
+        getFriendRequests();
+        loadMyPosts();
+    }, 20000);
 
 }, false);
 
@@ -52,8 +74,40 @@ function postStatus(){
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
         {
-            //Do something...
-            //Load the new post with Ajax
+            //Check if user has hit post but text is empty
+            if (postStatus || 0 !== postStatus.length) {
+                //Load the new post with Ajax
+
+                //Get the statusUpdates Div Element
+                var postStatusDiv = document.getElementById('statusUpdates');
+
+                //Get the time and create a Div to store it
+                var postTime = getDate();
+
+                var postInfoDiv = document.createElement('div');
+                postInfoDiv.setAttribute('class', 'postInfo');
+                postInfoDiv.innerHTML = "Posted at: " + postTime;
+
+                //Create a Div that will host the post Textbox
+                var newPost = document.createElement('div');
+                newPost.setAttribute('class', 'post');
+
+                //Create a Div that will host the Textbox of Post
+                var newPostText = document.createElement('textarea');
+                newPostText.setAttribute('class', 'postText');
+
+                newPostText.innerHTML = postStatus;
+
+                //Append the elements and final in statusUpdates Div
+                newPost.appendChild(postInfoDiv);
+                newPost.appendChild(newPostText);
+                //New posts should be on top!
+                postStatusDiv.insertBefore(newPost, postStatusDiv.firstChild);
+
+                //Put again the placeholder on the textbox.
+                postTextbox.value = "";
+                postTextbox.placeholder = "Post your Status to LightFB";
+            }
 
         }
     }
@@ -138,3 +192,43 @@ function acceptFriendRequest(target){
 
 }
 
+function getDate() {
+
+    var d = new Date();
+
+    var year    = d.getFullYear();
+    var month = new Array();
+    month[0] = "January";
+    month[1] = "February";
+    month[2] = "March";
+    month[3] = "April";
+    month[4] = "May";
+    month[5] = "June";
+    month[6] = "July";
+    month[7] = "August";
+    month[8] = "September";
+    month[9] = "October";
+    month[10] = "November";
+    month[11] = "December";
+
+
+    var monthFull = month[d.getMonth()];
+    var day     = d.getDate();
+    var hour    = d.getHours();
+    var minute  = d.getMinutes();
+
+    if(day.toString().length == 1) {
+        var day = '0'+day;
+    }
+    if(hour.toString().length == 1) {
+        var hour = '0'+hour;
+    }
+    if(minute.toString().length == 1) {
+        var minute = '0'+minute;
+    }
+
+    var dateTime =  day+" " +monthFull + " " + year+ ' at '+hour+':'+minute;
+
+    return dateTime;
+
+}
