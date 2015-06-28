@@ -48,6 +48,12 @@ if(!$auth == "ok") {
             <div id="profileName">
 
             </div>
+            <div id="profileButtons">
+                <button type="button" class="button" id="timelineBtn">Timeline</button>
+                <button type="button" class="button" id="friendsBtn">Friends</button>
+                <button type="button" class="button" id="albumsBtn">Albums</button>
+                <button type="button" class="button" id="photosBtn">Photos</button>
+            </div>
         </div>
         <div id="postStatus">
             <div id="inputform">

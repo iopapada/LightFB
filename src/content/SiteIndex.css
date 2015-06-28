@@ -235,7 +235,7 @@ ul{
 }
 
 #profileHeader{
-    height: 300px;
+
     margin-top: 5px;
     width: 70%;
     background-color:white;
@@ -264,11 +264,12 @@ ul{
 
 #searchResults li:hover {
     background-color: #3a5795;
+    cursor: pointer;
 }
-#searchResults li:hover a{
+#searchResults div:hover {
     color:white;
-}
 
+}
 .anchorSearch {
     display: block;
     text-decoration: none;
