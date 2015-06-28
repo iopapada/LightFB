@@ -9,13 +9,13 @@
 if(!isset($_GET['action']) && empty($_POST)) {
     Map::get('/', 'app#index');
 }
-else if($_GET['action'] == 'myprofile') {
+else if(isset($_GET['action']) && $_GET['action'] == 'myprofile') {
     Map::get('/', 'mypage#profile');
 }
-else if($_GET['action'] == 'editprofile') {
+else if(isset($_GET['action']) && $_GET['action'] == 'editprofile') {
     Map::get('/', 'editmypage#editprofile');
 }
-else if($_GET['action'] == 'logout') {
+else if(isset($_GET['action']) && $_GET['action'] == 'logout') {
     Map::get('/', 'welcome#logout');
 }
 //----------------------------------POST------------------------------------
