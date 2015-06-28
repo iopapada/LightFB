@@ -86,7 +86,7 @@ function postStatus(){
 
                 var postInfoDiv = document.createElement('div');
                 postInfoDiv.setAttribute('class', 'postInfo');
-                postInfoDiv.innerHTML = "Posted at: " + postTime;
+                postInfoDiv.innerHTML = "Posted by me at: " + postTime;
 
                 //Create a Div that will host the post Textbox
                 var newPost = document.createElement('div');

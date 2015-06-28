@@ -33,25 +33,37 @@ if(!$auth == "ok") {
         </ul>
     </div>
     <div id="main_content">
-        <div id="main_content">
             <div id="editContainer">
                 <div id="editTitle">Edit your Profile</div>
                 <div id="editContent">
+                    <?php
+                        session_start();
+                        $rows = db_query_select_one("SELECT firstname,lastname,birth,gender,pictureURL,pictureCoverURL FROM userprofile WHERE id = $_COOKIE[id]");
+                        $tempFirst = $rows['firstname'];
+                        $tempLast = $rows['lastname'];
+                        $tempBirth = $rows['birth'];
+                        $tempGender = $rows['gender'];
+                        $tempAvatar = base64_encode( $rows['pictureURL']);
+                        $tempCover = base64_encode( $rows['pictureCoverURL']);
+                        session_write_close();
+                    ?>
                     <form name="editProfileForm" method="post" action="/index.php?action=submiteditprofile" enctype="multipart/form-data">
-                        <label>Your Registered Firstname: <input name="Firstname" type="text"></label>
-                        <label>Your Registered Lastname: <input name="Lastname" type="text"></label>
+                        <label>Your Registered Firstname: <input name="Firstname" type="text" placeholder=<?php echo $tempFirst; ?>></label><br>
+                        <label>Your Registered Lastname: <input name="Lastname" type="text"  placeholder=<?php echo $tempLast; ?>></label><br>
+                        <label>Your Registered Birth: </label><br>
+
+                        <label>Your Registered Gender: </label><br>
 
                         <label>Your Current Profile Picture:
-                            <img id="imgProfile" src="null" alt="Profile Picturevyz@gmail.com">
-                            <input type="file" id="profile-select" name="avatarfile">
+                            <img id="imgProfile" src="data:image/jpeg;base64,<?php echo $tempAvatar; ?>" alt="profile">
+                            <input type="file" id="profile-select" name="avatarfile"><br>
                         </label>
                         <label>Your Current Cover Picture:
-                            <img id="imgProfile" src="null" alt="Profile Picturevyz@gmail.com">
-                            <input type="file" id="coverfile-select" name="coverfile"></label>
+                            <img id="imgProfile" src="data:image/jpeg;base64,<?php echo $tempCover; ?>" alt="cover">
+                            <input type="file" id="coverfile-select" name="coverfile"></label><br>
                         <input type="submit" value="Update Profile" name="update">
                     </form>
                 </div>
-            </div>
         </div>
     </div>
 </div>

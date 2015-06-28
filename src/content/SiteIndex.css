@@ -48,9 +48,24 @@ body {
 }
 
 .login_container{
-    float: right;
+   float:right;
 }
 
+.login_container img{
+    width:30px;
+    height:30px;
+    border: 1px solid white;
+    margin:5px;
+}
+
+#loginAvatar{
+    float:left;
+}
+
+#loginUser{
+
+    display: -webkit-box;
+}
 #signup_text{
 
     margin:5px;
@@ -150,7 +165,6 @@ input:focus:invalid{
 }
 
 #main_content{
-
     margin-left:20%;
 }
 
@@ -282,7 +296,7 @@ ul{
 }
 
 #editContainer{
-    height: 300px;
+
     margin-top: 5px;
     width: 70%;
     background-color:white;
