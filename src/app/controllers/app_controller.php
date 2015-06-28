@@ -50,7 +50,7 @@ class AppController extends Controller{
                 session_start();
                 $_SESSION['user_id'] = $user_email;
                 $_SESSION['fullname'] = $rows[0]['firstname']." ".$rows[0]['lastname'];
-                $_SESSION["pass"] = md5($user_pass);
+                $_SESSION["id"] = $rows[0]['id'];
                 setcookie("authorization","ok" );
                 setcookie($user_email, $_SESSION['user_id'], time()+60*60*24*100, "/");
                 session_write_close();

@@ -47,10 +47,11 @@ else if(isset($_GET['action']) && $_GET['action'] == 'confirmFriendRequests') {
 else if(isset($_GET['action']) && substr($_GET['action'],0,18) == 'loadFriendRequests') {
     Map::ajax('/', 'mypage#loadFriendRequests');
 }
-//-------------------------------------AJAX POST------------------------------------
-else if(isset($_POST['addPost'])) {
+else if(isset($_GET['action']) == 'addPost') {
     Map::ajax('/', 'welcome#addPost');
 }
+//-------------------------------------AJAX POST------------------------------------
+
 
 
 
