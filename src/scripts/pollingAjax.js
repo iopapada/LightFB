@@ -3,10 +3,10 @@ document.addEventListener('DOMContentLoaded', function() {
     //Add Event Listener to post button
     document.getElementById('postBtn').addEventListener('click', postStatus, false);
 
-    //Add Event Listener to load My Posts in My Profile Page
-    loadMyPosts();
+    //Add Event Listener to load Friends Posts in My Profile Page
+    loadFriendsPosts();
 
-    function loadMyPosts(){
+    function loadFriendsPosts(){
 
         var xmlhttp;
         if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
             }
         }
-        xmlhttp.open("GET", "/index.php?action=loadMyPosts", true);
+        xmlhttp.open("GET", "/index.php?action=loadFriendsPosts", true);
         xmlhttp.send();
     };
 
@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Trigger every 20 seconds to get new updates
     setInterval(function(){
         getFriendRequests();
-        loadMyPosts();
+        loadFriendsPosts();
     }, 20000);
 
 }, false);
