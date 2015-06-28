@@ -73,7 +73,7 @@ if(!$auth == "ok") {
                 <textarea id="statusText" name="postTextarea" required placeholder="Post your Status to LightFB"></textarea>
             </div>
             <div id="statusButtons">
-                <button type="button" class="button postbtn" >Post</button>
+                <button type="button" class="button postbtn" id="postBtn">Post</button>
             </div>
         </div>
         <div id="statusUpdates" class="inOutWindow">

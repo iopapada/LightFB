@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    //Add Event Listener to post button
+    document.getElementById('postBtn').addEventListener('click', postStatus, false);
+
     // Trigger getFriendRequests for first time to get number of friend Requests when login
     getFriendRequests();
 
@@ -31,6 +34,34 @@ document.addEventListener('DOMContentLoaded', function() {
     setInterval(getFriendRequests, 20000);
 
 }, false);
+
+function postStatus(){
+
+    //variable to store post message
+    var postStatus = null;
+
+    //Get the value of the textbox
+    var postTextbox = document.getElementById('statusText');
+    postStatus = postTextbox.value;
+
+    var xmlhttp;
+    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    }
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+        {
+            //Do something...
+            //Load the new post with Ajax
+
+        }
+    }
+
+    xmlhttp.open("GET", "/index.php?action=addPost&message=" + postStatus, true);
+    xmlhttp.send();
+}
+
 
 function loadFriendRequests(arr){
 
@@ -106,3 +137,4 @@ function acceptFriendRequest(target){
     xmlhttp.send();
 
 }
+
