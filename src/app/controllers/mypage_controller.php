@@ -16,14 +16,25 @@ class MypageController {
 
     public static function otherprofile()
     {
+        session_start();
+        $cursess = $_SESSION['user_id'];
         $path = explode('?', $_GET['action']);
         $mail = explode('=',$path[1]);
-        $rows = db_query_select_one("SELECT firstname,lastname,email,pictureURL,pictureCoverURL,birth,gender, homelocation, currentlocation FROM userprofile WHERE email = '$mail[1]' ");
+        $rows = db_query_select_one("SELECT firstname,lastname,email,pictureURL,pictureCoverURL,birth,gender, homelocation, currentlocation
+                                     FROM userprofile WHERE email = '$mail[1]' ");
+
+        $isfriends = db_query_select_one("SELECT *
+                                     FROM friends WHERE (userid = '$mail[1]' && friendsid = '$cursess') || (userid = '$cursess' && friendsid = '$mail[1]') && approved = '1'");
+
+        if($mail == $cursess || count($isfriends) == 1) $rows += array("isfriend" => "true");
+        else $rows += array("isfriend" => "true");
 
         $rows['pictureURL'] = base64_encode($rows['pictureURL']);
         $rows['pictureCoverURL'] = base64_encode($rows['pictureCoverURL']);
 
         header("Content-type: image/jpeg; charset=UTF-8");
+        session_write_close();
+
         return json_encode($rows);
     }
 
@@ -85,6 +96,11 @@ class MypageController {
         return json_encode($results);
     }
 
+    public static function uploadPhotos()
+    {
+
+    }
+
     public static function loadAllMyAlbums()
     {
         session_start();
@@ -94,6 +110,11 @@ class MypageController {
 
         session_write_close();
         return json_encode($results);
+    }
+
+    public static function createAlbum()
+    {
+
     }
 
     public static function loadPhotosOfAlbum()

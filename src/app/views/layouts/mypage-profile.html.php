@@ -35,9 +35,15 @@ if(!$auth == "ok") {
     <div id="main_content">
         <div id="profileHeader">
             <div id="profilePic">
-<?php
-
-?>
+                <?php
+                session_start();
+                $rows = db_query_select_one("SELECT pictureURL, pictureCoverURL FROM userprofile WHERE id = $_COOKIE[id]");
+                $tempavatar = base64_encode( $rows['pictureURL'] );
+                $tempacover = base64_encode( $rows['pictureCoverURL'] );
+                echo "<img id='mediumAvatar' src='data:image/jpeg;base64,$tempavatar'>";
+                echo "<img id='Cover' src='data:image/jpeg;base64,$tempacover'>";
+                session_write_close();
+                ?>
             </div>
             <div id="profileName">
 
