@@ -29,19 +29,19 @@ else if(isset($_POST['update']) && $_POST['update'] == 'Update Profile') {
     Map::post('/', 'editmypage#submiteditprofile');
 }
 //-----------------------------------AJAX GET----------------------------------
-else if($_GET['action'] == 'otherprofile') {
+else if(isset($_GET['action']) && $_GET['action'] == 'otherprofile') {
     Map::ajax('/', 'mypage#otherprofile');
 }
-else if($_GET['action'] == 'search') {
+else if(isset($_GET['action']) && $_GET['action'] == 'search') {
     Map::ajax('/', 'welcome#search');
 }
-else if($_GET['action'] == 'sendFriendRequest') {
+else if(isset($_GET['action']) && $_GET['action'] == 'sendFriendRequest') {
     Map::ajax('/', 'mypage#sendFriendRequest');
 }
 else if(isset($_GET['action']) && $_GET['action'] == 'getFriendRequests') {
     Map::ajax('/', 'mypage#getFriendRequests');
 }
-else if($_GET['action'] == 'confirmFriendRequests') {
+else if(isset($_GET['action']) && $_GET['action'] == 'confirmFriendRequests') {
     Map::ajax('/', 'mypage#confirmFriendRequests');
 }
 else if($_GET['action'] == 'addPost') {
