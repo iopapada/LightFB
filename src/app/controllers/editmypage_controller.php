@@ -19,10 +19,12 @@ class EditmypageController {
         $userid = $_SESSION['user_id'];
 
         $profile = $_FILES['avatarfile']['tmp_name'];
-        $blobprofile = mysql_real_escape_string(file_get_contents($profile));
+        if(!empty($profile)) $blobprofile = mysql_real_escape_string(file_get_contents($profile));
+        else $blobprofile = "";
 
         $cover = $_FILES['coverfile']['tmp_name'];
-        $blobcover = mysql_real_escape_string(file_get_contents($cover));
+        if(!empty($profile)) $blobprofile = mysql_real_escape_string(file_get_contents($cover));
+        else $blobcover = "";
 
         $first = $_POST['Firstname'];
         $last = $_POST['Lastname'];
