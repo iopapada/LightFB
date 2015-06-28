@@ -28,7 +28,7 @@ class WelcomeController extends Controller{
         $results= db_query_select("SELECT DISTINCT actions.* FROM(SELECT userid AS us,friendid AS fr FROM friends
                                                           WHERE (friends.userid = '$em' OR friends.friendid = '$em' ) AND friends.approved ='1') AS temp
                                                     INNER JOIN actions on actions.userid = temp.us OR actions.userid = temp.fr ");
-
+//*** Onoma epitheto kai avata order by timestamp
         return json_encode($results);
         session_write_close();
     }

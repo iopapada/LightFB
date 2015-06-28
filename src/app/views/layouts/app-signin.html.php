@@ -15,39 +15,7 @@ if(!$auth == "ok") {
     <script src="src/scripts/pollingAjax.js"></script>
 </head>
 <body>
-<div class="header signed">
-    <div id="header_elements_container">
-        <div class="fblight_logo">
-            <a href="index.php">LightFB</a>
-        </div>
-        <div class="searchFB">
-            <form name="searchform" action="/index.php" id="global-search">
-                <input name="search" id="search-query" type="text" placeholder="Search in LightFB" >
-                <span class="search icon">
-                    <button type="button" onclick="mainSearch()" class="search-icon" tabindex="-1">
-                        Search
-                    </button>
-                </span>
-            </form>
-        </div>
-        <div class="fb-updates">
-            <a href="#" id="friendRequestAnchor" >
-                <div id="friend-Requests">
-                    Friend Requests:
-                    <span id="friendRequestsCount"></span>
-                </div>
-            </a>
-        </div>
-        <div class="login_container">
-            <div id="loginUser">
-                Logged in as: <?php  echo $_SESSION['fullname']; session_write_close();?>
-            </div>
-            <div id="logout">
-                <a href="/index.php?action=logout">Logout</a>
-            </div>
-        </div>
-    </div>
-</div>
+<?php include_once('src/app/views/layouts/header_master.html.php'); ?>
 <div id="main_area">
     <div id="leftbar">
         <ul>

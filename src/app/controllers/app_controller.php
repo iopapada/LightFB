@@ -51,7 +51,8 @@ class AppController extends Controller{
                 $_SESSION['user_id'] = $user_email;
                 $_SESSION['fullname'] = $rows[0]['firstname']." ".$rows[0]['lastname'];
                 $_SESSION["id"] = $rows[0]['id'];
-                setcookie("authorization","ok" );
+                setcookie("authorization","ok");
+                setcookie("id",$rows[0]['id']);
                 setcookie($user_email, $_SESSION['user_id'], time()+60*60*24*100, "/");
                 session_write_close();
                 return true;
