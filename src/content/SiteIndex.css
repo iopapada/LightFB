@@ -63,9 +63,9 @@ body {
 }
 
 #loginUser{
-
-    display: -webkit-box;
+    display: table;
 }
+
 #signup_text{
 
     margin:5px;
@@ -263,20 +263,19 @@ ul{
 }
 
 #searchResults li:hover {
-
     background-color: #3a5795;
-
 }
 #searchResults li:hover a{
     color:white;
 }
 
-#searchResults a{
+.anchorSearch {
+    display: block;
     text-decoration: none;
     color:#3a5795;
 }
 
-.imgProfileSearch img {
+.imgProfileSearch {
     width:30px;
     height:30px;
     border: 1px solid white;
