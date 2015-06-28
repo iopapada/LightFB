@@ -50,6 +50,12 @@ else if(isset($_GET['action']) && substr($_GET['action'],0,18) == 'loadFriendReq
 else if(isset($_GET['action']) == 'addPost') {
     Map::ajax('/', 'welcome#addPost');
 }
+else if(isset($_GET['action']) == 'loadMyPosts') {
+    Map::ajax('/', 'welcome#loadMyPosts');
+}
+else if(isset($_GET['action']) == 'loadFriendsPosts') {
+    Map::ajax('/', 'welcome#loadFriendsPosts');
+}
 //-------------------------------------AJAX POST------------------------------------
 
 

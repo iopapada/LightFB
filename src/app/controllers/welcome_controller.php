@@ -24,11 +24,20 @@ class WelcomeController extends Controller{
     public static function loadFriendsPosts()
     {
         session_start();
-        $email = $_SESSION['user_id'];
-        $results= db_query_select("SELECT * FROM actions
-                                       INNER JOIN accounts ON actions.userid = userprofile.id
-                                       INNER JOIN friends ON friends.userid = userprofile.id OR friends.friendid = userprofile.id
-                                       WHERE userprofile.email = '$email' && friends.approved ='1'");
+        $em = $_SESSION['email'];
+        $results= db_query_select("SELECT actions.* FROM(SELECT userid AS us,friendid AS fr FROM friends
+                                                          WHERE (friends.userid = '$em' OR friends.friendid = '$em' ) AND friends.approved ='1') AS temp
+                                                    INNER JOIN actions on actions.userid = temp.us OR actions.userid = temp.fr ");
+
+        return json_encode($results);
+        session_write_close();
+    }
+
+    public static function loadMyPosts()
+    {
+        session_start();
+        $id = $_SESSION['id'];
+        $results= db_query_select("SELECT * FROM actions WHERE actions.userid = '$id'");
         return json_encode($results);
         session_write_close();
     }
@@ -36,10 +45,9 @@ class WelcomeController extends Controller{
     public static function addPost()
     {
         session_start();
-        $id = $_SESSION['user_id'];
+        $mail = $_SESSION['user_id'];
         $messageVal = $_GET['message'];
-        $results= db_query_select("INSERT INTO actions (message,title,messagetype,userid) VALUES ('$messageVal','','text','$id')");
-        return json_encode($results);
+        $results= db_query_select("INSERT INTO actions (message,title,messagetype,userid) VALUES ('$messageVal','','text','$mail')");
         session_write_close();
     }
 
