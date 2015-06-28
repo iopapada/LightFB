@@ -18,6 +18,10 @@ class WelcomeController extends Controller{
     {
         $searchExpr = explode('=', $_GET['action']);
         $rows = db_query_select("SELECT email,firstname,lastname,pictureURL FROM userprofile WHERE firstname LIKE '$searchExpr[1]%' or lastname LIKE '$searchExpr[1]%' ");
+
+        for($x = 0; $x<count($rows); $x++){
+            $rows[$x]['pictureURL'] = base64_encode($rows[$x]['pictureURL']);
+        }
         return json_encode($rows);
     }
 
