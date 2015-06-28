@@ -25,10 +25,16 @@ class WelcomeController extends Controller{
     {
         session_start();
         $em = $_SESSION['user_id'];
-        $results= db_query_select("SELECT DISTINCT actions.* FROM(SELECT userid AS us,friendid AS fr FROM friends
-                                                          WHERE (friends.userid = '$em' OR friends.friendid = '$em' ) AND friends.approved ='1') AS temp
-                                                    INNER JOIN actions on actions.userid = temp.us OR actions.userid = temp.fr ");
-//*** Onoma epitheto kai avata order by timestamp
+        $results= db_query_select("SELECT DISTINCT actions.*, userprofile.firstname, userprofile.lastname, userprofile.pictureURL
+                                   FROM(SELECT userid AS us,friendid AS fr FROM friends
+                                        WHERE (friends.userid = '$em' OR friends.friendid = '$em' ) AND friends.approved ='1') AS temp
+                                   INNER JOIN actions on actions.userid = temp.us OR actions.userid = temp.fr
+                                   INNER JOIN userprofile on userprofile.email = actions.userid
+                                   ORDER BY actions.timepost DESC ");
+
+        for($x = 0; $x<count($results); $x++){
+            $results[$x]['pictureURL'] = base64_encode($results[$x]['pictureURL']);
+        }
         return json_encode($results);
         session_write_close();
     }
