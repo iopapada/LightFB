@@ -25,7 +25,7 @@ else if(isset($_POST['username']) && isset($_POST['pass'])){
 else if(isset($_POST['FirstName']) && isset($_POST['LastName']) && isset($_POST['Email']) && isset($_POST['Password'])) {
     Map::post('/', 'app#signup');
 }
-else if($_POST['update'] == 'Update Profile') {
+else if(isset($_POST['update']) && $_POST['update'] == 'Update Profile') {
     Map::post('/', 'editmypage#submiteditprofile');
 }
 //-----------------------------------AJAX GET----------------------------------
@@ -38,7 +38,7 @@ else if($_GET['action'] == 'search') {
 else if($_GET['action'] == 'sendFriendRequest') {
     Map::ajax('/', 'mypage#sendFriendRequest');
 }
-else if($_GET['action'] == 'getFriendRequests') {
+else if(isset($_GET['action']) && $_GET['action'] == 'getFriendRequests') {
     Map::ajax('/', 'mypage#getFriendRequests');
 }
 else if($_GET['action'] == 'confirmFriendRequests') {
