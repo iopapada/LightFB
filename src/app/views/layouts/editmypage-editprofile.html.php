@@ -56,11 +56,11 @@ if(!$auth == "ok") {
 
                         <label>Your Current Profile Picture:
                             <img id="imgProfile" src="data:image/jpeg;base64,<?php echo $tempAvatar; ?>" alt="profile">
-                            <input type="file" id="profile-select" name="avatarfile"><br>
+                            <input type="file" id="profile-select" name="avatarfile" value="<?php echo $tempAvatar; ?>"><br>
                         </label>
                         <label>Your Current Cover Picture:
                             <img id="imgProfile" src="data:image/jpeg;base64,<?php echo $tempCover; ?>" alt="cover">
-                            <input type="file" id="coverfile-select" name="coverfile"></label><br>
+                            <input type="file" id="coverfile-select" name="coverfile" value="<?php echo $tempCover; ?>"></label><br>
                         <input type="submit" value="Update Profile" name="update">
                     </form>
                 </div>

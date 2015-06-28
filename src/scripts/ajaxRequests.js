@@ -57,10 +57,10 @@ function mainSearch(){
 
                 // If the user has not uploaded a profile pic don't append
                 if (arr[i].pictureURL) {
-                    $tempAvatar = base64_encode(arr[i].pictureURL);
+
                     var itemProfilePic = document.createElement("img");
                     itemProfilePic.setAttribute('class', 'imgProfileSearch');
-                    itemProfilePic.setAttribute('src', 'data:image/jpeg;base64,' + $tempAvatar);
+                    itemProfilePic.setAttribute('src', 'data:image/jpeg;base64,' + arr[i].pictureURL);
                     itemProfilePic.setAttribute('alt', 'profile');
 
                     itemAnchor.appendChild(itemProfilePic);
@@ -81,7 +81,6 @@ function mainSearch(){
                 aTags[i].addEventListener("click", function(e){e.stopPropagation();e.preventDefault();loadProfile(href);},false);
             }
         }
-
 
     }
 
@@ -136,18 +135,32 @@ function loadProfile(href){
             var divProfileButtons = document.createElement("div");
             divProfileButtons.setAttribute('id', "profileButtons");
 
-            var addFriendBtn = document.createElement("button");
-            addFriendBtn.setAttribute('type',"button");
-            addFriendBtn.setAttribute('id', "friendButton");
-            addFriendBtn.setAttribute('class',"button friendBtn");
-            addFriendBtn.innerHTML = "Add Friend";
+            var addFriendBtn = null;
+            if (arr.isfriend == "0") {
+                addFriendBtn = document.createElement("button");
+                addFriendBtn.setAttribute('type', "button");
+                addFriendBtn.setAttribute('id', "friendButton");
+                addFriendBtn.setAttribute('class', "button friendBtn");
+                addFriendBtn.innerHTML = "Add Friend";
+            }
+            else if(arr.isfriend == "1"){
+                addFriendBtn = document.createElement("button");
+                addFriendBtn.setAttribute('type', "button");
+                addFriendBtn.setAttribute('id', "alreadyfriends");
+                addFriendBtn.setAttribute('class', "button friendBtn");
+                addFriendBtn.setAttribute('disabled','true');
+                addFriendBtn.innerHTML = "Friends";
+            }
 
             var emailHidden = document.createElement("input");
             emailHidden.setAttribute('id', "emailHidden");
             emailHidden.setAttribute('hidden',"true");
             emailHidden.setAttribute('value', arr.email);
 
-            divProfileButtons.appendChild(addFriendBtn);
+            if (arr.isfriend != "0" || arr.isfriend != "1") {
+                divProfileButtons.appendChild(addFriendBtn);
+            }
+
             divProfilePic.appendChild(divProfileButtons);
 
             divProfileHeader.appendChild(emailHidden);
