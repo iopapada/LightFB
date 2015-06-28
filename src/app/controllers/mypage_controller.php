@@ -18,13 +18,13 @@ class MypageController {
     {
         session_start();
         $cursess = $_SESSION['user_id'];
-        $path = explode('?', $_GET['action']);
-        $mail = explode('=',$path[1]);
+        $mail = $_GET['email'];
+
         $rows = db_query_select_one("SELECT firstname,lastname,email,pictureURL,pictureCoverURL,birth,gender, homelocation, currentlocation
-                                     FROM userprofile WHERE email = '$mail[1]' ");
+                                     FROM userprofile WHERE email = '$mail' ");
 
         $isfriends = db_query_select_one("SELECT * FROM friends
-                                          WHERE ((friends.userid = '$mail[1]' && friends.friendid = '$cursess') || (friends.userid = '$cursess' && friends.friendid = '$mail[1]')) && friends.approved = '1'");
+                                          WHERE ((friends.userid = '$mail' && friends.friendid = '$cursess') || (friends.userid = '$cursess' && friends.friendid = '$mail')) && friends.approved = '1'");
 
         if($mail[1] == $cursess)
             $rows += array("isfriend" => "2");
@@ -46,9 +46,8 @@ class MypageController {
     {
         session_start();
         $userid = $_SESSION['user_id'];
-        $path = explode('?', $_GET['action']);
-        $friendid = explode('=',$path[1]);
-        $res = db_query("INSERT INTO friends (friendid,userid) VALUES ('$friendid[1]','$userid')");
+        $friendid = $_GET['email'];
+        db_query("INSERT INTO friends (friendid,userid) VALUES ('$friendid','$userid')");
         session_write_close();
     }
 

@@ -46,8 +46,6 @@ class Map {
         $path = explode('#', self::$path);
         $controller = $path[0];
         $action = $path[1];
-
-        $mail = '';
         $class_name = ucfirst($controller) . 'Controller';
 
         // include the app_controller
@@ -58,12 +56,6 @@ class Map {
 
         if( class_exists($class_name) ) {
             $tmp_class = new $class_name();
-//            if(substr($action,0,12) == 'otherprofile'){
-//                $action = substr($action,0,12);
-//            }
-//            else if(substr($action,0,17) == 'sendFriendRequest'){
-//                $action = substr($action,0,17);
-//            }
             // run the matching action
             if( is_callable(array($tmp_class, $action)) ) {
 

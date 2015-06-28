@@ -16,8 +16,8 @@ class WelcomeController extends Controller{
 
     public static function search()
     {
-        $searchExpr = explode('=', $_GET['action']);
-        $rows = db_query_select("SELECT email,firstname,lastname,pictureURL FROM userprofile WHERE firstname LIKE '$searchExpr[1]%' or lastname LIKE '$searchExpr[1]%' ");
+        $searchExpr = $_GET['$searchExpr'];
+        $rows = db_query_select("SELECT email,firstname,lastname,pictureURL FROM userprofile WHERE firstname LIKE '$searchExpr%' or lastname LIKE '$searchExpr%' ");
 
         for($x = 0; $x<count($rows); $x++){
             $rows[$x]['pictureURL'] = base64_encode($rows[$x]['pictureURL']);
@@ -57,7 +57,7 @@ class WelcomeController extends Controller{
         session_start();
         $mail = $_SESSION['user_id'];
         $messageVal = $_GET['message'];
-        $results= db_query_select("INSERT INTO actions (message,title,messagetype,userid) VALUES ('$messageVal','','text','$mail')");
+        db_query_select("INSERT INTO actions (message,title,messagetype,userid) VALUES ('$messageVal','','text','$mail')");
         session_write_close();
     }
 
