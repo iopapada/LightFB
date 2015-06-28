@@ -1,7 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    //Check if postBtn appears in DOM and then addEventListener
     //Add Event Listener to post button
-    document.getElementById('postBtn').addEventListener('click', postStatus, false);
+    if (document.getElementById('postBtn')) {
+        document.getElementById('postBtn').addEventListener('click', postStatus, false);
+    }
 
     //Add Event Listener to load Friends Posts in My Profile Page
     loadFriendsPosts();
