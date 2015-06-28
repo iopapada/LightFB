@@ -51,9 +51,13 @@ function mainSearch(){
             for(i=0; i < arr.length; i++){
 
                 var searchItems = document.createElement("li");
-                var itemAnchor = document.createElement("a");
+                /*var itemAnchor = document.createElement("a");
                 itemAnchor.setAttribute('class', "anchorSearch");
-                itemAnchor.setAttribute('href',"/index.php?action=otherprofile?email=" +arr[i].email);
+                itemAnchor.setAttribute('href',"/" +arr[i].email);*/
+
+                var itemAnchor = document.createElement("div");
+                itemAnchor.setAttribute('class','anchorSearch');
+                itemAnchor.setAttribute('id',arr[i].email);
 
                 // If the user has not uploaded a profile pic don't append
                 if (arr[i].pictureURL) {
@@ -65,6 +69,7 @@ function mainSearch(){
 
                     itemAnchor.appendChild(itemProfilePic);
                 }
+
                 itemAnchor.innerHTML += arr[i].firstname + " " + arr[i].lastname;
                 searchItems.appendChild(itemAnchor);
                 listSearch.appendChild(searchItems);
@@ -77,8 +82,13 @@ function mainSearch(){
 
             for (var i=0; i<aTags.length; i++){
 
-                var href=aTags[i].href.valueOf();
-                aTags[i].addEventListener("click", function(e){e.stopPropagation();e.preventDefault();loadProfile(href);},false);
+                (function(i){
+                    aTags[i].addEventListener('click', function(e) {
+
+                        loadProfile(aTags[i].getAttribute('id'))
+                    }, false);
+                })(i);
+
             }
         }
 
@@ -89,7 +99,7 @@ function mainSearch(){
 
 }
 
-function loadProfile(href){
+function loadProfile(email){
 
     var xmlhttp;
     if (window.XMLHttpRequest)
@@ -172,7 +182,8 @@ function loadProfile(href){
 
         }
     }
-    xmlhttp.open("GET",href,true);
+
+    xmlhttp.open("GET","/index.php?action=otherprofile?email="+email,true);
     xmlhttp.send();
 }
 
