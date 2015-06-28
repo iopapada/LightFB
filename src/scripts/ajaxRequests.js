@@ -15,10 +15,9 @@ function sendFriendRequest(){
             var addFriendButton = document.getElementById("friendButton");
             addFriendButton.innerHTML = "Request Sent!";
             addFriendButton.style.backgroundColor = "grey";
-
         }
     }
-    xmlhttp.open("GET","/index.php?action=sendFriendRequest?email="+ email,true);
+    xmlhttp.open("GET","/index.php?action=sendFriendRequest&email="+ email,true);
     xmlhttp.send();
 }
 
@@ -51,10 +50,6 @@ function mainSearch(){
             for(i=0; i < arr.length; i++){
 
                 var searchItems = document.createElement("li");
-                /*var itemAnchor = document.createElement("a");
-                itemAnchor.setAttribute('class', "anchorSearch");
-                itemAnchor.setAttribute('href',"/" +arr[i].email);*/
-
                 var itemAnchor = document.createElement("div");
                 itemAnchor.setAttribute('class','anchorSearch');
                 itemAnchor.setAttribute('id',arr[i].email);
@@ -73,7 +68,6 @@ function mainSearch(){
                 itemAnchor.innerHTML += arr[i].firstname + " " + arr[i].lastname;
                 searchItems.appendChild(itemAnchor);
                 listSearch.appendChild(searchItems);
-
             }
 
             searchDiv.appendChild(listSearch);
@@ -94,7 +88,7 @@ function mainSearch(){
 
     }
 
-    xmlhttp.open("GET","/index.php?action=search?searchExpr=" + searchExpr,true);
+    xmlhttp.open("GET","/index.php?action=search&searchExpr=" + searchExpr,true);
     xmlhttp.send();
 
 }
@@ -183,7 +177,7 @@ function loadProfile(email){
         }
     }
 
-    xmlhttp.open("GET","/index.php?action=otherprofile?email="+email,true);
+    xmlhttp.open("GET","/index.php?action=otherprofile&email="+email,true);
     xmlhttp.send();
 }
 
@@ -327,7 +321,7 @@ function showEditProfile(evt){
         }
     }
 
-    xmlhttp.open("GET", "/index.php?action=otherprofile?email=" + name ,true);
+    xmlhttp.open("GET", "/index.php?action=otherprofile&email=" + name ,true);
     xmlhttp.send();
 
     evt.preventDefault();
