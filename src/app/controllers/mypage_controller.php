@@ -60,6 +60,9 @@ class MypageController {
                                        INNER JOIN friends ON userprofile.email = friends.userid
                                        WHERE friends.friendid = '$userid' && friends.approved = 0");
 
+        for($x = 0; $x<count($results); $x++){
+            $results[$x]['pictureURL'] = base64_encode($results[$x]['pictureURL']);
+        }
         session_write_close();
         return json_encode($results);
     }
@@ -81,6 +84,9 @@ class MypageController {
                                        INNER JOIN friends ON userprofile.email = friends.userid
                                        WHERE friends.friendid = '$userid' && friends.approved = 1");
 
+        for($x = 0; $x<count($results); $x++){
+            $results[$x]['pictureURL'] = base64_encode($results[$x]['pictureURL']);
+        }
         session_write_close();
         return json_encode($results);
     }
