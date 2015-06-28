@@ -48,8 +48,8 @@ if(!$auth == "ok") {
                         session_write_close();
                     ?>
                     <form name="editProfileForm" method="post" action="/index.php?action=submiteditprofile" enctype="multipart/form-data">
-                        <label>Your Registered Firstname: <input name="Firstname" type="text" placeholder=<?php echo $tempFirst; ?>></label><br>
-                        <label>Your Registered Lastname: <input name="Lastname" type="text"  placeholder=<?php echo $tempLast; ?>></label><br>
+                        <label>Your Registered Firstname: <input name="Firstname" type="text" value="<?php echo $tempFirst; ?>"></label><br>
+                        <label>Your Registered Lastname: <input name="Lastname" type="text" value="<?php echo $tempLast; ?>"></label><br>
                         <label>Your Registered Birth: </label><br>
 
                         <label>Your Registered Gender: </label><br>

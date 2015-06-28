@@ -276,6 +276,12 @@ ul{
     color:#3a5795;
 }
 
+.imgProfileSearch img {
+    width:30px;
+    height:30px;
+    border: 1px solid white;
+    margin:5px;
+}
 
 #logout a{
 

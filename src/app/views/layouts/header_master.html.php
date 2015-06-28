@@ -25,7 +25,7 @@
             <div id="loginAvatar">
             <?php
                 session_start();
-                $rows = db_query_select_one("SELECT pictureURL FROM userprofile WHERE id = $_COOKIE[id]");
+                $rows = db_query_select_one("SELECT pictureURL FROM userprofile WHERE id = $_SESSION[id]");
                 $tempimg = base64_encode( $rows['pictureURL'] );
                 echo "<img id='smallAvatar' src='data:image/jpeg;base64,$tempimg'>";
                 session_write_close();

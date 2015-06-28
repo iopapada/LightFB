@@ -54,7 +54,18 @@ function mainSearch(){
                 var itemAnchor = document.createElement("a");
                 itemAnchor.setAttribute('class', "anchorSearch");
                 itemAnchor.setAttribute('href',"/index.php?action=otherprofile?email=" +arr[i].email);
-                itemAnchor.innerHTML = arr[i].firstname + " " + arr[i].lastname;
+
+                // If the user has not uploaded a profile pic don't append
+                if (arr[i].pictureURL) {
+                    $tempAvatar = base64_encode(arr[i].pictureURL);
+                    var itemProfilePic = document.createElement("img");
+                    itemProfilePic.setAttribute('class', 'imgProfileSearch');
+                    itemProfilePic.setAttribute('src', 'data:image/jpeg;base64,' + $tempAvatar);
+                    itemProfilePic.setAttribute('alt', 'profile');
+
+                    itemAnchor.appendChild(itemProfilePic);
+                }
+                itemAnchor.innerHTML += arr[i].firstname + " " + arr[i].lastname;
                 searchItems.appendChild(itemAnchor);
                 listSearch.appendChild(searchItems);
 
@@ -111,8 +122,7 @@ function loadProfile(href){
             divProfilePic.setAttribute('id', "profilePic");
             var profileImg = document.createElement("img");
             profileImg.setAttribute('src', "data:image/jpeg;base64,"+arr['pictureURL']);
-            profileImg.setAttribute('alt',"Profile Picture" + arr.email);
-
+            profileImg.setAttribute('alt',"profile");
 
             divProfilePic.appendChild(profileImg);
             divProfileHeader.appendChild(divProfilePic);
