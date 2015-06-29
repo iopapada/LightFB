@@ -20,11 +20,11 @@ else if(isset($_GET['action']) && $_GET['action'] == 'logout') {
 }
 else if(isset($_GET['action']) && $_GET['action'] == 'welcome'){
 
-
     session_start();
-    $test = $_SESSION['user_id'];
-    if(isset($_SESSION)) include_once('src/app/views/layouts/app-signin.html.php');
-    else echo "ARXIDIA!!!";
+    if(array_key_exists('user_id',$_SESSION))
+        include_once('src/app/views/layouts/app-signin.html.php');
+    else
+        include_once('src/app/views/layouts/index.html.php');
     session_write_close();
 }
 //----------------------------------POST------------------------------------
