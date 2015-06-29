@@ -16,7 +16,7 @@ class WelcomeController extends Controller{
 
     public static function search()
     {
-        $searchExpr = $_GET['$searchExpr'];
+        $searchExpr = $_GET['searchExpr'];
         $rows = db_query_select("SELECT email,firstname,lastname,pictureURL FROM userprofile WHERE firstname LIKE '$searchExpr%' or lastname LIKE '$searchExpr%' ");
 
         for($x = 0; $x<count($rows); $x++){

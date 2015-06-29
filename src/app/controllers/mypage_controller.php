@@ -20,7 +20,7 @@ class MypageController {
         $cursess = $_SESSION['user_id'];
         $mail = $_GET['email'];
 
-        $rows = db_query_select_one("SELECT firstname,lastname,email,pictureURL,pictureCoverURL,birth,gender, homelocation, currentlocation
+        $rows = db_query_select_one("SELECT firstname, lastname, email, pictureURL, pictureCoverURL, birth, gender, homelocation, currentlocation
                                      FROM userprofile WHERE email = '$mail' ");
 
         $isfriends = db_query_select_one("SELECT * FROM friends
@@ -79,9 +79,9 @@ class MypageController {
     {
         session_start();
         $userid = $_SESSION['user_id'];
-        $results= db_query_select("SELECT firstname,lastname,email,pictureURL FROM userprofile
-                                       INNER JOIN friends ON userprofile.email = friends.userid
-                                       WHERE friends.friendid = '$userid' && friends.approved = '1'");
+        $results= db_query_select("SELECT DISTINCT email,firstname,lastname,pictureURL FROM userprofile
+                                    INNER JOIN friends ON userprofile.email = friends.userid OR userprofile.email = friends.friendid
+                                    WHERE (friends.userid = '$userid' OR friends.friendid = '$userid' ) AND friends.approved ='1'");
 
         for($x = 0; $x<count($results); $x++){
             $results[$x]['pictureURL'] = base64_encode($results[$x]['pictureURL']);

@@ -60,7 +60,7 @@ else if(isset($_GET['action']) && $_GET['action'] == 'loadAllMyPhotos') {
     Map::ajax('/', 'mypage#loadAllMyPhotos');
 }
 else if(isset($_GET['action']) && $_GET['action'] == 'loadFriends') {
-    Map::ajax('/', 'mypage#loadFriendsPosts');
+    Map::ajax('/', 'mypage#loadFriends');
 }
 //-------------------------------------AJAX POST------------------------------------
 
