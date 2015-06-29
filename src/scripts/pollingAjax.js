@@ -9,27 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     //Add Event Listener to load Friends Posts in My Profile Page
     loadFriendsPosts();
 
-    function loadFriendsPosts(){
-
-        var xmlhttp;
-        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        }
-        xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-            {
-                var arr = JSON.parse(xmlhttp.responseText);
-
-            }
-        }
-        xmlhttp.open("GET", "/index.php?action=loadFriendsPosts", true);
-        xmlhttp.send();
-    };
-
-    // Trigger getFriendRequests for first time to get number of friend Requests when login
-    getFriendRequests();
-
-    function getFriendRequests(){
+    function loadFriendsPosts() {
 
         var xmlhttp;
         if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -37,28 +17,94 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-            {
-                var arr = JSON.parse(xmlhttp.responseText);
-                var spanFriendsNum = document.getElementById("friendRequestsCount");
-                spanFriendsNum.innerHTML = arr.length;
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 
-                var aTag = document.getElementById("friendRequestAnchor");
-                aTag.addEventListener("click", function(e){e.stopPropagation();e.preventDefault();loadFriendRequests(arr);},false);
+                var arr = JSON.parse(xmlhttp.responseText);
+                var i;
+
+                //Get the statusUpdates Div Element
+                var postStatusDiv = document.getElementById('statusUpdates');
+
+                if (postStatusDiv != null) {
+                    while (postStatusDiv.hasChildNodes()) {
+                        postStatusDiv.removeChild(postStatusDiv.firstChild);
+                    }
+                }
+
+
+                for (i = 0; i < arr.length; i++) {
+
+
+                    //Get the time and create a Div to store it
+                    var postTime = arr[i].timepost;
+
+                    var postInfoDiv = document.createElement('div');
+                    postInfoDiv.setAttribute('class', 'postInfo');
+                    postInfoDiv.innerHTML = "Posted by " + arr[i].firstname + " at:" + postTime;
+
+                    //Create a Div that will host the post Textbox
+                    var newPost = document.createElement('div');
+                    newPost.setAttribute('class', 'post');
+
+                    //Create a Div that will host the Textbox of Post
+                    var newPostText = document.createElement('textarea');
+                    newPostText.setAttribute('class', 'postText');
+
+                    newPostText.innerHTML = arr[i].message;
+
+                    //Append the elements and final in statusUpdates Div
+                    newPost.appendChild(postInfoDiv);
+                    newPost.appendChild(newPostText);
+                    //New posts should be on top!
+                    postStatusDiv.insertBefore(newPost, postStatusDiv.firstChild);
+                }
+
+
             }
+
         }
 
-        xmlhttp.open("GET", "/index.php?action=getFriendRequests", true);
-        xmlhttp.send();
-    };
+                xmlhttp.open("GET", "/index.php?action=loadFriendsPosts", true);
+                xmlhttp.send();
+        };
 
-    // Trigger every 20 seconds to get new updates
-    setInterval(function(){
+        // Trigger getFriendRequests for first time to get number of friend Requests when login
         getFriendRequests();
-        loadFriendsPosts();
-    }, 20000);
+
+        function getFriendRequests() {
+
+            var xmlhttp;
+            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp = new XMLHttpRequest();
+            }
+
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                    var arr = JSON.parse(xmlhttp.responseText);
+                    var spanFriendsNum = document.getElementById("friendRequestsCount");
+                    spanFriendsNum.innerHTML = arr.length;
+
+                    var aTag = document.getElementById("friendRequestAnchor");
+                    aTag.addEventListener("click", function (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                        loadFriendRequests(arr);
+                    }, false);
+                }
+            }
+
+            xmlhttp.open("GET", "/index.php?action=getFriendRequests", true);
+            xmlhttp.send();
+        };
+
+        // Trigger every 20 seconds to get new updates
+        setInterval(function () {
+            getFriendRequests();
+            loadFriendsPosts();
+        }, 20000);
 
 }, false);
+
 
 function postStatus(){
 
