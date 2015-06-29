@@ -87,8 +87,8 @@ class Map {
 
         if($action === "signin" && $res === true)
         {
-            header('Location: http://localhost:66/index.php?action=welcome');
-            //header('Location: src/app/views/layouts/app-signin.html.php');
+            $test = 'Location: http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/index.php?action=welcome';
+            header($test);
             //self::load_layout($layout_path);
         }
         else if( !empty($layout_path) && $type !== 'XMLHttpRequest') {

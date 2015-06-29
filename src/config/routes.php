@@ -19,7 +19,13 @@ else if(isset($_GET['action']) && $_GET['action'] == 'logout') {
     Map::get('/', 'welcome#logout');
 }
 else if(isset($_GET['action']) && $_GET['action'] == 'welcome'){
-    include_once('src/app/views/layouts/app-signin.html.php');
+
+
+    session_start();
+    $test = $_SESSION['user_id'];
+    if(isset($_SESSION)) include_once('src/app/views/layouts/app-signin.html.php');
+    else echo "ARXIDIA!!!";
+    session_write_close();
 }
 //----------------------------------POST------------------------------------
 else if(isset($_POST['username']) && isset($_POST['pass'])){
