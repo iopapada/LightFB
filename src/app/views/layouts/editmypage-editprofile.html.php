@@ -13,6 +13,7 @@ if(!$auth == "ok") {
     <link rel="stylesheet" type="text/css" href="src/content/SiteIndex.css">
     <script src="src/scripts/ajaxRequests.js"></script>
     <script src="/src/scripts/pollingAjax.js"></script>
+    <script src="src/scripts/myProfileScript.js"></script>
 </head>
 <body>
 <?php include_once('src/app/views/layouts/header_master.html.php'); ?>
