@@ -381,32 +381,3 @@ function showEditProfile(evt){
     evt.preventDefault();
 
 }
-
-document.addEventListener('DOMContentLoaded', function() {
-
-    if (document.getElementById('fblogo')) {
-        document.getElementById('fblogo').addEventListener('click', function(e){e.stopPropagation();e.preventDefault(); redirectWelcome();}, false);
-    }
-
-}, false);
-
-function redirectWelcome(){
-
-    var xmlhttp;
-    if (window.XMLHttpRequest)
-    {// code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp=new XMLHttpRequest();
-    }
-
-    xmlhttp.onreadystatechange=function()
-    {
-        if (xmlhttp.readyState==4 && xmlhttp.status==200)
-        {
-
-        }
-    }
-
-    xmlhttp.open("GET", "/index.php?action=welcome" ,true);
-    xmlhttp.send();
-
-}

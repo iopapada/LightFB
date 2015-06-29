@@ -1,7 +1,7 @@
 <div class="header signed">
     <div id="header_elements_container">
         <div class="fblight_logo" id="fblogo">
-            <a href="#">LightFB</a>
+            <a href="/index.php?action=welcome">LightFB</a>
         </div>
         <div class="searchFB">
             <form name="searchform" action="/index.php" id="global-search">
