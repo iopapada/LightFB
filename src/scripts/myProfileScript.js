@@ -144,6 +144,26 @@ function loadAllMyPhotos(){
         {
             var arr = JSON.parse(xmlhttp.responseText);
 
+            while (postStatusDiv.hasChildNodes()) {
+                postStatusDiv.removeChild(postStatusDiv.firstChild);
+            }
+
+            var divAllImages = document.createElement('div');
+            divAllImages.setAttribute("id",'displayAllImages');
+
+            var tbl = document.createElement("table");
+            tbl.setAttribute("id",'displayAllImages');
+            var tblBody = document.createElement("tbody");
+
+            for (var i = 0; i < arr.length; i++) {
+
+                for (var l = 0; l < 4; l++) {
+                    var cell = document.createElement("td");
+                }
+            }
+
+            tbl.appendChild(tblBody);
+            divAllImages.appendChild(tbl);
         }
     }
 
