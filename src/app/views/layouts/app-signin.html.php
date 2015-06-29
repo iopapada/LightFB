@@ -50,6 +50,5 @@ if(!$auth == "ok") {
         </div>
     </div>
 </div>
-<?php include_once('src/app/views/layouts/footer_master.html.php'); ?>
 </body>
 </html>
