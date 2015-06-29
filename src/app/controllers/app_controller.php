@@ -57,6 +57,7 @@ class AppController extends Controller{
                 session_write_close();
                 return true;
             } else {
+                setcookie("authorization","notok" );
                 return 'signinerror1';
                 //echo'wrong password';
             }

@@ -65,7 +65,7 @@ class WelcomeController extends Controller{
     {
         session_start();
         $_SESSION=array();
-        setcookie(session_name(), '', time() - 2592000, '/');
+        $_COOKIE=array();
         session_destroy();
         return true;
     }
