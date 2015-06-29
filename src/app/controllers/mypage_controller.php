@@ -81,7 +81,7 @@ class MypageController {
         $userid = $_SESSION['user_id'];
         $results= db_query_select("SELECT firstname,lastname,email,pictureURL FROM userprofile
                                        INNER JOIN friends ON userprofile.email = friends.userid
-                                       WHERE friends.friendid = '$userid' && friends.approved = 1");
+                                       WHERE friends.friendid = '$userid' && friends.approved = '1'");
 
         for($x = 0; $x<count($results); $x++){
             $results[$x]['pictureURL'] = base64_encode($results[$x]['pictureURL']);
