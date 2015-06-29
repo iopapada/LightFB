@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         var postInfoDiv = document.createElement('div');
                         postInfoDiv.setAttribute('class', 'postInfo');
-                        postInfoDiv.innerHTML = "Posted by " + arr[i].firstname + " at:" + postTime;
+                        postInfoDiv.innerHTML = "Posted by " + arr[i].firstname + " " + arr[i].lastname + " at:" + postTime;
 
                         //Create a Div that will host the post Textbox
                         var newPost = document.createElement('div');
@@ -130,6 +130,9 @@ function postStatus(){
 
                 //Get the statusUpdates Div Element
                 var postStatusDiv = document.getElementById('statusUpdates');
+                var postMyStatusDiv = document.getElementById('statusMyUpdates');
+
+
 
                 //Get the time and create a Div to store it
                 var postTime = getDate();
@@ -152,7 +155,12 @@ function postStatus(){
                 newPost.appendChild(postInfoDiv);
                 newPost.appendChild(newPostText);
                 //New posts should be on top!
-                postStatusDiv.insertBefore(newPost, postStatusDiv.firstChild);
+                if (postStatusDiv == null) {
+                    postStatusDiv.insertBefore(newPost, postStatusDiv.firstChild);
+                }
+                else{
+                    postMyStatusDiv.insertBefore(newPost, postStatusDiv.firstChild);
+                }
 
                 //Put again the placeholder on the textbox.
                 postTextbox.value = "";

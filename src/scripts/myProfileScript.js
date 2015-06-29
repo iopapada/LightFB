@@ -58,7 +58,7 @@ function loadMyPosts(){
 
                     var postInfoDiv = document.createElement('div');
                     postInfoDiv.setAttribute('class', 'postInfo');
-                    postInfoDiv.innerHTML = "Posted by " + arr[i].firstname + " at:" + postTime;
+                    postInfoDiv.innerHTML = "Posted by " + arr[i].firstname + " " + arr[i].lastname +" at:" + postTime;
 
                     //Create a Div that will host the post Textbox
                     var newPost = document.createElement('div');
