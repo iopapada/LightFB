@@ -48,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     //Create a Div that will host the Textbox of Post
                     var newPostText = document.createElement('textarea');
+                    newPostText.setAttribute('readonly','true');
                     newPostText.setAttribute('class', 'postText');
 
                     newPostText.innerHTML = arr[i].message;

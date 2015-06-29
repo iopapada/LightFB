@@ -118,6 +118,11 @@ function loadProfile(email){
                 postStatusDiv.parentNode.removeChild(postStatusDiv);
             }
 
+            if (document.getElementById("statusUpdates")){
+                var postStatusUpdatesDiv = document.getElementById("statusUpdates");
+                postStatusUpdatesDiv.parentNode.removeChild(postStatusUpdatesDiv);
+            }
+
             var mainContentDiv = document.getElementById("main_content");
 
             var divProfileHeader = document.createElement("div");
