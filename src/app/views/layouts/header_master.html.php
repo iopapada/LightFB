@@ -22,7 +22,7 @@
             </a>
         </div>
         <div class="login_container">
-                <div id="loginAvatar">
+            <div id="loginAvatar">
                 <?php
                     include_once APP_PATH . 'models/DAO.php';
                     if(!isset($_SESSION))session_start();
@@ -31,13 +31,19 @@
                     echo "<img id='smallAvatar' src='data:image/jpeg;base64,$tempimg'>";
                     session_write_close();
                 ?>
-                </div>
-            <div id="loginUser">
-                <?php  echo $_SESSION['fullname']; session_write_close();?>
             </div>
-            <div id="logout">
-                <a href="/index.php?action=logout">Logout</a>
-            </div>
+        </div>
+        <div id="loginUser">
+            <?php  echo $_SESSION['fullname']; session_write_close();?>
+        </div>
+        <div id="home">
+            <a href="/index.php?action=welcome">Home</a>
+        </div>
+        <div id="home">
+            <a href="/index.php?action=welcome">Find Friends</a>
+        </div>
+        <div id="logout">
+            <a href="/index.php?action=logout">Logout</a>
         </div>
     </div>
 </div>
