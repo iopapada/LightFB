@@ -42,8 +42,8 @@ class EditmypageController {
         $last = $_POST['Lastname'];
 
         db_query("UPDATE userprofile SET firstname = '$first', lastname = '$last', pictureURL = '$blobprofile', pictureCoverURL = '$blobcover'  WHERE email = '$userid'");
-//        include ('src/app/views/layouts/app-signin.html.php');
-//        return false;
+
+        return true;
 
         session_write_close();
     }
