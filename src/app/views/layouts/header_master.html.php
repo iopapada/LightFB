@@ -1,7 +1,7 @@
 <div class="header signed">
     <div id="header_elements_container">
         <div class="fblight_logo" id="fblogo">
-            <a href="index.php">LightFB</a>
+            <a href="#">LightFB</a>
         </div>
         <div class="searchFB">
             <form name="searchform" action="/index.php" id="global-search">
@@ -25,6 +25,7 @@
             <div id="loginAvatar">
             <?php
                 include_once APP_PATH . 'models/DAO.php';
+                if(!isset($_SESSION))session_start();
                 $rows = db_query_select_one("SELECT pictureURL FROM userprofile WHERE id = $_SESSION[id]");
                 $tempimg = base64_encode( $rows['pictureURL'] );
                 echo "<img id='smallAvatar' src='data:image/jpeg;base64,$tempimg'>";

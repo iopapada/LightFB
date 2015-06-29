@@ -385,7 +385,7 @@ function showEditProfile(evt){
 document.addEventListener('DOMContentLoaded', function() {
 
     if (document.getElementById('fblogo')) {
-        document.getElementById('fblogo').addEventListener('click', redirectWelcome, false);
+        document.getElementById('fblogo').addEventListener('click', function(e){e.stopPropagation();e.preventDefault(); redirectWelcome();}, false);
     }
 
 }, false);
@@ -402,7 +402,6 @@ function redirectWelcome(){
     {
         if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
-
 
         }
     }
