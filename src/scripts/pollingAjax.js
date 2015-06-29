@@ -19,47 +19,47 @@ document.addEventListener('DOMContentLoaded', function() {
         xmlhttp.onreadystatechange = function () {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 
-                var arr = JSON.parse(xmlhttp.responseText);
-                var i;
-
                 //Get the statusUpdates Div Element
                 var postStatusDiv = document.getElementById('statusUpdates');
 
                 if (postStatusDiv != null) {
+
+                    var arr = JSON.parse(xmlhttp.responseText);
+                    var i;
+
                     while (postStatusDiv.hasChildNodes()) {
                         postStatusDiv.removeChild(postStatusDiv.firstChild);
                     }
+
+
+                    for (i = 0; i < arr.length; i++) {
+
+
+                        //Get the time and create a Div to store it
+                        var postTime = arr[i].timepost;
+
+                        var postInfoDiv = document.createElement('div');
+                        postInfoDiv.setAttribute('class', 'postInfo');
+                        postInfoDiv.innerHTML = "Posted by " + arr[i].firstname + " at:" + postTime;
+
+                        //Create a Div that will host the post Textbox
+                        var newPost = document.createElement('div');
+                        newPost.setAttribute('class', 'post');
+
+                        //Create a Div that will host the Textbox of Post
+                        var newPostText = document.createElement('textarea');
+                        newPostText.setAttribute('readonly', 'true');
+                        newPostText.setAttribute('class', 'postText');
+
+                        newPostText.innerHTML = arr[i].message;
+
+                        //Append the elements and final in statusUpdates Div
+                        newPost.appendChild(postInfoDiv);
+                        newPost.appendChild(newPostText);
+                        //New posts should be on top!
+                        postStatusDiv.insertBefore(newPost, postStatusDiv.firstChild);
+                    }
                 }
-
-
-                for (i = 0; i < arr.length; i++) {
-
-
-                    //Get the time and create a Div to store it
-                    var postTime = arr[i].timepost;
-
-                    var postInfoDiv = document.createElement('div');
-                    postInfoDiv.setAttribute('class', 'postInfo');
-                    postInfoDiv.innerHTML = "Posted by " + arr[i].firstname + " at:" + postTime;
-
-                    //Create a Div that will host the post Textbox
-                    var newPost = document.createElement('div');
-                    newPost.setAttribute('class', 'post');
-
-                    //Create a Div that will host the Textbox of Post
-                    var newPostText = document.createElement('textarea');
-                    newPostText.setAttribute('readonly','true');
-                    newPostText.setAttribute('class', 'postText');
-
-                    newPostText.innerHTML = arr[i].message;
-
-                    //Append the elements and final in statusUpdates Div
-                    newPost.appendChild(postInfoDiv);
-                    newPost.appendChild(newPostText);
-                    //New posts should be on top!
-                    postStatusDiv.insertBefore(newPost, postStatusDiv.firstChild);
-                }
-
 
             }
 

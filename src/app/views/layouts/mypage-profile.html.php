@@ -63,7 +63,7 @@ if(!$auth == "ok") {
                 <button type="button" class="button postbtn" id="postBtn">Post</button>
             </div>
         </div>
-        <div id="statusUpdates">
+        <div id="statusMyUpdates">
 
         </div>
     </div>
