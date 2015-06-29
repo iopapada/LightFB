@@ -47,7 +47,7 @@ class WelcomeController extends Controller{
     {
         session_start();
         $id = $_GET['email'];
-        $results= db_query_select("SELECT *, userprofile.firstname, userprofile.lastname FROM actions
+        $results= db_query_select("SELECT actions.*, userprofile.firstname, userprofile.lastname FROM actions
                                    INNER JOIN userprofile on userprofile.email = actions.userid
                                    WHERE actions.userid = '$id'");
         return json_encode($results);
