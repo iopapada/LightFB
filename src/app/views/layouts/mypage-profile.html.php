@@ -50,10 +50,10 @@ if(!$auth == "ok") {
 
             </div>
             <div id="profileButtons">
-                <button type="button" class="button" id="timelineBtn">Timeline</button>
-                <button type="button" class="button" id="friendsBtn">Friends</button>
-                <button type="button" class="button" id="albumsBtn">Albums</button>
-                <button type="button" class="button" id="photosBtn">Photos</button>
+                <button type="button" class="button" id="timelineBtn" email=<?php echo $_SESSION['user_id']?>>Timeline</button>
+                <button type="button" class="button" id="friendsBtn" email=<?php echo $_SESSION['user_id']?>>Friends</button>
+                <button type="button" class="button" id="albumsBtn" email=<?php echo $_SESSION['user_id']?>>Albums</button>
+                <button type="button" class="button" id="photosBtn" email=<?php echo $_SESSION['user_id']?>>Photos</button>
             </div>
         </div>
         <div id="postStatus">

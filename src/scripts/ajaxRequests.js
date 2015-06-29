@@ -93,6 +93,7 @@ function mainSearch(){
 
 }
 
+// function to load otherprofile
 function loadProfile(email){
 
     var xmlhttp;
@@ -156,6 +157,34 @@ function loadProfile(email){
                 addFriendBtn.innerHTML = "Friends";
             }
 
+            var timelineBtn = document.createElement('button');
+            timelineBtn.setAttribute('type','button');
+            timelineBtn.setAttribute('class','button');
+            timelineBtn.setAttribute('id','timelineBtn');
+            timelineBtn.setAttribute('email',arr.email);
+            timelineBtn.innerHTML = "Timeline";
+
+            var friendsBtn = document.createElement('button');
+            friendsBtn.setAttribute('type','button');
+            friendsBtn.setAttribute('class','button');
+            friendsBtn.setAttribute('id','friendsBtn');
+            friendsBtn.setAttribute('email',arr.email);
+            friendsBtn.innerHTML = "Friends";
+
+            var albumsBtn = document.createElement('button');
+            albumsBtn.setAttribute('type','button');
+            albumsBtn.setAttribute('class','button');
+            albumsBtn.setAttribute('id','albumsBtn');
+            albumsBtn.setAttribute('email',arr.email);
+            albumsBtn.innerHTML = "Albums";
+
+            var photosBtn = document.createElement('button');
+            photosBtn.setAttribute('type','button');
+            photosBtn.setAttribute('class','button');
+            photosBtn.setAttribute('id','photosBtn');
+            photosBtn.setAttribute('email',arr.email);
+            photosBtn.innerHTML = "Photos";
+
             var emailHidden = document.createElement("input");
             emailHidden.setAttribute('id', "emailHidden");
             emailHidden.setAttribute('hidden',"true");
@@ -165,14 +194,39 @@ function loadProfile(email){
                 divProfileButtons.appendChild(addFriendBtn);
             }
 
+            //append all buttons
+            divProfileButtons.appendChild(timelineBtn);
+            divProfileButtons.appendChild(friendsBtn);
+            divProfileButtons.appendChild(albumsBtn);
+            divProfileButtons.appendChild(photosBtn);
+
             divProfilePic.appendChild(divProfileButtons);
 
             divProfileHeader.appendChild(emailHidden);
             mainContentDiv.appendChild(divProfileHeader);
 
-            var addFriendButton = document.getElementById("friendButton");
+            if (document.getElementById("friendButton")) {
 
-            addFriendButton.addEventListener("click", sendFriendRequest, false);
+                var addFriendButton = document.getElementById("friendButton");
+
+                addFriendButton.addEventListener("click", sendFriendRequest, false);
+            }
+
+            if (document.getElementById('timelineBtn')) {
+                document.getElementById('timelineBtn').addEventListener('click', loadMyPosts, false);
+            }
+
+            if (document.getElementById('friendsBtn')) {
+                document.getElementById('friendsBtn').addEventListener('click', loadFriends, false);
+            }
+
+            if (document.getElementById('albumsBtn')) {
+                document.getElementById('albumsBtn').addEventListener('click', loadAllMyAlbums, false);
+            }
+
+            if (document.getElementById('photosBtn')) {
+                document.getElementById('photosBtn').addEventListener('click', loadAllMyPhotos, false);
+            }
 
         }
     }

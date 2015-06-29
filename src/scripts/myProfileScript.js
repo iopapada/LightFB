@@ -22,27 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function loadMyPosts(){
 
-
-    var xmlhttp;
-    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    }
-
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-        {
-
-
-        }
-    }
-
-    xmlhttp.open("GET", "/index.php?action=loadMyPosts", true);
-    xmlhttp.send();
-}
-
-
-function loadFriends(){
-
+    var email = document.getElementById('friendsBtn').getAttribute('email');
 
     var xmlhttp;
     if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -54,16 +34,39 @@ function loadFriends(){
         {
             var arr = JSON.parse(xmlhttp.responseText);
 
+        }
+    }
+
+    xmlhttp.open("GET", "/index.php?action=loadMyPosts&email="+email, true);
+    xmlhttp.send();
+}
+
+
+function loadFriends(){
+
+    var email = document.getElementById('friendsBtn').getAttribute('email');
+
+    var xmlhttp;
+    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    }
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+        {
+            alert('load');
+            var arr = JSON.parse(xmlhttp.responseText);
 
         }
     }
 
-    xmlhttp.open("GET", "/index.php?action=loadFriends", true);
+    xmlhttp.open("GET", "/index.php?action=loadFriends&email="+email, true);
     xmlhttp.send();
 }
 
 function loadAllMyAlbums(){
 
+    var email = document.getElementById('friendsBtn').getAttribute('email');
 
     var xmlhttp;
     if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -73,17 +76,18 @@ function loadAllMyAlbums(){
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
         {
-
+            var arr = JSON.parse(xmlhttp.responseText);
 
         }
     }
 
-    xmlhttp.open("GET", "/index.php?action=loadAllMyAlbums", true);
+    xmlhttp.open("GET", "/index.php?action=loadAllMyAlbums&email="+email, true);
     xmlhttp.send();
 }
 
 function loadAllMyPhotos(){
 
+    var email = document.getElementById('friendsBtn').getAttribute('email');
 
     var xmlhttp;
     if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -93,11 +97,11 @@ function loadAllMyPhotos(){
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
         {
-
+            var arr = JSON.parse(xmlhttp.responseText);
 
         }
     }
 
-    xmlhttp.open("GET", "/index.php?action=loadAllMyPhotos", true);
+    xmlhttp.open("GET", "/index.php?action=loadAllMyPhotos&email="+email, true);
     xmlhttp.send();
 }
