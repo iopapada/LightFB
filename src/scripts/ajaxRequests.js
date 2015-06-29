@@ -235,7 +235,6 @@ function loadProfile(email){
     xmlhttp.send();
 }
 
-
 function showEditProfile(evt){
 
     var xmlhttp;
@@ -388,7 +387,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('loginAvatar')) {
         document.getElementById('loginAvatar').addEventListener('click', loadMyProfile, false);
     }
-
 
 }, false);
 
