@@ -44,14 +44,23 @@ else if(isset($_GET['action']) && $_GET['action'] == 'getFriendRequests') {
 else if(isset($_GET['action']) && $_GET['action'] == 'confirmFriendRequests') {
     Map::ajax('/', 'mypage#confirmFriendRequests');
 }
-else if($_GET['action'] == 'addPost') {
+else if(isset($_GET['action']) && $_GET['action'] == 'addPost') {
     Map::ajax('/', 'welcome#addPost');
 }
-else if($_GET['action'] == 'loadMyPosts') {
+else if(isset($_GET['action']) && $_GET['action'] == 'loadMyPosts') {
     Map::ajax('/', 'welcome#loadMyPosts');
 }
-else if($_GET['action'] == 'loadFriendsPosts') {
+else if(isset($_GET['action']) && $_GET['action'] == 'loadFriendsPosts') {
     Map::ajax('/', 'welcome#loadFriendsPosts');
+}
+else if(isset($_GET['action']) && $_GET['action'] == 'loadAllMyAlbums') {
+    Map::ajax('/', 'mypage#loadAllMyAlbums');
+}
+else if(isset($_GET['action']) && $_GET['action'] == 'loadAllMyPhotos') {
+    Map::ajax('/', 'mypage#loadAllMyPhotos');
+}
+else if(isset($_GET['action']) && $_GET['action'] == 'loadFriends') {
+    Map::ajax('/', 'mypage#loadFriendsPosts');
 }
 //-------------------------------------AJAX POST------------------------------------
 

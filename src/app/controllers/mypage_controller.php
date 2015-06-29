@@ -107,7 +107,18 @@ class MypageController {
 
     public static function uploadPhotos()
     {
+        $photo = $_FILES['photoToUpload']['tmp_name'];
+        $fp = fopen($photo, 'r');
+        $data = fread($fp, filesize($photo));
+        $blobphoto = addslashes($data);
+        fclose($fp);
 
+        $albumids = db_query_select("SELECT id FROM albums WHERE albname = '$_POST[photoToUpload]' ");
+        $albumid = $albumids[0]['id'];
+
+        $realimagename = $_FILES['photoToUpload']['name'];
+
+        db_query("INSERT INTO images (albumid,imgname,img) VALUES ('$albumid','$realimagename','$blobphoto')");
     }
 
     public static function loadAllMyAlbums()
@@ -123,7 +134,11 @@ class MypageController {
 
     public static function createAlbum()
     {
-
+        session_start();
+        $userid = $_SESSION['user_id'];
+        $albname = $_GET['albname'];
+        db_query("INSERT INTO albums (albname,userid) VALUES ('$albname','$userid')");
+        session_write_close();
     }
 
     public static function loadPhotosOfAlbum()

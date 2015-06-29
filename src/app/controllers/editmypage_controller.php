@@ -26,7 +26,6 @@ class EditmypageController {
             $data = fread($fp, filesize($profile));
             $blobprofile = addslashes($data);
             fclose($fp);
-            //$blobprofile = real_escape_string(file_get_contents($profile));
         }
 
         $cover = $_FILES['coverfile']['tmp_name'];
@@ -37,7 +36,6 @@ class EditmypageController {
             $data = fread($fp, filesize($cover));
             $blobcover = addslashes($data);
             fclose($fp);
-            //$blobcover = real_escape_string(file_get_contents($cover));
         }
 
         $first = $_POST['Firstname'];
