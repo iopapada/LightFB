@@ -1,5 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    if (document.getElementById('loginAvatar')) {
+        document.getElementById('loginAvatar').addEventListener('click', loadMyProfile, false);
+    }
+
     if (document.getElementById('timelineBtn')) {
         document.getElementById('timelineBtn').addEventListener('click', loadMyPosts, false);
     }
@@ -26,6 +30,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
 }, false);
 
+function loadMyProfile(){
+
+    window.location = "/index.php?action=myprofile";
+}
 
 function loadMyPosts(){
 

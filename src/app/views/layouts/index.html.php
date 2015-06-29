@@ -35,11 +35,6 @@
                             <button type="submit" class="btn btn-primary">Sign In</button>
                         </td>
                     </tr>
-                    <tr>
-                        <td>
-                            <label><a href="/index.php">Reset your password</label>
-                        </td>
-                    </tr>
                     </tbody>
                 </table>
             </form>

@@ -112,27 +112,27 @@ function postStatus(){
     //variable to store post message
     var postStatus = null;
 
+
     //Get the value of the textbox
     var postTextbox = document.getElementById('statusText');
     postStatus = postTextbox.value;
 
-    var xmlhttp;
-    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-        xmlhttp = new XMLHttpRequest();
-    }
+    //Check if user has hit post but text is empty
+    if (postStatus != "" || postStatus.length !== 0) {
 
-    xmlhttp.onreadystatechange = function () {
-        if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-        {
-            //Check if user has hit post but text is empty
-            if (postStatus || 0 !== postStatus.length) {
+        var xmlhttp;
+        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
                 //Load the new post with Ajax
 
                 //Get the statusUpdates Div Element
                 var postStatusDiv = document.getElementById('statusUpdates');
                 var postMyStatusDiv = document.getElementById('statusMyUpdates');
-
-
 
                 //Get the time and create a Div to store it
                 var postTime = getDate();
@@ -155,23 +155,24 @@ function postStatus(){
                 newPost.appendChild(postInfoDiv);
                 newPost.appendChild(newPostText);
                 //New posts should be on top!
-                if (postStatusDiv == null) {
+                if (postStatusDiv !=null) {
                     postStatusDiv.insertBefore(newPost, postStatusDiv.firstChild);
                 }
-                else{
-                    postMyStatusDiv.insertBefore(newPost, postStatusDiv.firstChild);
+                else if (postMyStatusDiv != null){
+                    postMyStatusDiv.insertBefore(newPost, postMyStatusDiv.firstChild);
                 }
 
                 //Put again the placeholder on the textbox.
                 postTextbox.value = "";
                 postTextbox.placeholder = "Post your Status to LightFB";
+
+
             }
-
         }
-    }
 
-    xmlhttp.open("GET", "/index.php?action=addPost&message=" + postStatus, true);
-    xmlhttp.send();
+        xmlhttp.open("GET", "/index.php?action=addPost&message=" + postStatus, true);
+        xmlhttp.send();
+    }
 }
 
 

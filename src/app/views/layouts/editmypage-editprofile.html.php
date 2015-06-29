@@ -14,7 +14,6 @@ if(!$auth == "ok") {
     <link rel="stylesheet" type="text/css" href="src/content/maps.css">
     <script src="src/scripts/ajaxRequests.js"></script>
     <script src="src/scripts/pollingAjax.js"></script>
-    <script src="src/scripts/myProfileScript.js"></script>
 </head>
 <body>
 <?php include_once('src/app/views/layouts/header_master.html.php'); ?>
@@ -53,14 +52,12 @@ if(!$auth == "ok") {
                     <form name="editProfileForm" method="post" action="/index.php?action=submiteditprofile" enctype="multipart/form-data">
                         <label>Your Registered Firstname: <input name="Firstname" type="text" value="<?php echo $tempFirst; ?>"></label><br>
                         <label>Your Registered Lastname: <input name="Lastname" type="text" value="<?php echo $tempLast; ?>"></label><br>
-                        <label>Your Registered Birth: <?php echo $tempBirth; ?> </label><br>
                         <label>Gender:
                             <select name="gender">
                                     <option value="male">Male</option>
                                     <option value="female">Female</option>
                             </select>
                         </label><br>
-
                         <label>Your Current Profile Picture:
                             <img id="imgProfile" src="data:image/jpeg;base64,<?php echo $tempAvatar; ?>" alt="profile">
                             <input type="file" id="profile-select" name="avatarfile" value="<?php echo $tempAvatar; ?>"><br>
@@ -68,13 +65,6 @@ if(!$auth == "ok") {
                         <label>Your Current Cover Picture:
                             <img id="imgProfile" src="data:image/jpeg;base64,<?php echo $tempCover; ?>" alt="cover">
                             <input type="file" id="coverfile-select" name="coverfile" value="<?php echo $tempCover; ?>"></label><br>
-                        <label>Home Location:
-                            <input name="address" type="text" id="homeLoc" onblur="addressGeocode()">
-                        </label><br>
-                        <label>Current Location:
-                            <input name="address" type="text" id="currentLoc" onblur="addressGeocode()">
-                        </label><br>
-                        <div id="map-canvas"></div><br>
                         <input type="submit" value="Update Profile" name="update">
                     </form>
                 </div>
