@@ -381,3 +381,19 @@ function showEditProfile(evt){
     evt.preventDefault();
 
 }
+
+
+document.addEventListener('DOMContentLoaded', function() {
+
+    if (document.getElementById('loginAvatar')) {
+        document.getElementById('loginAvatar').addEventListener('click', loadMyProfile, false);
+    }
+
+
+}, false);
+
+function loadMyProfile(){
+
+    window.location = "/index.php?action=myprofile";
+}
+

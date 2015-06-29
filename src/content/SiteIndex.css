@@ -320,3 +320,9 @@ ul{
     left:0;
     height: 150px;
 }
+
+#loginAvatar :hover{
+
+    cursor:pointer;
+
+}

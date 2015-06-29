@@ -22,16 +22,16 @@
             </a>
         </div>
         <div class="login_container">
-            <div id="loginAvatar">
-            <?php
-                include_once APP_PATH . 'models/DAO.php';
-                if(!isset($_SESSION))session_start();
-                $rows = db_query_select_one("SELECT pictureURL FROM userprofile WHERE id = $_SESSION[id]");
-                $tempimg = base64_encode( $rows['pictureURL'] );
-                echo "<img id='smallAvatar' src='data:image/jpeg;base64,$tempimg'>";
-                session_write_close();
-            ?>
-            </div>
+                <div id="loginAvatar">
+                <?php
+                    include_once APP_PATH . 'models/DAO.php';
+                    if(!isset($_SESSION))session_start();
+                    $rows = db_query_select_one("SELECT pictureURL FROM userprofile WHERE id = $_SESSION[id]");
+                    $tempimg = base64_encode( $rows['pictureURL'] );
+                    echo "<img id='smallAvatar' src='data:image/jpeg;base64,$tempimg'>";
+                    session_write_close();
+                ?>
+                </div>
             <div id="loginUser">
                 <?php  echo $_SESSION['fullname']; session_write_close();?>
             </div>
