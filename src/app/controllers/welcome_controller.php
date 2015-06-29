@@ -46,7 +46,7 @@ class WelcomeController extends Controller{
     public static function loadMyPosts()
     {
         session_start();
-        $id = $_SESSION['id'];
+        $id = $_GET['email'];
         $results= db_query_select("SELECT * FROM actions WHERE actions.userid = '$id'");
         return json_encode($results);
         session_write_close();
