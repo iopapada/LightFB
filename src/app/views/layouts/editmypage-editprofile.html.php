@@ -15,8 +15,6 @@ if(!$auth == "ok") {
     <script src="src/scripts/ajaxRequests.js"></script>
     <script src="src/scripts/pollingAjax.js"></script>
     <script src="src/scripts/myProfileScript.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js"></script>
-    <script src="maps.js"></script>
 </head>
 <body>
 <?php include_once('src/app/views/layouts/header_master.html.php'); ?>
