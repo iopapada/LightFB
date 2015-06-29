@@ -86,7 +86,18 @@ class AppController extends Controller{
 //            if($this->sendmail($emailOrPhone, $pass)){
 //                return 'signuperror3';
 //            }
-           $res = db_query("INSERT INTO userprofile (firstname,lastname,email,password,birth,gender) VALUES ('$first','$last','$emailOrPhone','$pass','$birthday','$gender')");
+            $profile = BASE_PATH . 'src/content/images/medium_empty.png';
+            $fp = fopen($profile, 'r');
+            $data = fread($fp, filesize($profile));
+            $blobavatar = addslashes($data);
+            fclose($fp);
+            $cover = BASE_PATH . 'src/content/images/large_empty.png';
+            $fp = fopen($cover, 'r');
+            $data = fread($fp, filesize($cover));
+            $blobcover = addslashes($data);
+            fclose($fp);
+
+            db_query("INSERT INTO userprofile (firstname,lastname,email,password,birth,gender,pictureURL,pictureCoverURL) VALUES ('$first','$last','$emailOrPhone','$pass','$birthday','$gender','$blobavatar','$blobcover')");
         }
         else{
             return $isValid;
