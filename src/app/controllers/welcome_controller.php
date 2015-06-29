@@ -34,7 +34,7 @@ class WelcomeController extends Controller{
                                         WHERE (friends.userid = '$em' OR friends.friendid = '$em' ) AND friends.approved ='1') AS temp
                                    INNER JOIN actions on actions.userid = temp.us OR actions.userid = temp.fr
                                    INNER JOIN userprofile on userprofile.email = actions.userid
-                                   ORDER BY actions.timepost DESC ");
+                                   ORDER BY actions.timepost ASC ");
 
         for($x = 0; $x<count($results); $x++){
             $results[$x]['pictureURL'] = base64_encode($results[$x]['pictureURL']);
@@ -65,7 +65,6 @@ class WelcomeController extends Controller{
     {
         session_start();
         $_SESSION=array();
-        $_COOKIE=array();
         session_destroy();
         return true;
     }

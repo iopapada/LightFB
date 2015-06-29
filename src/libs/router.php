@@ -91,6 +91,10 @@ class Map {
             header($test);
             //self::load_layout($layout_path);
         }
+        else if($action === "submiteditprofile" && $res === true)
+        {
+            include_once('src/app/views/layouts/mypage-profile.html.php');
+        }
         else if( !empty($layout_path) && $type !== 'XMLHttpRequest') {
             $layout = file_get_contents($layout_path);
 

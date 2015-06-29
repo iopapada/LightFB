@@ -35,7 +35,6 @@ if(!$auth == "ok") {
     </div>
     <div id="main_content">
         <div id="profileHeader">
-            <div id="profilePic">
                 <?php
                 include_once APP_PATH . 'models/DAO.php';
                 session_start();
@@ -46,16 +45,15 @@ if(!$auth == "ok") {
                 echo "<img id='Cover' src='data:image/jpeg;base64,$tempacover'>";
                 session_write_close();
                 ?>
-            </div>
             <div id="profileName">
 
             </div>
-            <div id="profileButtons">
-                <button type="button" class="button" id="timelineBtn" email=<?php echo $_SESSION['user_id']?>>Timeline</button>
-                <button type="button" class="button" id="friendsBtn" email=<?php echo $_SESSION['user_id']?>>Friends</button>
-                <button type="button" class="button" id="albumsBtn" email=<?php echo $_SESSION['user_id']?>>Albums</button>
-                <button type="button" class="button" id="photosBtn" email=<?php echo $_SESSION['user_id']?>>Photos</button>
-            </div>
+        </div>
+        <div id="profileButtons">
+            <button type="button" class="button" id="timelineBtn" email=<?php echo $_SESSION['user_id']?>>Timeline</button>
+            <button type="button" class="button" id="friendsBtn" email=<?php echo $_SESSION['user_id']?>>Friends</button>
+            <button type="button" class="button" id="albumsBtn" email=<?php echo $_SESSION['user_id']?>>Albums</button>
+            <button type="button" class="button" id="photosBtn" email=<?php echo $_SESSION['user_id']?>>Photos</button>
         </div>
         <div id="postStatus">
             <div id="inputform">
@@ -70,6 +68,6 @@ if(!$auth == "ok") {
         </div>
     </div>
 </div>
-    <?php include_once('src/app/views/layouts/footer_master.html.php'); ?>
+
 </body>
 </html>
