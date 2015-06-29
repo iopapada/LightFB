@@ -18,6 +18,9 @@ else if(isset($_GET['action']) && $_GET['action'] == 'editprofile') {
 else if(isset($_GET['action']) && $_GET['action'] == 'logout') {
     Map::get('/', 'welcome#logout');
 }
+else if(isset($_GET['action']) && $_GET['action'] == 'welcome'){
+    include_once('src/app/views/layouts/app-signin.html.php');
+}
 //----------------------------------POST------------------------------------
 else if(isset($_POST['username']) && isset($_POST['pass'])){
     Map::post('/', 'app#signin');

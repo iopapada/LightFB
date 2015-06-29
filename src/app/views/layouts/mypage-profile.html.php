@@ -37,6 +37,7 @@ if(!$auth == "ok") {
         <div id="profileHeader">
             <div id="profilePic">
                 <?php
+                include_once APP_PATH . 'models/DAO.php';
                 session_start();
                 $rows = db_query_select_one("SELECT pictureURL, pictureCoverURL FROM userprofile WHERE id = $_COOKIE[id]");
                 $tempavatar = base64_encode( $rows['pictureURL'] );

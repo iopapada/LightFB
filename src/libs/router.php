@@ -60,6 +60,7 @@ class Map {
             if( is_callable(array($tmp_class, $action)) ) {
 
                 $res = $tmp_class->$action();
+
                 //in case of ajax request skip MVC and return JSON
                 if($type === 'XMLHttpRequest')
                 {
@@ -71,8 +72,6 @@ class Map {
                 {
                     $action = $res;
                 }
-
-
             }else
                 die('The action <strong>' . $action . '</strong> could not be called from the controller <strong>' . $class_name . '</strong>');
         }else
@@ -85,7 +84,14 @@ class Map {
 
         // load the layout
         $layout_path = self::get_layout($controller, $action, $format);
-        if( !empty($layout_path) && $type !== 'XMLHttpRequest') {
+
+        if($action === "signin" && $res === true)
+        {
+            header('Location: http://localhost:66/index.php?action=welcome');
+            //header('Location: src/app/views/layouts/app-signin.html.php');
+            //self::load_layout($layout_path);
+        }
+        else if( !empty($layout_path) && $type !== 'XMLHttpRequest') {
             $layout = file_get_contents($layout_path);
 
             // replace {PAGE_CONTENT} view file

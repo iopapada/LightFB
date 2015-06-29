@@ -24,6 +24,7 @@
         <div class="login_container">
             <div id="loginAvatar">
             <?php
+                include_once APP_PATH . 'models/DAO.php';
                 session_start();
                 $rows = db_query_select_one("SELECT pictureURL FROM userprofile WHERE id = $_SESSION[id]");
                 $tempimg = base64_encode( $rows['pictureURL'] );

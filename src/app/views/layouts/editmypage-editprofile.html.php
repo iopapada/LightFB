@@ -41,6 +41,7 @@ if(!$auth == "ok") {
                 <div id="editTitle">Edit your Profile</div>
                 <div id="editContent">
                     <?php
+                        include_once APP_PATH . 'models/DAO.php';
                         session_start();
                         $rows = db_query_select_one("SELECT firstname,lastname,birth,gender,pictureURL,pictureCoverURL FROM userprofile WHERE id = $_COOKIE[id]");
                         $tempFirst = $rows['firstname'];
