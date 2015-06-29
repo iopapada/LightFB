@@ -95,7 +95,7 @@ class MypageController {
     public static function loadAllMyPhotos()
     {
         session_start();
-        $userid = $_SESSION['user_id'];
+        $userid = $_GET['email'];
         $results= db_query_select("SELECT img,imagename FROM images
                                        INNER JOIN albums ON albums.id = images.albumid
                                        INNER JOIN userprofile ON userprofile.email = '$userid'");
