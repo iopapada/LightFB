@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         var anchorLike = document.createElement("a");
                         anchorLike.setAttribute('class', 'anchorlike');
                         anchorLike.setAttribute('href',"#");
+                        anchorLike.setAttribute('id',arr[i].id);
 
                         //append all needed for like
 
@@ -100,6 +101,16 @@ document.addEventListener('DOMContentLoaded', function() {
                         //New posts should be on top!
                         postStatusDiv.insertBefore(newPost, postStatusDiv.firstChild);
                     }
+                }
+
+                var likes= document.getElementsByClassName('anchorlike');
+                for (var x = 0; x < likes.length; x++) {
+                    (function(x) {
+                        likes[x].addEventListener("click", function (e) {
+
+                            addLike(likes[x].getAttribute('id'));
+                        }, false);
+                    })(x);
                 }
 
             }
@@ -121,6 +132,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
 }, false);
 
+
+function addLike(id){
+
+    var xmlhttp;
+    if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp = new XMLHttpRequest();
+    }
+
+    xmlhttp.onreadystatechange = function () {
+        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+
+
+        }
+    }
+
+    xmlhttp.open("GET", "/index.php?action=addLike&id="+ id, true);
+    xmlhttp.send();
+
+};
 
 function getFriendRequests() {
 

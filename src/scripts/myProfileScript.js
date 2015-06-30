@@ -20,13 +20,8 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('photosBtn').addEventListener('click', loadAllMyPhotos, false);
     }
 
-    // Trigger loadMyPosts for 1st time!
+    // Trigger loadMyPosts
     loadMyPosts();
-
-    // Trigger every 20 seconds to get new updates
-    //setInterval(function () {
-    //    loadMyPosts();
-    //}, 20000);
 
 }, false);
 
@@ -137,9 +132,6 @@ function loadFriends(){
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
         {
             var arr = JSON.parse(xmlhttp.responseText);
-            var countfriends = arr.length;
-            friendsBtn.innerHTML = "Friends (" +countfriends+")";
-
             if (document.getElementById("friendsResults") != null){
                 var friendsDiv = document.getElementById("friendsResults");
                 friendsDiv.parentNode.removeChild(friendsDiv);
