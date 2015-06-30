@@ -383,3 +383,15 @@ ul{
     width: 210px;
     height: 210px;
 }
+
+#left_welcome{
+    display: inline-block;
+    float: left;
+    width: 20%;
+}
+
+#leftbar{
+    display: inline-block;
+    float: left;
+    width: 20%;
+}
