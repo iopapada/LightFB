@@ -152,9 +152,17 @@ function loadAllMyPhotos(){
         {
             var arr = JSON.parse(xmlhttp.responseText);
 
-            while (postStatusDiv.hasChildNodes()) {
-                postStatusDiv.removeChild(postStatusDiv.firstChild);
+            var postStatus = document.getElementById('postStatus');
+            while (postStatus.hasChildNodes()) {
+                postStatus.removeChild(postStatus.firstChild);
             }
+
+            var statusMyUpdates = document.getElementById('statusMyUpdates');
+            while (statusMyUpdates.hasChildNodes()) {
+                statusMyUpdates.removeChild(statusMyUpdates.firstChild);
+            }
+
+            statusMyUpdates.className = "allPhotos";
 
             var divAllImages = document.createElement('div');
             divAllImages.setAttribute("id",'displayAllImages');
