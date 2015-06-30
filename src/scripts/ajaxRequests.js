@@ -195,7 +195,7 @@ function loadProfile(email){
             else if(arr.isfriend == "1"){
                 addFriendBtn.setAttribute('class', "button friendBtn alreadyFriends");
                 addFriendBtn.setAttribute('disabled','true');
-                addFriendBtn.innerHTML = "Friends";
+                addFriendBtn.innerHTML = "Connected";
             }
             else if(arr.isfriend == "2"){
                 addFriendBtn.setAttribute('class', "button friendBtn myself");
@@ -210,7 +210,8 @@ function loadProfile(email){
             }
 
             var timelineBtn = createButton('button', 'button', 'timelineBtn',arr.email,'Timeline');
-            var friendsBtn = createButton('button', 'button', 'friendsBtn',arr.email,'Friends');
+            var friendsBtn = createButton('button', 'button', 'friendsBtn',arr.email,'Friends ('+arr.cnt + ")");
+
             var albumsBtn = createButton('button', 'button', 'albumsBtn',arr.email,'Albums');
             var photosBtn = createButton('button', 'button', 'photosBtn',arr.email,'Photos');
 
