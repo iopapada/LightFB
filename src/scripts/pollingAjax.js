@@ -38,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         //Get the time and create a Div to store it
                         var postTime = arr[i].timepost;
 
+
                         var postInfoDiv = document.createElement('div');
                         postInfoDiv.setAttribute('class', 'postInfo');
                         postInfoDiv.innerHTML = "Posted by " + arr[i].firstname + " " + arr[i].lastname + " at:" + postTime;
