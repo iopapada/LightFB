@@ -150,12 +150,10 @@ input:focus:invalid{
 }
 
 /*For app-signin */
-
 #main_area{
 
-    width: 80%;
+    width: 90%;
     margin: 0px auto;
-
 }
 
 #leftbar{
@@ -164,7 +162,6 @@ input:focus:invalid{
     height:100%;
     width: 20%;
     overflow:hidden;
-
 }
 
 #main_content{
