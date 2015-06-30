@@ -88,7 +88,7 @@ class WelcomeController extends Controller{
         $actionid = $_GET['id'];
         $cnt = db_query_select_one("SELECT likecnt FROM actions WHERE id = '$actionid' ");
         $tem = $cnt['likecnt']+1;
-        b_query_select("UPDATE actions SET likecnt = '$tem')");
+        db_query("UPDATE actions SET likecnt = '$tem' WHERE id ='$actionid'");
         session_write_close();
     }
 
