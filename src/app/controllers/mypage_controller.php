@@ -96,7 +96,7 @@ class MypageController {
     {
         session_start();
         $userid = $_GET['email'];
-        $results= db_query_select("SELECT img,imagename FROM images
+        $results= db_query_select("SELECT img,imgname FROM images
                                        INNER JOIN albums ON albums.id = images.albumid
                                        INNER JOIN userprofile ON userprofile.email = '$userid'");
 

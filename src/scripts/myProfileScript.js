@@ -24,9 +24,9 @@ document.addEventListener('DOMContentLoaded', function() {
     loadMyPosts();
 
     // Trigger every 20 seconds to get new updates
-    setInterval(function () {
+    //setInterval(function () {
         loadMyPosts();
-    }, 20000);
+    //}, 20000);
 
 }, false);
 
@@ -49,6 +49,11 @@ function loadMyPosts(){
         {
             //Get the statusUpdates Div Element
             var postStatusDiv = document.getElementById('statusMyUpdates');
+            //in case there is no statusMyUpdates Div (when we are using other profile) create one
+            if (postStatusDiv == null) {
+                postStatusDiv = document.createElement('div');
+                postStatusDiv.setAttribute('id','statusMyUpdates');
+            }
 
             if (postStatusDiv != null) {
 
@@ -66,7 +71,18 @@ function loadMyPosts(){
 
                     var postInfoDiv = document.createElement('div');
                     postInfoDiv.setAttribute('class', 'postInfo');
-                    postInfoDiv.innerHTML = "Posted by " + arr[i].firstname + " " + arr[i].lastname +" at:" + postTime;
+                    // If the user has not uploaded a profile pic don't append
+                    if (arr[i].pictureURL) {
+
+                        var itemProfilePic = document.createElement("img");
+                        itemProfilePic.setAttribute('class', 'imgProfileSearch');
+                        itemProfilePic.setAttribute('src', 'data:image/jpeg;base64,' + arr[i].pictureURL);
+                        itemProfilePic.setAttribute('alt', 'profile');
+
+                        postInfoDiv.appendChild(itemProfilePic);
+                    }
+
+                    postInfoDiv.innerHTML += "Posted by " + arr[i].firstname + " " + arr[i].lastname +" at:" + postTime;
 
                     //Create a Div that will host the post Textbox
                     var newPost = document.createElement('div');
@@ -168,17 +184,22 @@ function loadAllMyPhotos(){
             tbl.setAttribute("id",'displayAllImages');
             var tblBody = document.createElement("tbody");
 
+            var row;
             for (var i = 0; i < arr.length; i++) {
-
-                var imggame = document.createElement('img');
-                var row;
-                if(i/4 === 0 )
+                if((i+1)%4 === 1 || i==0)
                 {
                     row= document.createElement("tr");
-
                 }
-                for (var l = 0; l < 4; l++) {
-                    var cell = document.createElement("td");
+
+                var imgname = document.createElement('img');
+                imgname.setAttribute("src", "data:image/jpeg;base64," + arr[i]['img']);
+                var cell = document.createElement("td");
+
+                cell.appendChild(imgname);
+                row.appendChild(cell);
+                if((i+1)%4 === 0 || i+1===arr.length)
+                {
+                    tblBody.appendChild(row);
                 }
             }
 
