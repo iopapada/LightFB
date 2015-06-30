@@ -155,6 +155,11 @@ function loadProfile(email){
                 profileButtonsDiv.parentNode.removeChild(profileButtonsDiv);
             }
 
+            if (document.getElementById("friendsResults") != null){
+                var friendsDiv = document.getElementById("friendsResults");
+                friendsDiv.parentNode.removeChild(friendsDiv);
+            }
+
             var mainContentDiv = document.getElementById("main_content");
 
             var divProfileHeader = document.createElement("div");
@@ -209,6 +214,14 @@ function loadProfile(email){
             var albumsBtn = createButton('button', 'button', 'albumsBtn',arr.email,'Albums');
             var photosBtn = createButton('button', 'button', 'photosBtn',arr.email,'Photos');
 
+            //if the profile loaded is not a friend make this button not clickable
+            if (arr.isfriend!="1"){
+                timelineBtn.setAttribute('disabled','true');
+                friendsBtn.setAttribute('disabled','true');
+                albumsBtn.setAttribute('disabled','true');
+                photosBtn.setAttribute('disabled','true');
+            }
+
             var emailHidden = document.createElement("input");
             emailHidden.setAttribute('id', "emailHidden");
             emailHidden.setAttribute('hidden',"true");
@@ -234,6 +247,23 @@ function loadProfile(email){
                 var addFriendButton = document.getElementById("friendButton");
                 addFriendButton.addEventListener("click", sendFriendRequest, false);
             }
+
+            if (document.getElementById('timelineBtn')) {
+                document.getElementById('timelineBtn').addEventListener('click', loadMyPosts, false);
+            }
+
+            if (document.getElementById('friendsBtn')) {
+                document.getElementById('friendsBtn').addEventListener('click', loadFriends, false);
+            }
+
+            if (document.getElementById('albumsBtn')) {
+                document.getElementById('albumsBtn').addEventListener('click', loadAllMyAlbums, false);
+            }
+
+            if (document.getElementById('photosBtn')) {
+                document.getElementById('photosBtn').addEventListener('click', loadAllMyPhotos, false);
+            }
+
 
             loadMyPosts();
         }

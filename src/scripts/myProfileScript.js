@@ -50,6 +50,11 @@ function loadMyPosts(){
             //Get the statusUpdates Div Element
             var postStatusDiv = document.getElementById('statusMyUpdates');
 
+            if (document.getElementById("friendsResults") != null){
+                var friendsDiv = document.getElementById("friendsResults");
+                friendsDiv.parentNode.removeChild(friendsDiv);
+            }
+
             //in case there is no statusMyUpdates Div (when we are using other profile) create one
             if (postStatusDiv == null) {
                 postStatusDiv = document.createElement('div');
@@ -120,7 +125,8 @@ function loadMyPosts(){
 
 function loadFriends(){
 
-    var email = document.getElementById('friendsBtn').getAttribute('email');
+    var friendsBtn =  document.getElementById('friendsBtn');
+    var email = friendsBtn.getAttribute('email');
 
     var xmlhttp;
     if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -130,8 +136,71 @@ function loadFriends(){
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
         {
-            alert('load');
             var arr = JSON.parse(xmlhttp.responseText);
+            var countfriends = arr.length;
+            friendsBtn.innerHTML = "Friends (" +countfriends+")";
+
+            if (document.getElementById("friendsResults") != null){
+                var friendsDiv = document.getElementById("friendsResults");
+                friendsDiv.parentNode.removeChild(friendsDiv);
+            }
+
+            if (document.getElementById("postStatus") != null){
+                var postStatusDiv = document.getElementById("postStatus");
+                postStatusDiv.parentNode.removeChild(postStatusDiv);
+            }
+
+            if (document.getElementById("statusUpdates")!= null){
+                var StatusUpdatesDiv = document.getElementById("statusUpdates");
+                StatusUpdatesDiv.parentNode.removeChild(StatusUpdatesDiv);
+            }
+            if (document.getElementById("statusMyUpdates")!= null){
+                var StatusMyUpdatesDiv = document.getElementById("statusMyUpdates");
+                StatusMyUpdatesDiv.parentNode.removeChild(StatusMyUpdatesDiv);
+            }
+
+            var listFriends = document.createElement("ul");
+
+            for(i=0; i < arr.length; i++){
+
+                var friendItem = document.createElement("li");
+                var friendAnchor = document.createElement("div");
+                friendAnchor.setAttribute('class','anchorFriends');
+                friendAnchor.setAttribute('id',arr[i].email);
+
+                // If the user has not uploaded a profile pic don't append
+                if (arr[i].pictureURL) {
+
+                    var itemProfilePic = document.createElement("img");
+                    itemProfilePic.setAttribute('class', 'imgProfileSearch');
+                    itemProfilePic.setAttribute('src', 'data:image/jpeg;base64,' + arr[i].pictureURL);
+                    itemProfilePic.setAttribute('alt', 'profile');
+                    friendAnchor.appendChild(itemProfilePic);
+                }
+
+                friendAnchor.innerHTML += arr[i].firstname + " " + arr[i].lastname;
+                friendItem.appendChild(friendAnchor);
+                listFriends.appendChild(friendItem);
+            }
+
+            var friendsDiv = document.createElement('div');
+            friendsDiv.setAttribute('class','inOutWindow');
+            friendsDiv.setAttribute('id','friendsResults');
+            friendsDiv.appendChild(listFriends);
+
+            mainContentDiv =  document.getElementById('main_content');
+            mainContentDiv.appendChild(friendsDiv);
+
+            var aTags = document.getElementsByClassName("anchorFriends");
+
+            for (var i=0; i<aTags.length; i++){
+                (function(i){
+                    aTags[i].addEventListener('click', function(e) {
+
+                        loadProfile(aTags[i].getAttribute('id'))
+                    }, false);
+                })(i);
+            }
 
         }
     }
