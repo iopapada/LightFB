@@ -28,7 +28,7 @@ class MypageController {
 
         if($mail == $cursess)
             $rows += array("isfriend" => "2");
-        else if($isfriends['approved'] == 0)
+        else if($isfriends['approved'] === 0)
             $rows += array("isfriend" => "3");
         else if(count($isfriends) > 0)
             $rows += array("isfriend" => "1");
