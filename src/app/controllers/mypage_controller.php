@@ -86,7 +86,7 @@ class MypageController {
     {
         session_start();
         $userid = $_GET['email'];
-        $results= db_query_select("SELECT DISTINCT firstname,lastname,pictureURL FROM userprofile
+        $results= db_query_select("SELECT DISTINCT email,firstname,lastname,pictureURL FROM userprofile
                                     INNER JOIN friends ON userprofile.email = friends.userid OR userprofile.email = friends.friendid
                                     WHERE (friends.userid = '$userid' OR friends.friendid = '$userid' ) AND friends.approved ='1'  AND email != '$userid'");
 
