@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Trigger every 20 seconds to get new updates
     //setInterval(function () {
-        loadMyPosts();
+    //    loadMyPosts();
     //}, 20000);
 
 }, false);
@@ -49,6 +49,7 @@ function loadMyPosts(){
         {
             //Get the statusUpdates Div Element
             var postStatusDiv = document.getElementById('statusMyUpdates');
+
             //in case there is no statusMyUpdates Div (when we are using other profile) create one
             if (postStatusDiv == null) {
                 postStatusDiv = document.createElement('div');
@@ -98,9 +99,15 @@ function loadMyPosts(){
                     //Append the elements and final in statusUpdates Div
                     newPost.appendChild(postInfoDiv);
                     newPost.appendChild(newPostText);
+
                     //New posts should be on top!
                     postStatusDiv.insertBefore(newPost, postStatusDiv.firstChild);
+
                 }
+
+                var mainContentDiv = document.getElementById('main_content');
+                mainContentDiv.appendChild(postStatusDiv);
+
             }
 
         }
@@ -109,7 +116,6 @@ function loadMyPosts(){
     xmlhttp.open("GET", "/index.php?action=loadMyPosts&email="+email, true);
     xmlhttp.send();
 }
-
 
 function loadFriends(){
 

@@ -41,7 +41,19 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         var postInfoDiv = document.createElement('div');
                         postInfoDiv.setAttribute('class', 'postInfo');
-                        postInfoDiv.innerHTML = "Posted by " + arr[i].firstname + " " + arr[i].lastname + " at:" + postTime;
+
+                        // If the user has not uploaded a profile pic don't append
+                        if (arr[i].pictureURL) {
+
+                            var itemProfilePic = document.createElement("img");
+                            itemProfilePic.setAttribute('class', 'imgProfileSearch');
+                            itemProfilePic.setAttribute('src', 'data:image/jpeg;base64,' + arr[i].pictureURL);
+                            itemProfilePic.setAttribute('alt', 'profile');
+
+                            postInfoDiv.appendChild(itemProfilePic);
+                        }
+
+                        postInfoDiv.innerHTML += "Posted by " + arr[i].firstname + " " + arr[i].lastname + " at:" + postTime;
 
                         //Create a Div that will host the post Textbox
                         var newPost = document.createElement('div');
