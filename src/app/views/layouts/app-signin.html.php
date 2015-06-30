@@ -18,7 +18,24 @@ if(!$auth == "ok") {
 <body>
 <?php include_once('src/app/views/layouts/header_master.html.php'); ?>
 <div id="main_area">
-    <?php include_once('src/app/views/layouts/left_master.html.php'); ?>
+
+    <li>
+        <a href="index.php?action=myprofile">My Profile</a>
+    </li>
+    <li>
+        <a href="index.php?action=editprofile&name=<?php echo $_SESSION['user_id']?>"  >Edit My Profile</a>
+    </li>
+
+    <li>
+        <a href="index.php?action=myprofile">My Profile</a>
+    </li>
+    <li>
+        <a href="index.php?action=editprofile&name=<?php echo $_SESSION['user_id']?>"  >Edit My Profile</a>
+    </li>
+
+
+
+
     <div id="main_content">
         <div id="searchResults" class="inOutWindow">
 
