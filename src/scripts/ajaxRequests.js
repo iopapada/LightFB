@@ -142,6 +142,10 @@ function loadProfile(email){
                 postStatusUpdatesDiv.parentNode.removeChild(postStatusUpdatesDiv);
             }
 
+            if (document.getElementById("editContainer")){
+                var postStatusUpdatesDiv = document.getElementById("editContainer");
+                postStatusUpdatesDiv.parentNode.removeChild(postStatusUpdatesDiv);
+            }
 
             var mainContentDiv = document.getElementById("main_content");
 
@@ -179,6 +183,12 @@ function loadProfile(email){
                 addFriendBtn.setAttribute('class', "button friendBtn alreadyFriends");
                 addFriendBtn.setAttribute('disabled','true');
                 addFriendBtn.innerHTML = "Friends";
+            }
+            else if(arr.isfriend == "2"){
+                addFriendBtn.setAttribute('class', "button friendBtn myself");
+                addFriendBtn.setAttribute('disabled','true');
+                addFriendBtn.setAttribute('hidden','true');
+                addFriendBtn.innerHTML = "Myself";
             }
             else if(arr.isfriend == "3"){
                 addFriendBtn.setAttribute('class', "button friendBtn pending");
