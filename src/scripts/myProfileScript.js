@@ -132,27 +132,8 @@ function loadFriends(){
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
         {
             var arr = JSON.parse(xmlhttp.responseText);
-            if (document.getElementById("friendsResults") != null){
-                var friendsDiv = document.getElementById("friendsResults");
-                friendsDiv.parentNode.removeChild(friendsDiv);
-            }
-
-            if (document.getElementById("postStatus") != null){
-                var postStatusDiv = document.getElementById("postStatus");
-                postStatusDiv.parentNode.removeChild(postStatusDiv);
-            }
-
-            if (document.getElementById("statusUpdates")!= null){
-                var StatusUpdatesDiv = document.getElementById("statusUpdates");
-                StatusUpdatesDiv.parentNode.removeChild(StatusUpdatesDiv);
-            }
-            if (document.getElementById("statusMyUpdates")!= null){
-                var StatusMyUpdatesDiv = document.getElementById("statusMyUpdates");
-                StatusMyUpdatesDiv.parentNode.removeChild(StatusMyUpdatesDiv);
-            }
-
+            deleteOtherElements();
             var listFriends = document.createElement("ul");
-
             for(i=0; i < arr.length; i++){
 
                 var friendItem = document.createElement("li");
@@ -235,19 +216,10 @@ function loadAllMyPhotos(){
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
         {
             var arr = JSON.parse(xmlhttp.responseText);
-
-
-            if (document.getElementById('postStatus') != null){
-                var postStatus = document.getElementById('postStatus');
-                postStatus.parentNode.removeChild(postStatus);
-            }
-
-            var statusMyUpdates = document.getElementById('statusMyUpdates');
-            while (statusMyUpdates.hasChildNodes()) {
-                statusMyUpdates.removeChild(statusMyUpdates.firstChild);
-            }
-
-            statusMyUpdates.className = "allPhotos";
+            deleteOtherElements();
+            var allphotos = document.createElement("div");
+            allphotos.className = "allPhotos";
+            allphotos.setAttribute('id','photoResults');
 
             var tbl = document.createElement("table");
             tbl.setAttribute("id",'displayAllImages');
@@ -255,8 +227,7 @@ function loadAllMyPhotos(){
 
             var row;
             for (var i = 0; i < arr.length; i++) {
-                if((i+1)%4 === 1 || i==0)
-                {
+                if((i+1)%4 === 1 || i==0) {
                     row= document.createElement("tr");
                 }
 
@@ -273,10 +244,43 @@ function loadAllMyPhotos(){
             }
 
             tbl.appendChild(tblBody);
-            statusMyUpdates.appendChild(tbl);
+            allphotos.appendChild(tbl);
+
+            mainContentDiv =  document.getElementById('main_content');
+            mainContentDiv.appendChild(allphotos);
         }
     }
 
     xmlhttp.open("GET", "/index.php?action=loadAllMyPhotos&email="+email, true);
     xmlhttp.send();
+}
+
+function deleteOtherElements(){
+    if (document.getElementById("friendsResults") != null){
+        var friendsDiv = document.getElementById("friendsResults");
+        friendsDiv.parentNode.removeChild(friendsDiv);
+    }
+
+    if (document.getElementById("postStatus") != null){
+        var postStatusDiv = document.getElementById("postStatus");
+        postStatusDiv.parentNode.removeChild(postStatusDiv);
+    }
+
+    if (document.getElementById("statusUpdates")!= null){
+        var StatusUpdatesDiv = document.getElementById("statusUpdates");
+        StatusUpdatesDiv.parentNode.removeChild(StatusUpdatesDiv);
+    }
+    if (document.getElementById("statusMyUpdates")!= null){
+        var StatusMyUpdatesDiv = document.getElementById("statusMyUpdates");
+        StatusMyUpdatesDiv.parentNode.removeChild(StatusMyUpdatesDiv);
+    }
+    if (document.getElementById("photoResults")!= null){
+        var photoDiv = document.getElementById("photoResults");
+        photoDiv.parentNode.removeChild(photoDiv);
+    }
+    if (document.getElementById("albumResults")!= null){
+        var albumDivDiv = document.getElementById("albumResults");
+        albumDivDiv.parentNode.removeChild(albumDivDiv);
+    }
+
 }
