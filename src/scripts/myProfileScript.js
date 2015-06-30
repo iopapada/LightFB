@@ -236,9 +236,10 @@ function loadAllMyPhotos(){
         {
             var arr = JSON.parse(xmlhttp.responseText);
 
-            var postStatus = document.getElementById('postStatus');
-            while (postStatus.hasChildNodes()) {
-                postStatus.removeChild(postStatus.firstChild);
+
+            if (document.getElementById('postStatus') != null){
+                var postStatus = document.getElementById('postStatus');
+                postStatus.parentNode.removeChild(postStatus);
             }
 
             var statusMyUpdates = document.getElementById('statusMyUpdates');
