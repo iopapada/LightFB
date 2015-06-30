@@ -26,7 +26,7 @@ class MypageController {
         $isfriends = db_query_select_one("SELECT * FROM friends
                                           WHERE ((friends.userid = '$mail' && friends.friendid = '$cursess') || (friends.userid = '$cursess' && friends.friendid = '$mail')) ");
 
-        $cnt= db_query_select("SELECT DISTINCT COUNT(*) as cnt FROM userprofile
+        $cnt= db_query_select("SELECT * FROM userprofile
                                     INNER JOIN friends ON userprofile.email = friends.userid OR userprofile.email = friends.friendid
                                     WHERE (friends.userid = '$mail' OR friends.friendid = '$mail' ) AND friends.approved ='1'  AND email != '$mail'");
 
@@ -37,9 +37,9 @@ class MypageController {
         else if(count($isfriends) > 0)
             $rows += array("isfriend" => "1");
         else
-            $rows += array("cnt" => "0");
+            $rows += array("isfriend" => "0");
 
-        $rows += array("isfriend" => $cnt['cnt'] );
+        $rows += array("cnt" => count($cnt) );
         $rows['pictureURL'] = base64_encode($rows['pictureURL']);
         $rows['pictureCoverURL'] = base64_encode($rows['pictureCoverURL']);
 
