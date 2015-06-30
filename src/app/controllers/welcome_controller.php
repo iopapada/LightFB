@@ -78,7 +78,17 @@ class WelcomeController extends Controller{
         session_start();
         $mail = $_SESSION['user_id'];
         $messageVal = $_GET['message'];
-        db_query_select("INSERT INTO actions (message,title,messagetype,userid) VALUES ('$messageVal','','text','$mail')");
+        db_query_select("INSERT INTO actions (message,title,messagetype,userid,likecnt) VALUES ('$messageVal','','text','$mail','0')");
+        session_write_close();
+    }
+
+    public static function addLike()
+    {
+        session_start();
+        $actionid = $_GET['id'];
+        $cnt = db_query_select_one("SELECT likecnt FROM actions WHERE id = '$actionid' ");
+        $tem = $cnt['likecnt']+1;
+        b_query_select("UPDATE actions SET likecnt = '$tem')");
         session_write_close();
     }
 

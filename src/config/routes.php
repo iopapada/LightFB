@@ -71,6 +71,9 @@ else if(isset($_GET['action']) && $_GET['action'] == 'loadAllMyPhotos') {
 else if(isset($_GET['action']) && $_GET['action'] == 'loadFriends') {
     Map::ajax('/', 'mypage#loadFriends');
 }
+else if(isset($_GET['action']) && $_GET['action'] == 'addLike') {
+    Map::ajax('/', 'welcome#addLike');
+}
 //-------------------------------------AJAX POST------------------------------------
 
 
