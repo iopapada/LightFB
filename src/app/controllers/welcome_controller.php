@@ -29,12 +29,17 @@ class WelcomeController extends Controller{
     {
         session_start();
         $em = $_SESSION['user_id'];
-        $results= db_query_select("SELECT DISTINCT actions.*, userprofile.firstname, userprofile.lastname, userprofile.pictureURL
-                                   FROM(SELECT userid AS us,friendid AS fr FROM friends
+        $results= db_query_select("SELECT results.* FROM (SELECT DISTINCT actions.*, userprofile.firstname, userprofile.lastname, userprofile.pictureURL
+                                   FROM(SELECT userid AS us,friendid AS fr
+                                        FROM friends
                                         WHERE (friends.userid = '$em' OR friends.friendid = '$em' ) AND friends.approved ='1') AS temp
                                    INNER JOIN actions on actions.userid = temp.us OR actions.userid = temp.fr
                                    INNER JOIN userprofile on userprofile.email = actions.userid
-                                   ORDER BY actions.timepost ASC ");
+                                   UNION
+                                   SELECT actions.*, userprofile.firstname, userprofile.lastname, userprofile.pictureURL FROM actions
+                                   INNER JOIN userprofile on userprofile.email = actions.userid
+                                   WHERE actions.userid = '$em') as results
+                                   ORDER BY results.timepost ASC ");
 
         for($x = 0; $x<count($results); $x++){
             $results[$x]['pictureURL'] = base64_encode($results[$x]['pictureURL']);
