@@ -52,9 +52,20 @@ class WelcomeController extends Controller{
     {
         session_start();
         $id = $_GET['email'];
-        $results= db_query_select("SELECT actions.*, userprofile.firstname, userprofile.lastname, userprofile.pictureURL FROM actions
+        $cursess = $_SESSION['user_id'];
+
+        $isfriends = db_query_select_one("SELECT * FROM friends
+                                          WHERE ((friends.userid = '$id' && friends.friendid = '$cursess') || (friends.userid = '$cursess' && friends.friendid = '$mail')) ");
+
+        if(count($isfriends) > 0)
+            $results= db_query_select("SELECT actions.*, userprofile.firstname, userprofile.lastname, userprofile.pictureURL FROM actions
                                    INNER JOIN userprofile on userprofile.email = actions.userid
                                    WHERE actions.userid = '$id'");
+        else
+            $results= db_query_select("SELECT userprofile.firstname, userprofile.lastname, userprofile.pictureURL FROM actions
+                                   INNER JOIN userprofile on userprofile.email = actions.userid
+                                   WHERE actions.userid = '$id'");
+
 
         for($x = 0; $x<count($results); $x++){
             $results[$x]['pictureURL'] = base64_encode($results[$x]['pictureURL']);
