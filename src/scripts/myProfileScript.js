@@ -229,7 +229,38 @@ function loadAllMyAlbums(){
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
         {
             var arr = JSON.parse(xmlhttp.responseText);
+            deleteOtherElements();
+            var allphotos = document.createElement("div");
+            allphotos.className = "allPhotos";
+            allphotos.setAttribute('id','albumResults');
 
+            var tbl = document.createElement("table");
+            tbl.setAttribute("id",'displayAllImages');
+            var tblBody = document.createElement("tbody");
+
+            var row;
+            for (var i = 0; i < arr.length; i++) {
+                if((i+1)%4 === 1 || i==0) {
+                    row= document.createElement("tr");
+                }
+
+                var imgname = document.createElement('img');
+                imgname.setAttribute("src", "src/content/images/folder.png");
+                var cell = document.createElement("td");
+
+                if(arr[i]['img']!=="")cell.appendChild(imgname);
+                row.appendChild(cell);
+                if((i+1)%4 === 0 || i+1===arr.length)
+                {
+                    tblBody.appendChild(row);
+                }
+            }
+
+            tbl.appendChild(tblBody);
+            allphotos.appendChild(tbl);
+
+            mainContentDiv =  document.getElementById('main_content');
+            mainContentDiv.appendChild(allphotos);
         }
     }
 
