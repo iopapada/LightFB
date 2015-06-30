@@ -9,7 +9,6 @@
     </ul>
 
     <div id="phototab">
-        <h4>My Photos</h4>
         <table id="myphoto">
             <tbody>
             <?php
@@ -19,6 +18,7 @@
                                            INNER JOIN userprofile ON albums.userid = userprofile.email
                                            WHERE userprofile.email = '$userid'");
 
+                echo "<h4> My Photos [" . count($results) . "]</h4>";
                 for($x = 0; $x<count($results); $x++){
                     $results[$x]['img'] = base64_encode($results[$x]['img']);
                 }
@@ -36,9 +36,7 @@
         </table>
     </div>
 
-
     <div id="phototab">
-        <h4>My Friends</h4>
         <table id="myphoto">
             <tbody>
             <?php
@@ -47,6 +45,7 @@
                                     INNER JOIN friends ON userprofile.email = friends.userid OR userprofile.email = friends.friendid
                                     WHERE (friends.userid = '$userid' OR friends.friendid = '$userid' ) AND friends.approved ='1'  AND email != '$userid'");
 
+            echo "<h4> My Friends [" . count($results) . "]</h4>";
             for($x = 0; $x<count($results); $x++){
                 $results[$x]['pictureURL'] = base64_encode($results[$x]['pictureURL']);
             }
