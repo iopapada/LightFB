@@ -160,6 +160,16 @@ function loadProfile(email){
                 friendsDiv.parentNode.removeChild(friendsDiv);
             }
 
+            if (document.getElementById("photoResults") != null){
+                var photoDiv = document.getElementById("photoResults");
+                photoDiv.parentNode.removeChild(photoDiv);
+            }
+
+            if (document.getElementById("albumResults") != null){
+                var albumDiv = document.getElementById("albumResults");
+                albumDiv.parentNode.removeChild(albumDiv);
+            }
+
             var mainContentDiv = document.getElementById("main_content");
 
             var divProfileHeader = document.createElement("div");

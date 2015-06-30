@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Welcome Page</title>
     <link rel="stylesheet" type="text/css" href="src/content/SiteIndex.css">
+    <link rel="icon" href="src/content/images/fav.png" type="image/x-icon"/>
     <script src="src/scripts/Validations.js"></script>
 </head>
 <body>

@@ -12,6 +12,7 @@ if(!$auth == "ok") {
     <title>LightFB</title>
     <link rel="stylesheet" type="text/css" href="src/content/SiteIndex.css">
     <link rel="stylesheet" type="text/css" href="src/content/maps.css">
+    <link rel="icon" href="src/content/images/fav.png" type="image/x-icon"/>
     <script src="src/scripts/ajaxRequests.js"></script>
     <script src="src/scripts/pollingAjax.js"></script>
 </head>

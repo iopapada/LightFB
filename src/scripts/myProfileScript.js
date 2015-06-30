@@ -97,9 +97,33 @@ function loadMyPosts(){
 
                             newPostText.innerHTML = arr[i].message;
 
+                            //Create a Div that will host the likes
+                            var newPostLike = document.createElement('div');
+                            newPostLike.setAttribute('class', 'post');
+                            newPostLike.setAttribute('id','like');
+
+                            //Create an image to pass in the anchor
+                            var imgLike = document.createElement("img");
+                            imgLike.setAttribute('class', 'imgLike');
+                            imgLike.setAttribute('src', 'src/content/images/like.png');
+                            imgLike.setAttribute('alt', 'like');
+
+                            //Create an anchor
+                            var anchorLike = document.createElement("a");
+                            anchorLike.setAttribute('class', 'anchorlike');
+                            anchorLike.setAttribute('href',"#");
+                            anchorLike.setAttribute('id',arr[i].id);
+
+                            //append all needed for like
+
+                            anchorLike.appendChild(imgLike);
+                            newPostLike.appendChild(anchorLike);
+
+
                             //Append the elements and final in statusUpdates Div
                             newPost.appendChild(postInfoDiv);
                             newPost.appendChild(newPostText);
+                            newPost.appendChild(newPostLike);
 
                             //New posts should be on top!
                             postStatusDiv.insertBefore(newPost, postStatusDiv.firstChild);
@@ -108,6 +132,16 @@ function loadMyPosts(){
 
                 var mainContentDiv = document.getElementById('main_content');
                 mainContentDiv.appendChild(postStatusDiv);
+
+                var likes= document.getElementsByClassName('anchorlike');
+                for (var x = 0; x < likes.length; x++) {
+                    (function(x) {
+                        likes[x].addEventListener("click", function (e) {
+
+                            addLike(likes[x].getAttribute('id'));
+                        }, false);
+                    })(x);
+                }
 
             }
 
