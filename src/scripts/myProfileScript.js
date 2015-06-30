@@ -164,22 +164,26 @@ function loadAllMyPhotos(){
 
             statusMyUpdates.className = "allPhotos";
 
-            var divAllImages = document.createElement('div');
-            divAllImages.setAttribute("id",'displayAllImages');
-
             var tbl = document.createElement("table");
             tbl.setAttribute("id",'displayAllImages');
             var tblBody = document.createElement("tbody");
 
             for (var i = 0; i < arr.length; i++) {
 
+                var imggame = document.createElement('img');
+                var row;
+                if(i/4 === 0 )
+                {
+                    row= document.createElement("tr");
+
+                }
                 for (var l = 0; l < 4; l++) {
                     var cell = document.createElement("td");
                 }
             }
 
             tbl.appendChild(tblBody);
-            divAllImages.appendChild(tbl);
+            statusMyUpdates.appendChild(tbl);
         }
     }
 
