@@ -41,10 +41,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
                     for (i = 0; i < arr.length; i++) {
 
-
                         //Get the time and create a Div to store it
                         var postTime = arr[i].timepost;
-
 
                         var postInfoDiv = document.createElement('div');
                         postInfoDiv.setAttribute('class', 'postInfo');
@@ -73,9 +71,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
                         newPostText.innerHTML = arr[i].message;
 
+                        //Create a Div that will host the likes
+                        var newPostLike = document.createElement('div');
+                        newPostLike.setAttribute('class', 'post');
+                        newPostLike.setAttribute('id','like');
+
+                        //Create an image to pass in the anchor
+                        var imgLike = document.createElement("img");
+                        imgLike.setAttribute('class', 'imgLike');
+                        imgLike.setAttribute('src', 'src/content/images/like.png');
+                        imgLike.setAttribute('alt', 'like');
+
+                        //Create an anchor
+                        var anchorLike = document.createElement("a");
+                        anchorLike.setAttribute('class', 'anchorlike');
+                        anchorLike.setAttribute('href',"#");
+
+                        //append all needed for like
+
+                        anchorLike.appendChild(imgLike);
+                        newPostLike.appendChild(anchorLike);
+
                         //Append the elements and final in statusUpdates Div
                         newPost.appendChild(postInfoDiv);
                         newPost.appendChild(newPostText);
+                        newPost.appendChild(newPostLike);
+
                         //New posts should be on top!
                         postStatusDiv.insertBefore(newPost, postStatusDiv.firstChild);
                     }
@@ -165,9 +186,31 @@ function postStatus(){
 
                 newPostText.innerHTML = postStatus;
 
+                //Create a Div that will host the likes
+                var newPostLike = document.createElement('div');
+                newPostLike.setAttribute('class', 'post');
+                newPostLike.setAttribute('id','like');
+
+                //Create an image to pass in the anchor
+                var imgLike = document.createElement("img");
+                imgLike.setAttribute('class', 'imgLike');
+                imgLike.setAttribute('src', 'src/content/images/like.png');
+                imgLike.setAttribute('alt', 'like');
+
+                //Create an anchor
+                var anchorLike = document.createElement("a");
+                anchorLike.setAttribute('class', 'anchorlike');
+                anchorLike.setAttribute('href',"#");
+
+                //append all needed for like
+
+                anchorLike.appendChild(imgLike);
+                newPostLike.appendChild(anchorLike);
+
                 //Append the elements and final in statusUpdates Div
                 newPost.appendChild(postInfoDiv);
                 newPost.appendChild(newPostText);
+                newPost.appendChild(newPostLike);
                 //New posts should be on top!
                 if (postStatusDiv !=null) {
                     postStatusDiv.insertBefore(newPost, postStatusDiv.firstChild);
