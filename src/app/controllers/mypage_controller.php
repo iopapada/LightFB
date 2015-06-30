@@ -98,7 +98,8 @@ class MypageController {
         $userid = $_GET['email'];
         $results= db_query_select("SELECT img,imgname FROM images
                                        INNER JOIN albums ON albums.id = images.albumid
-                                       INNER JOIN userprofile ON userprofile.email = '$userid'");
+                                       INNER JOIN userprofile ON albums.userid = userprofile.email
+                                       WHERE userprofile.email = '$userid'");
 
         for($x = 0; $x<count($results); $x++){
             $results[$x]['img'] = base64_encode($results[$x]['img']);

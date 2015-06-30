@@ -271,7 +271,7 @@ function loadAllMyPhotos(){
                 imgname.setAttribute("src", "data:image/jpeg;base64," + arr[i]['img']);
                 var cell = document.createElement("td");
 
-                cell.appendChild(imgname);
+                if(arr[i]['img']!=="")cell.appendChild(imgname);
                 row.appendChild(cell);
                 if((i+1)%4 === 0 || i+1===arr.length)
                 {

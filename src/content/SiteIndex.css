@@ -407,14 +407,13 @@ ul{
 }
 
 .allPhotos img{
-    width: 210px;
-    height: 210px;
+    width: 205px;
+    height: 205px;
 }
 
 #left_welcome, #leftbar{
     display: inline-block;
     float: left;
-    width: 270px;
 }
 #left_welcome ul {
     padding: 0px;
@@ -446,6 +445,7 @@ ul{
 }
 
 #phototab{
+    width: 235px;
     margin: 40px 0px 40px 0px;
     background-color:white;
     border: 1px solid whitesmoke;
@@ -459,6 +459,10 @@ ul{
 }
 
 #myphoto table,img{
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
+}
+
+.allPhotos{
+
 }

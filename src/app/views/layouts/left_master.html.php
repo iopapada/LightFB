@@ -16,7 +16,8 @@
                 $userid = $_SESSION['user_id'];
                 $results= db_query_select("SELECT img,imgname FROM images
                                            INNER JOIN albums ON albums.id = images.albumid
-                                           INNER JOIN userprofile ON userprofile.email = '$userid'");
+                                           INNER JOIN userprofile ON albums.userid = userprofile.email
+                                           WHERE userprofile.email = '$userid'");
 
                 for($x = 0; $x<count($results); $x++){
                     $results[$x]['img'] = base64_encode($results[$x]['img']);
@@ -25,7 +26,7 @@
                     echo "<tr>";
                     for($j=0;$j<3;$j++) {
                         echo "<td>";
-                        if($j+($i*3) < count($results))echo "<img src=data:image/jpeg;base64," . $results[$j+($i*3)]['img'] . "></img>";
+                        if($j+($i*3) < count($results) && $results[$j+($i*3)]['img'] !=="")echo "<img src=data:image/jpeg;base64," . $results[$j+($i*3)]['img'] . "></img>";
                         echo "<td>";
                     }
                     echo "</tr>";
