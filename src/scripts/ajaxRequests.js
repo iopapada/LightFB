@@ -101,10 +101,8 @@ function mainSearch(){
         }
 
     }
-
     xmlhttp.open("GET","/index.php?action=search&searchExpr=" + searchExpr,true);
     xmlhttp.send();
-
 }
 
 // function to load otherprofile
@@ -122,29 +120,39 @@ function loadProfile(email){
             var arr = JSON.parse(xmlhttp.responseText);
             var i;
 
-            if (document.getElementById("searchResults")){
+            if (document.getElementById("searchResults") != null){
                 var searchResDiv = document.getElementById("searchResults");
                 searchResDiv.parentNode.removeChild(searchResDiv);
             }
 
-            if (document.getElementById("postStatus")){
+            if (document.getElementById("postStatus") != null){
                 var postStatusDiv = document.getElementById("postStatus");
                 postStatusDiv.parentNode.removeChild(postStatusDiv);
             }
 
-            if (document.getElementById("statusUpdates")){
-                var postStatusUpdatesDiv = document.getElementById("statusUpdates");
-                postStatusUpdatesDiv.parentNode.removeChild(postStatusUpdatesDiv);
+            if (document.getElementById("statusUpdates")!= null){
+                var StatusUpdatesDiv = document.getElementById("statusUpdates");
+                StatusUpdatesDiv.parentNode.removeChild(StatusUpdatesDiv);
             }
 
-            if (document.getElementById("profileHeader")){
-                var postStatusUpdatesDiv = document.getElementById("profileHeader");
-                postStatusUpdatesDiv.parentNode.removeChild(postStatusUpdatesDiv);
+            if (document.getElementById("statusMyUpdates")!= null){
+                var StatusMyUpdatesDiv = document.getElementById("statusMyUpdates");
+                StatusMyUpdatesDiv.parentNode.removeChild(StatusMyUpdatesDiv);
             }
 
-            if (document.getElementById("editContainer")){
-                var postStatusUpdatesDiv = document.getElementById("editContainer");
-                postStatusUpdatesDiv.parentNode.removeChild(postStatusUpdatesDiv);
+            if (document.getElementById("profileHeader")!= null){
+                var profileHeaderDiv = document.getElementById("profileHeader");
+                profileHeaderDiv.parentNode.removeChild(profileHeaderDiv);
+            }
+
+            if (document.getElementById("editContainer")!= null){
+                var editContainerDiv = document.getElementById("editContainer");
+                editContainerDiv.parentNode.removeChild(editContainerDiv);
+            }
+
+            if (document.getElementById("profileButtons")!= null){
+                var profileButtonsDiv = document.getElementById("profileButtons");
+                profileButtonsDiv.parentNode.removeChild(profileButtonsDiv);
             }
 
             var mainContentDiv = document.getElementById("main_content");
@@ -174,7 +182,7 @@ function loadProfile(email){
 
             var addFriendBtn = document.createElement("button");
             addFriendBtn.setAttribute('type', "button");
-            addFriendBtn.setAttribute('id', "friendsButton");
+            addFriendBtn.setAttribute('id', "friendButton");
             if (arr.isfriend == "0") {
                 addFriendBtn.setAttribute('class', "button friendBtn notFriend");
                 addFriendBtn.innerHTML = "Add Friend";
@@ -224,15 +232,16 @@ function loadProfile(email){
             if (document.getElementById("friendButton")) {
 
                 var addFriendButton = document.getElementById("friendButton");
-
                 addFriendButton.addEventListener("click", sendFriendRequest, false);
             }
+
         }
     }
 
     xmlhttp.open("GET","/index.php?action=otherprofile&email="+email,true);
     xmlhttp.send();
 }
+
 
 function createButton(type, classBtn, id, email, inner ){
 
