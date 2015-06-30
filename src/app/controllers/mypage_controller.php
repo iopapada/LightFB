@@ -26,10 +26,10 @@ class MypageController {
         $isfriends = db_query_select_one("SELECT * FROM friends
                                           WHERE ((friends.userid = '$mail' && friends.friendid = '$cursess') || (friends.userid = '$cursess' && friends.friendid = '$mail')) ");
 
-        if($isfriends['approved'] == 0)
-            $rows += array("isfriend" => "3");
-        else if($mail[1] == $cursess)
+        if($mail == $cursess)
             $rows += array("isfriend" => "2");
+        else if($isfriends['approved'] == 0)
+            $rows += array("isfriend" => "3");
         else if(count($isfriends) > 0)
             $rows += array("isfriend" => "1");
         else
