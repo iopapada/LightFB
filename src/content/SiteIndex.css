@@ -245,6 +245,16 @@ ul{
     -moz-box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.3);
 }
 
+#friendsResults{
+    margin-top: 5px;
+    width: 70%;
+    background-color:white;
+    border: 1px solid whitesmoke;
+    box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.3);
+}
+
 #profileHeader, #profileButtons{
     margin-top: 5px;
     width: 70%;
@@ -293,8 +303,25 @@ ul{
 }
 #searchResults div:hover {
     color:white;
+}
+
+#friendsResults ul {
+    padding-left: 0;
+}
+#friendsResults li{
+    margin: 5px;
+    border-bottom:1px solid #E1E1E1;
+}
+
+#friendsResults li:hover {
+    background-color: #3a5795;
+    cursor: pointer;
+}
+#friendsResults div:hover {
+    color:white;
 
 }
+
 .anchorSearch {
     display: block;
     text-decoration: none;
@@ -384,14 +411,54 @@ ul{
     height: 210px;
 }
 
-#left_welcome{
+#left_welcome, #leftbar{
     display: inline-block;
     float: left;
-    width: 20%;
+    width: 270px;
+}
+#left_welcome ul {
+    padding: 0px;
+}
+#leftbar ul{
+    padding: 0px;
 }
 
-#leftbar{
-    display: inline-block;
-    float: left;
-    width: 20%;
+#left_welcome h4{
+     text-decoration: none;
+     color: #999999;
+ }
+
+#left_welcome a{
+    text-decoration: none;
+    font-size: small;
+    display: block;
+}
+
+#leftbar h4{
+    text-decoration: none;
+    color: #999999;
+}
+
+#leftbar a{
+    text-decoration: none;
+    font-size: small;
+    display: block;
+}
+
+#phototab{
+    margin: 40px 0px 40px 0px;
+    background-color:white;
+    border: 1px solid whitesmoke;
+    box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.3);
+}
+
+#myphoto table{
+    width: inherit;
+}
+
+#myphoto table,img{
+    width: 80px;
+    height: 80px;
 }
