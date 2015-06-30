@@ -65,45 +65,46 @@ function loadMyPosts(){
                     postStatusDiv.removeChild(postStatusDiv.firstChild);
                 }
 
-                for (i = 0; i < arr.length; i++) {
+                    for (i = 0; i < arr.length; i++) {
 
-                    //Get the time and create a Div to store it
-                    var postTime = arr[i].timepost;
+                        if (arr[i].message != null) {
+                            //Get the time and create a Div to store it
+                            var postTime = arr[i].timepost;
 
-                    var postInfoDiv = document.createElement('div');
-                    postInfoDiv.setAttribute('class', 'postInfo');
-                    // If the user has not uploaded a profile pic don't append
-                    if (arr[i].pictureURL) {
+                            var postInfoDiv = document.createElement('div');
+                            postInfoDiv.setAttribute('class', 'postInfo');
+                            // If the user has not uploaded a profile pic don't append
+                            if (arr[i].pictureURL) {
 
-                        var itemProfilePic = document.createElement("img");
-                        itemProfilePic.setAttribute('class', 'imgProfileSearch');
-                        itemProfilePic.setAttribute('src', 'data:image/jpeg;base64,' + arr[i].pictureURL);
-                        itemProfilePic.setAttribute('alt', 'profile');
+                                var itemProfilePic = document.createElement("img");
+                                itemProfilePic.setAttribute('class', 'imgProfileSearch');
+                                itemProfilePic.setAttribute('src', 'data:image/jpeg;base64,' + arr[i].pictureURL);
+                                itemProfilePic.setAttribute('alt', 'profile');
 
-                        postInfoDiv.appendChild(itemProfilePic);
+                                postInfoDiv.appendChild(itemProfilePic);
+                            }
+
+                            postInfoDiv.innerHTML += "Posted by " + arr[i].firstname + " " + arr[i].lastname + " at:" + postTime;
+
+                            //Create a Div that will host the post Textbox
+                            var newPost = document.createElement('div');
+                            newPost.setAttribute('class', 'post');
+
+                            //Create a Div that will host the Textbox of Post
+                            var newPostText = document.createElement('textarea');
+                            newPostText.setAttribute('readonly', 'true');
+                            newPostText.setAttribute('class', 'postText');
+
+                            newPostText.innerHTML = arr[i].message;
+
+                            //Append the elements and final in statusUpdates Div
+                            newPost.appendChild(postInfoDiv);
+                            newPost.appendChild(newPostText);
+
+                            //New posts should be on top!
+                            postStatusDiv.insertBefore(newPost, postStatusDiv.firstChild);
+                        }
                     }
-
-                    postInfoDiv.innerHTML += "Posted by " + arr[i].firstname + " " + arr[i].lastname +" at:" + postTime;
-
-                    //Create a Div that will host the post Textbox
-                    var newPost = document.createElement('div');
-                    newPost.setAttribute('class', 'post');
-
-                    //Create a Div that will host the Textbox of Post
-                    var newPostText = document.createElement('textarea');
-                    newPostText.setAttribute('readonly', 'true');
-                    newPostText.setAttribute('class', 'postText');
-
-                    newPostText.innerHTML = arr[i].message;
-
-                    //Append the elements and final in statusUpdates Div
-                    newPost.appendChild(postInfoDiv);
-                    newPost.appendChild(newPostText);
-
-                    //New posts should be on top!
-                    postStatusDiv.insertBefore(newPost, postStatusDiv.firstChild);
-
-                }
 
                 var mainContentDiv = document.getElementById('main_content');
                 mainContentDiv.appendChild(postStatusDiv);
