@@ -52,9 +52,13 @@ class WelcomeController extends Controller{
     {
         session_start();
         $id = $_GET['email'];
-        $results= db_query_select("SELECT actions.*, userprofile.firstname, userprofile.lastname FROM actions
+        $results= db_query_select("SELECT actions.*, userprofile.firstname, userprofile.lastname, userprofile.pictureURL FROM actions
                                    INNER JOIN userprofile on userprofile.email = actions.userid
                                    WHERE actions.userid = '$id'");
+
+        for($x = 0; $x<count($results); $x++){
+            $results[$x]['pictureURL'] = base64_encode($results[$x]['pictureURL']);
+        }
         return json_encode($results);
         session_write_close();
     }
