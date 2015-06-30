@@ -9,7 +9,13 @@
         </li>
         <h4>My Friends</h4>
 
+<table>
+<tbody>
+<?php
 
+?>
+</tbody>
+</table>
 
         <h4>My Photos</h4>
 
