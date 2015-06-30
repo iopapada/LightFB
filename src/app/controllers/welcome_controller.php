@@ -57,7 +57,7 @@ class WelcomeController extends Controller{
         $isfriends = db_query_select_one("SELECT * FROM friends
                                           WHERE ((friends.userid = '$id' && friends.friendid = '$cursess') || (friends.userid = '$cursess' && friends.friendid = '$id')) ");
 
-        if(count($isfriends) > 0)
+        if(count($isfriends) > 0 || $id == $cursess)
             $results= db_query_select("SELECT actions.*, userprofile.firstname, userprofile.lastname, userprofile.pictureURL FROM actions
                                    INNER JOIN userprofile on userprofile.email = actions.userid
                                    WHERE actions.userid = '$id'");
