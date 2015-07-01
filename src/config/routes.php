@@ -27,6 +27,15 @@ else if(isset($_GET['action']) && $_GET['action'] == 'welcome'){
         include_once('src/app/views/layouts/index.html.php');
     session_write_close();
 }
+else if(isset($_GET['action']) && $_GET['action'] == 'myprofile'){
+
+    session_start();
+    if(array_key_exists('user_id',$_SESSION))
+        include_once('src/app/views/layouts/mypage-profile.html.php');
+    else
+        include_once('src/app/views/layouts/index.html.php');
+    session_write_close();
+}
 //----------------------------------POST------------------------------------
 else if(isset($_POST['username']) && isset($_POST['pass'])){
     Map::post('/', 'app#signin');

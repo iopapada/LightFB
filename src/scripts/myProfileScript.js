@@ -302,7 +302,7 @@ function loadAllMyAlbums(){
                     var allbuttons = document.getElementById('profileButtons');
                     var uploadform = document.createElement('form');
                     uploadform.setAttribute("id",'upform');
-                    uploadform.innerHTML = "Select image to upload";
+                    uploadform.innerHTML = "Select image to upload into album " + targetfolder + ": ";
                     uploadform.enctype = "multipart/form-data";
                     uploadform.method = "post";
                     uploadform.action = "/index.php?action=uploadphoto";
@@ -311,17 +311,18 @@ function loadAllMyAlbums(){
                     inputfile.type = "file";
                     inputfile.name="photoToUpload";
                     inputfile.id="photoToUpload";
+                    inputfile.required = "true";
                     uploadform.appendChild(inputfile);
 
                     var inputfolder = document.createElement('input');
                     inputfolder.name = "folder";
                     inputfolder.value = targetfolder;
+                    inputfolder.setAttribute("hidden","hidden");
                     uploadform.appendChild(inputfolder);
 
                     var inputsub = document.createElement('input');
                     inputsub.type = "submit";
                     inputsub.name = "Sub";
-                    //inputsub.value = "Up";
                     uploadform.appendChild(inputsub);
 
                     allbuttons.appendChild(uploadform);
@@ -465,5 +466,8 @@ function deleteOtherElements(){
         var albumDivDiv = document.getElementById("albumResults");
         albumDivDiv.parentNode.removeChild(albumDivDiv);
     }
-
+    if (document.getElementById("upform")!= null){
+        var upform = document.getElementById("upform");
+        upform.parentNode.removeChild(upform);
+    }
 }

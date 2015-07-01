@@ -91,14 +91,17 @@ class Map {
             header($test);
             //self::load_layout($layout_path);
         }
+        else if($action === "uploadPhotos" && $res === true)
+        {
+            $test = 'Location: http://'.$_SERVER['SERVER_NAME'].':'.$_SERVER['SERVER_PORT'].'/index.php?action=myprofile';
+            header($test);
+
+        }
         else if($action === "submiteditprofile" && $res === true)
         {
             include_once('src/app/views/layouts/mypage-profile.html.php');
         }
-        else if($action === "uploadPhotos" && $res === true)
-        {
-            include_once('src/app/views/layouts/mypage-profile.html.php');
-        }
+
         else if( !empty($layout_path) && $type !== 'XMLHttpRequest') {
             $layout = file_get_contents($layout_path);
 
