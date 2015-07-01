@@ -76,6 +76,11 @@ document.addEventListener('DOMContentLoaded', function() {
                         newPostLike.setAttribute('class', 'post');
                         newPostLike.setAttribute('id','like');
 
+                        var newPostLikeSpan = document.createElement('span');
+                        newPostLikeSpan.innerHTML = "Likes: "+ arr[i].likecnt;
+                        newPostLikeSpan.setAttribute('id','span'+arr[i].id);
+
+
                         //Create an image to pass in the anchor
                         var imgLike = document.createElement("img");
                         imgLike.setAttribute('class', 'imgLike');
@@ -87,11 +92,13 @@ document.addEventListener('DOMContentLoaded', function() {
                         anchorLike.setAttribute('class', 'anchorlike');
                         anchorLike.setAttribute('href',"#");
                         anchorLike.setAttribute('id',arr[i].id);
+                        anchorLike.setAttribute('cnt',arr[i].likecnt);
 
                         //append all needed for like
-
                         anchorLike.appendChild(imgLike);
+                        newPostLike.appendChild(newPostLikeSpan);
                         newPostLike.appendChild(anchorLike);
+
 
                         //Append the elements and final in statusUpdates Div
                         newPost.appendChild(postInfoDiv);
@@ -140,9 +147,25 @@ function addLike(id){
         xmlhttp = new XMLHttpRequest();
     }
 
+
+
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 
+            //Create an image to pass in the anchor
+            var imgLike = document.createElement("img");
+            imgLike.setAttribute('class', 'imgLike');
+            imgLike.setAttribute('src', 'src/content/images/like.png');
+            imgLike.setAttribute('alt', 'like');
+
+            var postAnchor = document.getElementById(id);
+            var postAnchorCnt = parseInt(postAnchor.getAttribute('cnt'));
+
+            var postAnchorSpan = document.getElementById('span'+id);
+
+            var newCount = postAnchorCnt + 1;
+
+            postAnchorSpan.innerHTML = "Likes: " +newCount;
 
         }
     }
@@ -305,7 +328,7 @@ function loadFriendRequests(){
                     friendBtn.setAttribute('type', 'button');
                     friendBtn.setAttribute('class', 'acceptBtn');
                     friendBtn.setAttribute('id', arr[i].email);
-                    friendBtn.innerHTML = "Friend Request";
+                    friendBtn.innerHTML = "Accept Friend Request";
                     requestBtns.appendChild(friendBtn);
                     searchItems.appendChild(friendInfo);
                     searchItems.appendChild(requestBtns);
@@ -343,6 +366,7 @@ function acceptFriendRequest(target){
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
         {
             target.innerHTML ="Accepted";
+            target.setAttribute('disabled', 'true');
             var spanFriendsNum = document.getElementById("friendRequestsCount");
 
 

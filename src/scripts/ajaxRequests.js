@@ -48,26 +48,34 @@ function mainSearch(){
 
             var listSearch = document.createElement("ul");
 
-            for(i=0; i < arr.length; i++){
+            if (arr.length > 0) {
+                for (i = 0; i < arr.length; i++) {
+
+                    var searchItems = document.createElement("li");
+                    var itemAnchor = document.createElement("div");
+                    itemAnchor.setAttribute('class', 'anchorSearch');
+                    itemAnchor.setAttribute('id', arr[i].email);
+
+                    // If the user has not uploaded a profile pic don't append
+                    if (arr[i].pictureURL) {
+
+                        var itemProfilePic = document.createElement("img");
+                        itemProfilePic.setAttribute('class', 'imgProfileSearch');
+                        itemProfilePic.setAttribute('src', 'data:image/jpeg;base64,' + arr[i].pictureURL);
+                        itemProfilePic.setAttribute('alt', 'profile');
+
+                        itemAnchor.appendChild(itemProfilePic);
+                    }
+
+                    itemAnchor.innerHTML += arr[i].firstname + " " + arr[i].lastname;
+                    searchItems.appendChild(itemAnchor);
+                    listSearch.appendChild(searchItems);
+                }
+            }
+            else{
 
                 var searchItems = document.createElement("li");
-                var itemAnchor = document.createElement("div");
-                itemAnchor.setAttribute('class','anchorSearch');
-                itemAnchor.setAttribute('id',arr[i].email);
-
-                // If the user has not uploaded a profile pic don't append
-                if (arr[i].pictureURL) {
-
-                    var itemProfilePic = document.createElement("img");
-                    itemProfilePic.setAttribute('class', 'imgProfileSearch');
-                    itemProfilePic.setAttribute('src', 'data:image/jpeg;base64,' + arr[i].pictureURL);
-                    itemProfilePic.setAttribute('alt', 'profile');
-
-                    itemAnchor.appendChild(itemProfilePic);
-                }
-
-                itemAnchor.innerHTML += arr[i].firstname + " " + arr[i].lastname;
-                searchItems.appendChild(itemAnchor);
+                searchItems.innerHTML = "No Friends found!";
                 listSearch.appendChild(searchItems);
             }
 
@@ -85,8 +93,6 @@ function mainSearch(){
             }
 
             var aTags = document.getElementsByClassName("anchorSearch");
-
-
 
             for (var i=0; i<aTags.length; i++){
 
@@ -221,8 +227,6 @@ function loadProfile(email){
 
             var timelineBtn = createButton('button', 'button', 'timelineBtn',arr.email,'Timeline');
             var friendsBtn = createButton('button', 'button', 'friendsBtn',arr.email,'Friends ('+arr.cnt + ")");
-
-            var albumsBtn = createButton('button', 'button', 'albumsBtn',arr.email,'Albums');
             var photosBtn = createButton('button', 'button', 'photosBtn',arr.email,'Photos');
 
             //if the profile loaded is not a friend make this button not clickable
@@ -245,7 +249,6 @@ function loadProfile(email){
             //append all buttons
             divProfileButtons.appendChild(timelineBtn);
             divProfileButtons.appendChild(friendsBtn);
-            divProfileButtons.appendChild(albumsBtn);
             divProfileButtons.appendChild(photosBtn);
 
             divProfileHeader.appendChild(divProfileButtons);
