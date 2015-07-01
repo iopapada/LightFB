@@ -45,10 +45,7 @@ function loadMyPosts(){
             //Get the statusUpdates Div Element
             var postStatusDiv = document.getElementById('statusMyUpdates');
 
-            if (document.getElementById("friendsResults") != null){
-                var friendsDiv = document.getElementById("friendsResults");
-                friendsDiv.parentNode.removeChild(friendsDiv);
-            }
+            deleteOtherElements();
 
             //in case there is no statusMyUpdates Div (when we are using other profile) create one
             if (postStatusDiv == null) {
@@ -102,6 +99,10 @@ function loadMyPosts(){
                             newPostLike.setAttribute('class', 'post');
                             newPostLike.setAttribute('id','like');
 
+                            var newPostLikeSpan = document.createElement('span');
+                            newPostLikeSpan.innerHTML = "Likes: "+ arr[i].likecnt;
+                            newPostLikeSpan.setAttribute('id','span'+arr[i].id);
+
                             //Create an image to pass in the anchor
                             var imgLike = document.createElement("img");
                             imgLike.setAttribute('class', 'imgLike');
@@ -113,12 +114,12 @@ function loadMyPosts(){
                             anchorLike.setAttribute('class', 'anchorlike');
                             anchorLike.setAttribute('href',"#");
                             anchorLike.setAttribute('id',arr[i].id);
+                            anchorLike.setAttribute('cnt',arr[i].likecnt);
 
                             //append all needed for like
-
                             anchorLike.appendChild(imgLike);
+                            newPostLike.appendChild(newPostLikeSpan);
                             newPostLike.appendChild(anchorLike);
-
 
                             //Append the elements and final in statusUpdates Div
                             newPost.appendChild(postInfoDiv);
@@ -219,6 +220,8 @@ function loadFriends(){
 function loadAllMyAlbums(){
 
     var email = document.getElementById('friendsBtn').getAttribute('email');
+    var allalbums;
+
 
     var xmlhttp;
     if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -229,26 +232,44 @@ function loadAllMyAlbums(){
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
         {
             var arr = JSON.parse(xmlhttp.responseText);
+            allalbums = arr;
+            var lastrow=0;
             deleteOtherElements();
             var allphotos = document.createElement("div");
-            allphotos.className = "allPhotos";
+            allphotos.className = "allAlbums";
             allphotos.setAttribute('id','albumResults');
 
             var tbl = document.createElement("table");
-            tbl.setAttribute("id",'displayAllImages');
+            tbl.setAttribute("id",'displayAllAlbums');
             var tblBody = document.createElement("tbody");
 
             var row;
+            arr.unshift('addalbum');
             for (var i = 0; i < arr.length; i++) {
                 if((i+1)%4 === 1 || i==0) {
+                    lastrow++;
+                    console.log(lastrow);
                     row= document.createElement("tr");
+                    row.setAttribute("id",lastrow);
+                }
+                var cell = document.createElement("td");
+                var img = document.createElement('img');
+                var imgname = document.createElement('p');
+                if(i==0){
+                    img.setAttribute("src", "src/content/images/plus.png");
+                    img.setAttribute("id",'addalbum');
+                    imgname.innerHTML = 'Add Album';
+
+                }
+                else{
+                    img.setAttribute("src", "src/content/images/folder.png");
+                    img.setAttribute("id",arr[i]['albname']);
+
+                    imgname.innerHTML = arr[i]['albname'];
                 }
 
-                var imgname = document.createElement('img');
-                imgname.setAttribute("src", "src/content/images/folder.png");
-                var cell = document.createElement("td");
-
-                if(arr[i]['img']!=="")cell.appendChild(imgname);
+                cell.appendChild(img);
+                cell.appendChild(imgname);
                 row.appendChild(cell);
                 if((i+1)%4 === 0 || i+1===arr.length)
                 {
@@ -261,6 +282,103 @@ function loadAllMyAlbums(){
 
             mainContentDiv =  document.getElementById('main_content');
             mainContentDiv.appendChild(allphotos);
+
+            for (var i = 1; i < arr.length; i++) {
+                document.getElementById(arr[i]['albname']).addEventListener('click', function (e) {
+                    if (document.getElementById("upform")!= null) {
+                        var uploadf = document.getElementById("upform");
+                        uploadf.parentNode.removeChild(uploadf);
+                    }
+                    var targetfolder = e.currentTarget.id;
+                    //<form id="upload" style="padding-top: 66px" action="index.php" method="post" enctype="multipart/form-data" hidden="hidden" on>
+                    //Select image to upload:
+                    //    <input type="file" name="fileToUpload" id="fileToUpload">
+                    //<input type="submit" value="UploadImage" name="submit">
+                    //<input type="text" name="folderToUpload" id="folderToUpload" readonly="true" style="background-color: #3a5795; border: none; color: white">
+                    //</form>
+
+                    //loadOnMainContainer(e,arr[i]['albname']);
+
+                    var allbuttons = document.getElementById('profileButtons');
+                    var uploadform = document.createElement('form');
+                    uploadform.setAttribute("id",'upform');
+                    uploadform.innerHTML = "Select image to upload";
+                    uploadform.enctype = "multipart/form-data";
+                    uploadform.method = "post";
+                    uploadform.action = "/index.php?action=uploadphoto";
+
+                    var inputfile = document.createElement('input');
+                    inputfile.type = "file";
+                    inputfile.name="photoToUpload";
+                    inputfile.id="photoToUpload";
+                    uploadform.appendChild(inputfile);
+
+                    var inputfolder = document.createElement('input');
+                    inputfolder.name = "folder";
+                    inputfolder.value = targetfolder;
+                    uploadform.appendChild(inputfolder);
+
+                    var inputsub = document.createElement('input');
+                    inputsub.type = "submit";
+                    inputsub.name = "Sub";
+                    //inputsub.value = "Up";
+                    uploadform.appendChild(inputsub);
+
+                    allbuttons.appendChild(uploadform);
+                });
+            }
+
+            document.getElementById('addalbum').addEventListener('click', function (e) {
+                var foldername = window.prompt("Give Unique Folder Name");
+                //|| allalbums['albname'].contains(foldername)
+                if(foldername==="") {
+                    window.alert("invalid name");
+                    return;
+                }
+                if(foldername==null){
+                    return;
+                }
+
+                var xmlhttp2;
+                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                    xmlhttp2 = new XMLHttpRequest();
+                }
+
+                xmlhttp2.onreadystatechange = function () {
+                    if (xmlhttp2.readyState == 4 && xmlhttp2.status == 200) {
+
+                        var tbl = document.getElementById('displayAllAlbums');
+                        var row = document.getElementById(lastrow);
+
+                        console.log(allalbums.length);
+                        if((allalbums.length)%4 === 0) {
+                            lastrow++;
+                            row= document.createElement("tr");
+                            row.setAttribute("id",lastrow);
+                        }
+                        allalbums.push(foldername);
+                        var cell = document.createElement("td");
+                        var newalbum = document.createElement('img');
+                        var albumname = document.createElement('p');
+
+                        newalbum.setAttribute("src", "src/content/images/folder.png");
+                        newalbum.setAttribute("id",foldername);
+                        albumname.innerHTML = foldername;
+
+                        cell.appendChild(newalbum);
+                        cell.appendChild(albumname);
+
+                        row.appendChild(cell);
+                        tbl.appendChild(row);
+                    }
+
+                }
+
+
+
+                xmlhttp2.open("GET", "/index.php?action=createAlbum&albname="+foldername, true);
+                xmlhttp2.send();
+            });
         }
     }
 

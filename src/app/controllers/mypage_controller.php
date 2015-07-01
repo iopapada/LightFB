@@ -121,12 +121,13 @@ class MypageController {
         $blobphoto = addslashes($data);
         fclose($fp);
 
-        $albumids = db_query_select("SELECT id FROM albums WHERE albname = '$_POST[photoToUpload]' ");
+        $albumids = db_query_select("SELECT id FROM albums WHERE albname = '$_POST[folder]' ");
         $albumid = $albumids[0]['id'];
 
         $realimagename = $_FILES['photoToUpload']['name'];
 
         db_query("INSERT INTO images (albumid,imgname,img) VALUES ('$albumid','$realimagename','$blobphoto')");
+        return true;
     }
 
     public static function loadAllMyAlbums()
@@ -145,7 +146,7 @@ class MypageController {
         session_start();
         $userid = $_SESSION['user_id'];
         $albname = $_GET['albname'];
-        db_query("INSERT INTO albums (albname,userid) VALUES ('$albname','$userid')");
+        $res = db_query("INSERT INTO albums (albname,userid) VALUES ('$albname','$userid')");
         session_write_close();
     }
 

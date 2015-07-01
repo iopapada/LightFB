@@ -37,6 +37,9 @@ else if(isset($_POST['FirstName']) && isset($_POST['LastName']) && isset($_POST[
 else if(isset($_POST['update']) && $_POST['update'] == 'Update Profile') {
     Map::post('/', 'editmypage#submiteditprofile');
 }
+else if(isset($_POST['Sub']) && $_POST['Sub'] == 'Submit' && $_GET['action'] == 'uploadphoto') {
+    Map::post('/', 'mypage#uploadPhotos');
+}
 //-----------------------------------AJAX GET----------------------------------
 else if(isset($_GET['action']) && $_GET['action'] == 'otherprofile') {
     Map::ajax('/', 'mypage#otherprofile');
@@ -64,6 +67,9 @@ else if(isset($_GET['action']) && $_GET['action'] == 'loadFriendsPosts') {
 }
 else if(isset($_GET['action']) && $_GET['action'] == 'loadAllMyAlbums') {
     Map::ajax('/', 'mypage#loadAllMyAlbums');
+}
+else if(isset($_GET['action']) && $_GET['action'] == 'createAlbum') {
+    Map::ajax('/', 'mypage#createAlbum');
 }
 else if(isset($_GET['action']) && $_GET['action'] == 'loadAllMyPhotos') {
     Map::ajax('/', 'mypage#loadAllMyPhotos');

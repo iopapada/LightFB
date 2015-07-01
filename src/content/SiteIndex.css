@@ -411,6 +411,35 @@ ul{
     height: 205px;
 }
 
+.allAlbums{
+    margin-top: 5px;
+    width: 835px;
+    background-color:white;
+    border: 1px solid whitesmoke;
+    /*box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.3);*/
+    /*-webkit-box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.3);*/
+    /*-moz-box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.3);*/
+}
+
+.allAlbums td{
+    padding: 30px;
+}
+
+.allAlbums img{
+    width: 128px;
+    height: 128px;
+}
+
+.allAlbums img:hover td {
+    background-color: #fffe7b;
+}
+
+.allAlbums p{
+    padding: 0px;
+    margin: 0px;
+    text-align: center;
+}
+
 #left_welcome, #leftbar{
     display: inline-block;
     float: left;
