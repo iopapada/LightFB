@@ -147,8 +147,6 @@ function addLike(id){
         xmlhttp = new XMLHttpRequest();
     }
 
-
-
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
 
@@ -160,12 +158,11 @@ function addLike(id){
 
             var postAnchor = document.getElementById(id);
             var postAnchorCnt = parseInt(postAnchor.getAttribute('cnt'));
-
             var postAnchorSpan = document.getElementById('span'+id);
-
             var newCount = postAnchorCnt + 1;
 
-            postAnchorSpan.innerHTML = "Likes: " +newCount;
+            postAnchorSpan.innerHTML = "Likes: " + newCount.toString();
+
 
         }
     }
