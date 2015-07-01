@@ -285,47 +285,7 @@ function loadAllMyAlbums(){
 
             for (var i = 1; i < arr.length; i++) {
                 document.getElementById(arr[i]['albname']).addEventListener('click', function (e) {
-                    if (document.getElementById("upform")!= null) {
-                        var uploadf = document.getElementById("upform");
-                        uploadf.parentNode.removeChild(uploadf);
-                    }
-                    var targetfolder = e.currentTarget.id;
-                    //<form id="upload" style="padding-top: 66px" action="index.php" method="post" enctype="multipart/form-data" hidden="hidden" on>
-                    //Select image to upload:
-                    //    <input type="file" name="fileToUpload" id="fileToUpload">
-                    //<input type="submit" value="UploadImage" name="submit">
-                    //<input type="text" name="folderToUpload" id="folderToUpload" readonly="true" style="background-color: #3a5795; border: none; color: white">
-                    //</form>
-
-                    //loadOnMainContainer(e,arr[i]['albname']);
-
-                    var allbuttons = document.getElementById('profileButtons');
-                    var uploadform = document.createElement('form');
-                    uploadform.setAttribute("id",'upform');
-                    uploadform.innerHTML = "Select image to upload into album " + targetfolder + ": ";
-                    uploadform.enctype = "multipart/form-data";
-                    uploadform.method = "post";
-                    uploadform.action = "/index.php?action=uploadphoto";
-
-                    var inputfile = document.createElement('input');
-                    inputfile.type = "file";
-                    inputfile.name="photoToUpload";
-                    inputfile.id="photoToUpload";
-                    inputfile.required = "true";
-                    uploadform.appendChild(inputfile);
-
-                    var inputfolder = document.createElement('input');
-                    inputfolder.name = "folder";
-                    inputfolder.value = targetfolder;
-                    inputfolder.setAttribute("hidden","hidden");
-                    uploadform.appendChild(inputfolder);
-
-                    var inputsub = document.createElement('input');
-                    inputsub.type = "submit";
-                    inputsub.name = "Sub";
-                    uploadform.appendChild(inputsub);
-
-                    allbuttons.appendChild(uploadform);
+                    loadFolderListener(e);
                 });
             }
 
@@ -371,11 +331,12 @@ function loadAllMyAlbums(){
 
                         row.appendChild(cell);
                         tbl.appendChild(row);
+
+                        document.getElementById(foldername).addEventListener('click', function (e) {
+                            loadFolderListener(e);
+                        });
                     }
-
                 }
-
-
 
                 xmlhttp2.open("GET", "/index.php?action=createAlbum&albname="+foldername, true);
                 xmlhttp2.send();
@@ -470,4 +431,40 @@ function deleteOtherElements(){
         var upform = document.getElementById("upform");
         upform.parentNode.removeChild(upform);
     }
+}
+
+function loadFolderListener(e){
+    if (document.getElementById("upform")!= null) {
+        var uploadf = document.getElementById("upform");
+        uploadf.parentNode.removeChild(uploadf);
+    }
+    var targetfolder = e.currentTarget.id;
+
+    var allbuttons = document.getElementById('profileButtons');
+    var uploadform = document.createElement('form');
+    uploadform.setAttribute("id",'upform');
+    uploadform.innerHTML = "Select image to upload into album " + targetfolder + ": ";
+    uploadform.enctype = "multipart/form-data";
+    uploadform.method = "post";
+    uploadform.action = "/index.php?action=uploadphoto";
+
+    var inputfile = document.createElement('input');
+    inputfile.type = "file";
+    inputfile.name="photoToUpload";
+    inputfile.id="photoToUpload";
+    inputfile.required = "true";
+    uploadform.appendChild(inputfile);
+
+    var inputfolder = document.createElement('input');
+    inputfolder.name = "folder";
+    inputfolder.value = targetfolder;
+    inputfolder.setAttribute("hidden","hidden");
+    uploadform.appendChild(inputfolder);
+
+    var inputsub = document.createElement('input');
+    inputsub.type = "submit";
+    inputsub.name = "Sub";
+    uploadform.appendChild(inputsub);
+
+    allbuttons.appendChild(uploadform);
 }
