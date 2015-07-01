@@ -45,6 +45,7 @@
 <div id="main_area">
     <div id="main_content">
         <div id="FBlight_slogan">
+            <img src="/src/content/images/intro.png">
         </div>
         <div id="signup_area">
             <div id ="signup_text">
