@@ -464,6 +464,7 @@ function loadFolderListener(e){
     var inputsub = document.createElement('input');
     inputsub.type = "submit";
     inputsub.name = "Sub";
+    inputsub.value= "Submit";
     uploadform.appendChild(inputsub);
 
     allbuttons.appendChild(uploadform);
